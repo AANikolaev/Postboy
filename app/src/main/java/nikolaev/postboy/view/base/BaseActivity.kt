@@ -2,31 +2,37 @@ package nikolaev.postboy.view.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import nikolaev.postboy.BR
 
 abstract class BaseActivity<V : ViewModel, B : ViewDataBinding> : AppCompatActivity() {
 
-    protected lateinit var viewModel: V
-    protected lateinit var binding: B
+    lateinit var viewModel: V
+    private lateinit var binding: B
 
-    abstract fun initViewModel(): V
+    abstract fun obtainViewModel(): V
 
-    abstract fun initBinding(): B
+    abstract fun getContentViewLayoutId(): Int
+
+    protected abstract fun onViewModelReady()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = initBinding()
+        initViewModel()
+        initBinding()
         setContentView(binding.root)
+    }
 
-        viewModel = initViewModel()
-
-        binding.setVariable(BR.viewModel, this.viewModel)
-
+    private fun initViewModel() {
+        viewModel = obtainViewModel()
         onViewModelReady()
     }
 
-    open fun onViewModelReady() {}
+    private fun initBinding() {
+        binding = DataBindingUtil.inflate(layoutInflater, getContentViewLayoutId(), null, false) as B
+        binding.setVariable(BR.viewModel, this.viewModel)
+    }
 }

@@ -1,20 +1,17 @@
 package nikolaev.postboy.view
 
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.ActivityMainBinding
 import nikolaev.postboy.view.base.BaseActivity
-import nikolaev.postboy.viewmodel.ActivityMainViewModel
+import nikolaev.postboy.viewmodel.MainViewModel
 
-class MainActivity : BaseActivity<ActivityMainViewModel, ActivityMainBinding>() {
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
-    override fun initViewModel(): ActivityMainViewModel {
-        return ViewModelProviders.of(this).get(ActivityMainViewModel::class.java)
-    }
+    override fun obtainViewModel(): MainViewModel =
+        ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-    override fun initBinding(): ActivityMainBinding {
-        return DataBindingUtil.setContentView(this, R.layout.activity_main)
-    }
+    override fun getContentViewLayoutId(): Int = R.layout.activity_main
 
+    override fun onViewModelReady() {}
 }
