@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_graph" app:startDestination="@id/requestFragment">
+
+    <fragment android:id="@+id/requestFragment"
+              android:name="nikolaev.postboy.view.fragments.RequestFragment"
+              android:label="RequestFragment"/>
+
+    <fragment android:id="@+id/responseFragment"
+              android:name="nikolaev.postboy.view.fragments.ResponseFragment"
+              android:label="ResponseFragment"/>
+</navigation>
