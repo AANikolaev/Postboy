@@ -2,7 +2,7 @@ package nikolaev.postboy.view.fragments
 
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FragmentRequestBinding
-import nikolaev.postboy.view.MainActivity
+import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.base.BaseFragment
 import nikolaev.postboy.viewmodel.MainViewModel
 

@@ -1,4 +1,4 @@
-package nikolaev.postboy.view
+package nikolaev.postboy.view.activities
 
 import androidx.lifecycle.ViewModelProviders
 import nikolaev.postboy.R
