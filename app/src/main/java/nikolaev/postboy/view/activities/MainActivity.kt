@@ -1,7 +1,7 @@
 package nikolaev.postboy.view.activities
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
+import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -21,9 +21,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     override fun getContentViewLayoutId(): Int = R.layout.activity_main
 
     override fun onViewModelReady() {
-        viewModel.fragmentRouteToMove.observe(this, Observer {
-            moveToNextFragment(it)
-        })
+//        viewModel.fragmentRouteToMove.observe(this, Observer {
+//            moveToNextFragment(it)
+//        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,5 +36,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
         navController.navigate(i)
     }
 
+    fun onClickDeleteHeader(v: View) {
+        viewModel.oNDeleteHeadersView.postValue(v)
+    }
+
+    fun onClickDeleteParameters(v: View) {
+        viewModel.oNDeleteParameterView.postValue(v)
+    }
 
 }

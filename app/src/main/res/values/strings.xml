@@ -3,4 +3,34 @@
 
     <string name="request_fragment" translatable="false">Request fragment</string>
     <string name="response_fragment">response fragment</string>
+
+
+    <string name="send">send</string>
+    <string name="request_method">Request Method</string>
+    <string name="enter_request_url">Enter request URL</string>
+    <string name="main_view_headers">Headers</string>
+    <string name="main_view_add">Add</string>
+    <string name="main_view_parameters">Parameters</string>
+    <string name="main_view_key">Key</string>
+    <string name="main_view_value">Value</string>
+    <string name="main_view_remove">Remove</string>
+    <string name="menu_history">History</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_body">Body</string>
+    <string name="enter_body">Enter body</string>
+
+    <string-array name="methods_array">
+        <item>GET</item>
+        <item>POST</item>
+        <!--<item>HEAD</item>-->
+        <item>PUT</item>
+        <item>DELETE</item>
+        <!--<item>PATCH</item>-->
+    </string-array>
+
+    <string-array name="http_array">
+        <item>http://</item>
+        <item>https://</item>
+    </string-array>
+
 </resources>

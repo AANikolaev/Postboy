@@ -12,7 +12,7 @@ import nikolaev.postboy.BR
 
 abstract class BaseFragment<V : ViewModel, B : ViewDataBinding> : Fragment() {
 
-    private lateinit var viewModel: V
+    lateinit var viewModel: V
     private lateinit var binding: B
 
     abstract fun obtainViewModel(): V

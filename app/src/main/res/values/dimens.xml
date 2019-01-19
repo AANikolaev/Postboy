@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="scrollview_bottom">60dp</dimen>
+    <dimen name="margin_button_send">10dp</dimen>
+    <dimen name="fragment_main_margin_start">16dp</dimen>
+    <dimen name="fragment_main_margin_top">16dp</dimen>
+    <dimen name="fragment_main_margin_end">16dp</dimen>
+
+    <dimen name="fragment_main_little_margin">8dp</dimen>
+    <dimen name="fragment_main_mid_margin">12dp</dimen>
+    <dimen name="fragment_main_image_padding">8dp</dimen>
+
+    <dimen name="include_layout_margin_end">12dp</dimen>
+    <dimen name="include_layout_margin_start">8dp</dimen>
+    <dimen name="include_layout_margin_button">8dp</dimen>
+
+
+</resources>
