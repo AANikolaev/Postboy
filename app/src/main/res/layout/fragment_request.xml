@@ -183,7 +183,7 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonSend"
                 style="@style/AppTheme.TextAppearanceNormal"
                 android:layout_width="match_parent"
@@ -196,6 +196,7 @@
                 android:enabled="false"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="@string/send"
+                android:onClick="@{() -> viewModel.onClickSendRequest()}"
                 android:textAllCaps="true"
                 android:textColor="@android:color/black"/>
 

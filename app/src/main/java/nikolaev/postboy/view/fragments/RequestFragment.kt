@@ -1,6 +1,8 @@
 package nikolaev.postboy.view.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.Observer
@@ -10,6 +12,7 @@ import nikolaev.postboy.databinding.FragmentRequestBinding
 import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.base.BaseFragment
 import nikolaev.postboy.viewmodel.MainViewModel
+import okhttp3.HttpUrl
 
 
 class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>() {
@@ -35,16 +38,33 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>() {
         imageButtonAddHeader.setOnClickListener {
             val inflater = LayoutInflater.from(context)
             val rowView = inflater.inflate(R.layout.field_header, null)
-            // Add the new row before the add field_header button.
             includeFieldHeaders.addView(rowView, includeFieldHeaders.childCount - 1)
         }
 
         imageButtonAddParameters.setOnClickListener {
             val inflater = LayoutInflater.from(context)
             val rowView = inflater.inflate(R.layout.field_parameters, null)
-            // Add the new row before the add field_header button.
             includeFieldParameters.addView(rowView, includeFieldParameters.childCount - 1)
         }
+
+        editTextUrl.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {
+                if (s.toString().startsWith("http://")) {
+                    spinnerHttp.setSelection(0)
+                    s.delete(0, 7)
+                } else if (s.toString().startsWith("https://")) {
+                    spinnerHttp.setSelection(1)
+                    s.delete(0, 8)
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                buttonSend.isEnabled = s.isNotEmpty() && HttpUrl.parse("http://$s") != null
+            }
+
+        })
 
     }
 
