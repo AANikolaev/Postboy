@@ -3,8 +3,10 @@ package nikolaev.postboy.view.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_request.*
 import nikolaev.postboy.R
@@ -16,6 +18,8 @@ import okhttp3.HttpUrl
 
 
 class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>() {
+
+    val TAG = "RequestFragment"
 
     override fun obtainViewModel(): MainViewModel = (activity as MainActivity).viewModel
 
@@ -63,8 +67,27 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 buttonSend.isEnabled = s.isNotEmpty() && HttpUrl.parse("http://$s") != null
             }
-
         })
+
+        spinnerMethod.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Log.d(TAG, "onNothingSelected")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                viewModel.spinnerMethod.set(spinnerMethod.selectedItem.toString())
+            }
+        }
+
+        spinnerHttp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Log.d(TAG, "onNothingSelected")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                viewModel.spinnerHttp.set(spinnerHttp.selectedItem.toString())
+            }
+        }
 
     }
 
