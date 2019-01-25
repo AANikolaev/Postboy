@@ -197,7 +197,6 @@
                 android:enabled="false"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="@string/send"
-                android:onClick="@{() -> viewModel.onClickSendRequest()}"
                 android:textAllCaps="true"
                 android:textColor="@android:color/black"/>
 

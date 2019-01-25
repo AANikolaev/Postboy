@@ -19,6 +19,8 @@
     <string name="title_body">Body</string>
     <string name="enter_body">Enter body</string>
 
+    <string name="pre_loader_description_text_default">Loading…</string>
+
     <string-array name="methods_array">
         <item>GET</item>
         <item>POST</item>

@@ -1,16 +1,20 @@
 package nikolaev.postboy.view.base
 
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.Observer
 import nikolaev.postboy.BR
+import nikolaev.postboy.util.showPreLoader
 
-abstract class BaseActivity<V : ViewModel, B : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<V : BaseViewModel, B : ViewDataBinding> : AppCompatActivity() {
 
     lateinit var viewModel: V
     private lateinit var binding: B
+
+    private var preLoader: AlertDialog? = null
 
     abstract fun obtainViewModel(): V
 
@@ -34,5 +38,26 @@ abstract class BaseActivity<V : ViewModel, B : ViewDataBinding> : AppCompatActiv
     private fun initBinding() {
         binding = DataBindingUtil.inflate(layoutInflater, getContentViewLayoutId(), null, false) as B
         binding.setVariable(BR.viewModel, this.viewModel)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (viewModel as BaseViewModel).isLoading.observe(this, loadingObserver)
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+        preLoader?.dismiss()
+        (viewModel as BaseViewModel).isLoading.removeObserver(loadingObserver)
+    }
+
+    private var loadingObserver = Observer<Boolean> {
+        preLoader = if (it!!) {
+            showPreLoader(this, null, true)
+        } else {
+            preLoader?.dismiss()
+            null
+        }
     }
 }
