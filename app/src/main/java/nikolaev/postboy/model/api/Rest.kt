@@ -1,11 +1,14 @@
 package nikolaev.postboy.model.api
 
+import android.content.Context
 import nikolaev.postboy.model.utils.phaseHeaders
 import okhttp3.*
 import okhttp3.internal.Util
 import java.io.IOException
 
-class Rest : IRest {
+class Rest(context: Context) : IRest {
+
+    // todo network manager
 
     private val client = OkHttpClient()
 

@@ -6,15 +6,12 @@ import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import nikolaev.postboy.R
-import nikolaev.postboy.model.api.Rest
 import nikolaev.postboy.util.ProgressDialogModel
 import nikolaev.postboy.view.base.BaseViewModel
 
 class MainViewModel(application: Application) : BaseViewModel(application) {
 
     val TAG = this::class.java.simpleName
-
-    private val rest: Rest = Rest()
 
     val oNDeleteHeadersView = MutableLiveData<View>()
     val oNDeleteParameterView = MutableLiveData<View>()
@@ -47,7 +44,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                 getString(R.string.pre_loader_description_text_default)
             )
         )
-        rest.getRequest(spinnerHttp.get() + textUrl.get()!!, headersList) { q, w ->
+        repository.getApi(spinnerHttp.get() + textUrl.get()!!, headersList) { q, w ->
             Log.d("+", "re($q, $w)")
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
         }

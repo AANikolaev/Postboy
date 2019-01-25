@@ -1,10 +1,9 @@
-package nikolaev.postboy.model.api
+package nikolaev.postboy.model
 
-interface IRest {
+interface Repository {
 
-    fun getRequest(
+    fun getApi(
         url: String, headers: List<Pair<String, String>>,
         callback: (response: String, error: String) -> Unit
     )
-
 }
