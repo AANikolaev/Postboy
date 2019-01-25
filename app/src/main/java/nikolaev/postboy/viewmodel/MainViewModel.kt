@@ -47,7 +47,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                 getString(R.string.pre_loader_description_text_default)
             )
         )
-        rest.getRequest(textUrl.get()!!, headersList) { q, w ->
+        rest.getRequest(spinnerHttp.get() + textUrl.get()!!, headersList) { q, w ->
             Log.d("+", "re($q, $w)")
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
         }

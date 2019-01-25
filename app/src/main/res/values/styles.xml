@@ -30,7 +30,8 @@
     </style>
 
     <style name="AppTheme.TextAppearanceNormalSpinner">
-        <item name="android:spinnerItemStyle">@style/AppTheme.TextAppearanceNormal</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="AppTheme.WhiteAccent">

@@ -52,7 +52,7 @@
                         android:id="@+id/spinnerHttp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/fragment_main_margin_start"
+                        android:layout_marginStart="@dimen/fragment_main_little_margin"
                         android:layout_marginTop="@dimen/fragment_main_margin_top"
                         android:entries="@array/http_array"
                         android:theme="@style/AppTheme.TextAppearanceNormalSpinner"

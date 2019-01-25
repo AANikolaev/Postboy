@@ -15,7 +15,7 @@ class Rest : IRest {
             error: String
         ) -> Unit
     ) {
-        val request = Request.Builder().url("http://" + url).headers(phaseHeaders(headers)).get()
+        val request = Request.Builder().url(url).headers(phaseHeaders(headers)).get()
             .build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
