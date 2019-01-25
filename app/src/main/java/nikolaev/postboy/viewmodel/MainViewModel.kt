@@ -6,6 +6,8 @@ import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import nikolaev.postboy.R
+import nikolaev.postboy.util.ErrorDialogModel
+import nikolaev.postboy.util.Event
 import nikolaev.postboy.util.ProgressDialogModel
 import nikolaev.postboy.view.base.BaseViewModel
 
@@ -24,6 +26,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     var parametersList = ArrayList<Pair<String, String>>()
 
     val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
+    val errorDialogEvent = MutableLiveData<Event<ErrorDialogModel>>()
 
     fun onClickSendRequest() {
         Log.d("+", spinnerMethod.get())
@@ -44,9 +47,15 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                 getString(R.string.pre_loader_description_text_default)
             )
         )
-        repository.getApi(spinnerHttp.get() + textUrl.get()!!, headersList) { q, w ->
-            Log.d("+", "re($q, $w)")
+        repository.getApi(spinnerHttp.get() + textUrl.get()!!, headersList) { response, error ->
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
+            Log.d("+", "re($response, $error)")
+            if (response != "") {
+
+            } else {
+                errorDialogEvent.postValue(Event(ErrorDialogModel(errorMessage = error)))
+            }
+
         }
 
     }

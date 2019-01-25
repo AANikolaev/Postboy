@@ -1,16 +1,18 @@
 package nikolaev.postboy.model.api
 
 import android.content.Context
+import nikolaev.postboy.R
 import nikolaev.postboy.model.utils.phaseHeaders
+import nikolaev.postboy.util.NetworkManager
 import okhttp3.*
 import okhttp3.internal.Util
 import java.io.IOException
 
 class Rest(context: Context) : IRest {
 
-    // todo network manager
-
+    override val NO_NETWORK_ERROR = context.getString(R.string.no_network_error_text)
     private val client = OkHttpClient()
+    private val networkManager = NetworkManager(context)
 
     override fun getRequest(
         url: String, headers: List<Pair<String, String>>, callback: (
@@ -18,19 +20,24 @@ class Rest(context: Context) : IRest {
             error: String
         ) -> Unit
     ) {
-        val request = Request.Builder().url(url).headers(phaseHeaders(headers)).get()
-            .build()
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                callback("", e.message!!)
-            }
+        if (networkManager.isNetworkAvailable()) {
+            val request = Request.Builder().url(url).headers(phaseHeaders(headers)).get()
+                .build()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    callback("", e.message!!)
+                }
 
-            override fun onResponse(call: Call, response: Response) {
-                callback(response.body()!!.string(), "")
-            }
+                override fun onResponse(call: Call, response: Response) {
+                    callback(response.body()!!.string(), "")
+                }
 
-        })
+            })
+        } else {
+            callback("", NO_NETWORK_ERROR)
+        }
     }
+
 
     fun postRequest(url: String, headers: List<Pair<String, String>>, body: String?, callback: Callback): Call {
         val request = Request.Builder().url(url).headers(phaseHeaders(headers))

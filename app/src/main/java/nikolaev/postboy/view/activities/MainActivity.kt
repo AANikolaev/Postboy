@@ -1,5 +1,6 @@
 package nikolaev.postboy.view.activities
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -9,8 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.ActivityMainBinding
-import nikolaev.postboy.util.ProgressDialogModel
-import nikolaev.postboy.util.showPreLoader
+import nikolaev.postboy.util.*
 import nikolaev.postboy.view.base.BaseActivity
 import nikolaev.postboy.view.interfaces.IRouter
 import nikolaev.postboy.viewmodel.MainViewModel
@@ -35,8 +35,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
             }
         })
 
-        viewModel.progressDialogEvent.observe(this, Observer {
-
+        viewModel.errorDialogEvent.observe(this, Observer<Event<ErrorDialogModel>> {
+            it?.getContentIfNotHandled()?.let { errorDialogModel ->
+                showMessageDialogWithSingleAction(this,
+                    errorDialogModel.errorMessage
+                        ?: getString(R.string.sing_up_basics_error_dialog_message_default),
+                    getString(R.string.message_dialog_default_cancle_button_text),
+                    DialogInterface.OnClickListener { dialog, _ ->
+                        dialog.cancel()
+                    })
+            }
         })
     }
 

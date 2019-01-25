@@ -20,6 +20,10 @@
     <string name="enter_body">Enter body</string>
 
     <string name="pre_loader_description_text_default">Loading…</string>
+    <string name="no_network_error_text">No Internet connection</string>
+    <string name="sing_up_basics_error_dialog_title_default">Error</string>
+    <string name="sing_up_basics_error_dialog_message_default">Sorry, some error occur</string>
+    <string name="message_dialog_default_cancle_button_text">OK</string>
 
     <string-array name="methods_array">
         <item>GET</item>
