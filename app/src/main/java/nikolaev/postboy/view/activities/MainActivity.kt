@@ -46,6 +46,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                     })
             }
         })
+
+        viewModel.nextFragment.observe(this, Observer {
+            moveToNextFragment(it)
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

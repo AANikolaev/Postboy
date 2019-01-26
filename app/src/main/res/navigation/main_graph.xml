@@ -10,5 +10,6 @@
 
     <fragment android:id="@+id/responseFragment"
               android:name="nikolaev.postboy.view.fragments.ResponseFragment"
-              android:label="ResponseFragment"/>
+              android:label="ResponseFragment"
+              tools:layout="@layout/fragment_response"/>
 </navigation>
