@@ -45,13 +45,6 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
         viewModel.headersListAdapter.observe(this, Observer {
             adapter.update(it)
         })
-
-//        if (viewModel.headersList.isNotEmpty()){
-//            for (i in viewModel.headersList){
-//                inflateOptionViewWithData(context!!, R.layout.field_header, includeFieldHeaders, i.first, i.second)
-//            }
-//        }
-//        inflateOptionViewWithData(context!!, R.layout.field_header, includeFieldHeaders, viewModel.headersList)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +56,6 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
         super.onViewCreated(view, savedInstanceState)
 
         imageButtonAddHeader.setOnClickListener {
-            //            inflateOptionView(context!!, R.layout.field_header, includeFieldHeaders)
             viewModel.addItem(Pairs("", ""))
         }
 
@@ -110,8 +102,6 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
         }
 
         buttonSend.setOnClickListener {
-            //            getHeaders()
-//            getParameters()
             viewModel.onClickSendRequest()
         }
     }
@@ -119,30 +109,4 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
     override fun onItemClick(model: Pairs) {
         viewModel.deleteHeaderItem(model)
     }
-
-//    private fun getHeaders() {
-//        val header = ArrayList<Pair<String, String>>()
-//        val countHeaders = includeFieldHeaders.childCount
-//        for (i in 0 until countHeaders) {
-//            val tmp = includeFieldHeaders.getChildAt(i)
-//            if (tmp.textViewKey.text!!.isNotEmpty() && tmp.textViewValue.text!!.isNotEmpty()) {
-//                header.add(Pair(tmp.textViewKey.text.toString(), tmp.textViewValue.text.toString()))
-//            }
-//        }
-//        viewModel.headersList = header
-//    }
-//
-//    private fun getParameters() {
-//        val parameters = ArrayList<Pair<String, String>>()
-//        val countParameters = includeFieldParameters.childCount
-//        for (i in 0 until countParameters) {
-//            val tmp = includeFieldParameters.getChildAt(i)
-//            if (tmp.textViewKey.text!!.isNotEmpty() && tmp.textViewValue.text!!.isNotEmpty()) {
-//                parameters.add(Pair(tmp.textViewKey.text.toString(), tmp.textViewValue.text.toString()))
-//            }
-//        }
-//        viewModel.parametersList = parameters
-//    }
-
-
 }

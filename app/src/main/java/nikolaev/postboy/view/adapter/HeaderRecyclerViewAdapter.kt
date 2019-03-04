@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import nikolaev.postboy.BR.listener
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FieldHeaderBinding
 import nikolaev.postboy.view.interfaces.IClickHeaderModel

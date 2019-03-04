@@ -51,10 +51,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         Log.d("+", spinnerMethod.get())
         Log.d("+", spinnerHttp.get())
         Log.d("+", textUrl.get())
-
-        for (i in headersList) {
-            Log.d("+", "header Pair(${i.first}, ${i.second})")
-        }
+            headersList.addAll(headersListAdapter.value!!)
 
         for (i in parametersList) {
             Log.d("+", "parameter Pair(${i.first}, ${i.second})")
@@ -69,6 +66,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         repository.getApi(spinnerHttp.get() + textUrl.get()!!, headersList) { response, error ->
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
             Log.d("+", "re($response, $error)")
+            headersList.clear()
             if (response != "") {
                 val a = LinkedList<String>()
                 a.add(response)
