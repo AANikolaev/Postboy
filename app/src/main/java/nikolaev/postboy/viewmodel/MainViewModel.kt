@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import nikolaev.postboy.R
 import nikolaev.postboy.util.*
 import nikolaev.postboy.view.base.BaseViewModel
+import nikolaev.postboy.view.models.Pairs
 import org.json.JSONException
 import java.util.*
 
@@ -23,15 +24,28 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     val spinnerHttp = ObservableField<String>()
     val textUrl = ObservableField<String>()
 
-    var headersList = ArrayList<Pair<String, String>>()
-    var parametersList = ArrayList<Pair<String, String>>()
+    var headersList = ArrayList<Pairs>()
+    var parametersList = ArrayList<Pairs>()
+
+    var headersListAdapter = MutableLiveData<ArrayList<Pairs>>()
+    var headerArrayList = ArrayList<Pairs>()
 
     val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
     val errorDialogEvent = MutableLiveData<Event<ErrorDialogModel>>()
 
     private lateinit var texts: List<CharSequence>
-    val textResponse = ObservableField<String>()
     val nextFragment = MutableLiveData<Int>()
+    val respon = MutableLiveData<List<CharSequence>>()
+
+    fun addItem(item: Pairs){
+        headerArrayList.add(item)
+        headersListAdapter.postValue(headerArrayList)
+    }
+
+    fun deleteHeaderItem(item: Pairs){
+        headerArrayList.remove(item)
+        headersListAdapter.postValue(headerArrayList)
+    }
 
     fun onClickSendRequest() {
         Log.d("+", spinnerMethod.get())
@@ -75,10 +89,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                 }
 
                 nextFragment.postValue(R.id.responseFragment)
-
-                for (i in texts) {
-                    textResponse.set(i.toString())
-                }
+                respon.postValue(texts)
 
                 Log.d("+", texts.toString())
 

@@ -21,9 +21,9 @@ class MyJSONStringer {
      */
     final SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
     final ArrayList<CharSequence> out = new ArrayList<>();
-    private final int COLOR_ATOM = Color.parseColor("#AD7DC9");
-    private final int COLOR_NAME = Color.parseColor("#E6608D");
-    private final int COLOR_STRING = Color.parseColor("#F59F3F");
+    private final int COLOR_ATOM = Color.parseColor("#0F9D58");
+    private final int COLOR_NAME = Color.parseColor("#DB4437");
+    private final int COLOR_STRING = Color.parseColor("#4285F4");
     /**
      * Unlike the original implementation, this stack isn't limited to 20
      * levels of nesting.
