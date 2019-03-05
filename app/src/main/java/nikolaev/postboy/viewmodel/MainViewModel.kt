@@ -107,7 +107,8 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                     }
                 }
 
-                nextFragment.postValue(R.id.responseFragment)
+//                nextFragment.postValue(R.id.responseFragment)
+                nextFragment.postValue(R.id.tabRootFragment)
                 respon.postValue(texts)
 
                 Log.d("+", texts.toString())
