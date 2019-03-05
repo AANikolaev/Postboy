@@ -104,13 +104,12 @@
                         app:layout_constraintVertical_bias="0.5"
                         app:srcCompat="@drawable/ic_add_circle_outline_black_24dp"/>
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/includeFieldHeaders"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/include_layout_margin_start"
                         android:layout_marginEnd="@dimen/include_layout_margin_end"
-                        android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imageButtonAddHeader"
@@ -143,13 +142,12 @@
                         app:layout_constraintVertical_bias="0.5"
                         app:srcCompat="@drawable/ic_add_circle_outline_black_24dp"/>
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/includeFieldParameters"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/include_layout_margin_start"
                         android:layout_marginEnd="@dimen/include_layout_margin_end"
-                        android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imageButtonAddParameters"

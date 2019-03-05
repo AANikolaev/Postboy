@@ -14,7 +14,7 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
     protected val repository: Repository =
         RepositoryImpl.getInstance(application.baseContext)
 
-    protected fun getString(@StringRes id: Int) = resources.getString(id)!!
+    protected fun getString(@StringRes id: Int): String = resources.getString(id)
 
     val isLoading = MutableLiveData<Boolean>().apply {
         postValue(false)

@@ -12,18 +12,28 @@
             android:layout_height="match_parent"
             tools:context=".view.fragments.ResponseFragment">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/response_fragment"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"/>
+        <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="@{viewModel.textResponse}"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--android:layout_marginStart="8dp"/>-->
+
+        <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:divider="@null"
+                android:fastScrollEnabled="true"
+                android:listSelector="@android:color/transparent"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

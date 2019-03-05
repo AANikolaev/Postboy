@@ -1,0 +1,49 @@
+package nikolaev.postboy.view.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import nikolaev.postboy.R
+import nikolaev.postboy.databinding.FieldParametersBinding
+import nikolaev.postboy.view.interfaces.IClickParametersPairModel
+import nikolaev.postboy.view.models.Pairs
+
+class ParameterRecyclerViewAdapter(listener: IClickParametersPairModel) :
+    RecyclerView.Adapter<ParameterRecyclerViewAdapter.ItemRowHolder>() {
+
+    private var pairList = ArrayList<Pairs>()
+    private var listener = listener
+
+    fun update(list: ArrayList<Pairs>) {
+        pairList.clear()
+        pairList.addAll(list)
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemRowHolder {
+        return ItemRowHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.field_parameters, parent, false
+            )
+        )
+    }
+
+    override fun getItemCount(): Int {
+        return pairList.size
+    }
+
+    override fun onBindViewHolder(holder: ItemRowHolder, position: Int) {
+        if (pairList.isNotEmpty())
+            holder.bind(pairList[position], listener)
+    }
+
+    inner class ItemRowHolder(private val binding: FieldParametersBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(model: Pairs, listener: IClickParametersPairModel) {
+            binding.model = model
+            binding.listener = listener
+        }
+    }
+}

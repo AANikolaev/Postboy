@@ -46,6 +46,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                     })
             }
         })
+
+        viewModel.nextFragment.observe(this, Observer {
+            moveToNextFragment(it)
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,13 +61,4 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     override fun moveToNextFragment(i: Int) {
         navController.navigate(i)
     }
-
-    fun onClickDeleteHeader(v: View) {
-        viewModel.oNDeleteHeadersView.postValue(v)
-    }
-
-    fun onClickDeleteParameters(v: View) {
-        viewModel.oNDeleteParameterView.postValue(v)
-    }
-
 }

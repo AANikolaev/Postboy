@@ -3,6 +3,7 @@ package nikolaev.postboy.util
 import android.content.Context
 import android.net.ConnectivityManager
 
+@Suppress("DEPRECATION")
 class NetworkManager(context: Context) {
 
     private val connectivityService = context

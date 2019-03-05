@@ -2,6 +2,7 @@ package nikolaev.postboy.model
 
 import android.content.Context
 import nikolaev.postboy.model.api.Rest
+import nikolaev.postboy.view.models.Pairs
 
 class RepositoryImpl private constructor(
     private val rest: Rest
@@ -28,7 +29,7 @@ class RepositoryImpl private constructor(
 
     override fun getApi(
         url: String,
-        headers: List<Pair<String, String>>,
+        headers: List<Pairs>,
         callback: (response: String, error: String) -> Unit
     ) {
         rest.getRequest(url, headers) { response, error ->

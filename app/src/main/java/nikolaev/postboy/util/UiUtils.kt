@@ -39,7 +39,7 @@ fun showPreLoader(
             (activity.viewModel).clearRequestQueue()
         }
     }
-    alert?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alert.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     alert.show()
 
     return alert
