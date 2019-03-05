@@ -17,8 +17,8 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     val TAG = this::class.java.simpleName
 
-    val oNDeleteHeadersView = MutableLiveData<View>()
-    val oNDeleteParameterView = MutableLiveData<View>()
+    val onDeleteHeadersView = MutableLiveData<View>()
+    val onDeleteParameterView = MutableLiveData<View>()
 
     val spinnerMethod = ObservableField<String>()
     val spinnerHttp = ObservableField<String>()
@@ -28,7 +28,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     var parametersList = ArrayList<Pairs>()
 
     var headersListAdapter = MutableLiveData<ArrayList<Pairs>>()
-    var headerArrayList = ArrayList<Pairs>()
+    private var headersArrayList = ArrayList<Pairs>()
+
+    var parametersListAdapter = MutableLiveData<ArrayList<Pairs>>()
+    private var parametersArrayList = ArrayList<Pairs>()
 
     val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
     val errorDialogEvent = MutableLiveData<Event<ErrorDialogModel>>()
@@ -37,21 +40,31 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     val nextFragment = MutableLiveData<Int>()
     val respon = MutableLiveData<List<CharSequence>>()
 
-    fun addItem(item: Pairs){
-        headerArrayList.add(item)
-        headersListAdapter.postValue(headerArrayList)
+    fun addHeaderItem(item: Pairs) {
+        headersArrayList.add(item)
+        headersListAdapter.postValue(headersArrayList)
     }
 
-    fun deleteHeaderItem(item: Pairs){
-        headerArrayList.remove(item)
-        headersListAdapter.postValue(headerArrayList)
+    fun deleteHeaderItem(item: Pairs) {
+        headersArrayList.remove(item)
+        headersListAdapter.postValue(headersArrayList)
+    }
+
+    fun addParameterItem(item: Pairs) {
+        parametersArrayList.add(item)
+        parametersListAdapter.postValue(parametersArrayList)
+    }
+
+    fun deleteParameterItem(item: Pairs) {
+        parametersArrayList.remove(item)
+        parametersListAdapter.postValue(parametersArrayList)
     }
 
     fun onClickSendRequest() {
         Log.d("+", spinnerMethod.get())
         Log.d("+", spinnerHttp.get())
         Log.d("+", textUrl.get())
-            headersList.addAll(headersListAdapter.value!!)
+        headersList.addAll(headersListAdapter.value!!)
 
         for (i in parametersList) {
             Log.d("+", "parameter Pair(${i.first}, ${i.second})")

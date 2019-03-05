@@ -63,11 +63,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     }
 
     fun onClickDeleteHeader(v: View) {
-        viewModel.oNDeleteHeadersView.postValue(v)
+        viewModel.onDeleteHeadersView.postValue(v)
     }
 
     fun onClickDeleteParameters(v: View) {
-        viewModel.oNDeleteParameterView.postValue(v)
+        viewModel.onDeleteParameterView.postValue(v)
     }
-
+//TODO
 }

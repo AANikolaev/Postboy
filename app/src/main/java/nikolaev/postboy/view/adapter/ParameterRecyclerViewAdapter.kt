@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import nikolaev.postboy.R
-import nikolaev.postboy.databinding.FieldHeaderBinding
-import nikolaev.postboy.view.interfaces.IClickHeadersPairModel
+import nikolaev.postboy.databinding.FieldParametersBinding
+import nikolaev.postboy.view.interfaces.IClickParametersPairModel
 import nikolaev.postboy.view.models.Pairs
 
-class HeaderRecyclerViewAdapter(listener: IClickHeadersPairModel) :
-    RecyclerView.Adapter<HeaderRecyclerViewAdapter.ItemRowHolder>() {
+class ParameterRecyclerViewAdapter(listener: IClickParametersPairModel) :
+    RecyclerView.Adapter<ParameterRecyclerViewAdapter.ItemRowHolder>() {
 
     private var pairList = ArrayList<Pairs>()
     private var listener = listener
@@ -25,7 +25,7 @@ class HeaderRecyclerViewAdapter(listener: IClickHeadersPairModel) :
         return ItemRowHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.field_header, parent, false
+                R.layout.field_parameters, parent, false
             )
         )
     }
@@ -39,9 +39,9 @@ class HeaderRecyclerViewAdapter(listener: IClickHeadersPairModel) :
             holder.bind(pairList[position], listener)
     }
 
-    inner class ItemRowHolder(private val binding: FieldHeaderBinding) :
+    inner class ItemRowHolder(private val binding: FieldParametersBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: Pairs, listener: IClickHeadersPairModel) {
+        fun bind(model: Pairs, listener: IClickParametersPairModel) {
             binding.model = model
             binding.listener = listener
         }

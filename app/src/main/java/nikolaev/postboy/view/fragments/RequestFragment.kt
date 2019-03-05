@@ -11,17 +11,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_request.*
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FragmentRequestBinding
-import nikolaev.postboy.util.inflateOptionView
 import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.adapter.HeaderRecyclerViewAdapter
+import nikolaev.postboy.view.adapter.ParameterRecyclerViewAdapter
 import nikolaev.postboy.view.base.BaseFragment
-import nikolaev.postboy.view.interfaces.IClickHeaderModel
+import nikolaev.postboy.view.interfaces.IClickHeadersPairModel
+import nikolaev.postboy.view.interfaces.IClickParametersPairModel
 import nikolaev.postboy.view.models.Pairs
 import nikolaev.postboy.viewmodel.MainViewModel
 import okhttp3.HttpUrl
 
 
-class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), IClickHeaderModel {
+class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), IClickHeadersPairModel,
+    IClickParametersPairModel {
 
     val TAG = this::class.java.simpleName
 
@@ -30,21 +32,7 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
     override fun getContentViewLayoutId(): Int = R.layout.fragment_request
 
     override fun onViewModelReady() {
-        viewModel.oNDeleteHeadersView.observe(this, Observer {
-            includeFieldHeaders.removeView(it.parent as View)
-        })
-
-        viewModel.oNDeleteParameterView.observe(this, Observer {
-            includeFieldParameters.removeView(it.parent as View)
-        })
-
-        val adapter = HeaderRecyclerViewAdapter(this)
-        includeFieldHeaders.layoutManager = LinearLayoutManager(activity)
-        includeFieldHeaders.adapter = adapter
-
-        viewModel.headersListAdapter.observe(this, Observer {
-            adapter.update(it)
-        })
+        initialRecyclerViewAdapters()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,11 +44,11 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
         super.onViewCreated(view, savedInstanceState)
 
         imageButtonAddHeader.setOnClickListener {
-            viewModel.addItem(Pairs("", ""))
+            viewModel.addHeaderItem(Pairs("", ""))
         }
 
         imageButtonAddParameters.setOnClickListener {
-            inflateOptionView(context!!, R.layout.field_parameters, includeFieldParameters)
+            viewModel.addParameterItem(Pairs("", ""))
         }
 
         editTextUrl.addTextChangedListener(object : TextWatcher {
@@ -106,7 +94,27 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
         }
     }
 
-    override fun onItemClick(model: Pairs) {
+    override fun onItemHeadersClick(model: Pairs) {
         viewModel.deleteHeaderItem(model)
+    }
+
+    override fun onItemParametersClick(model: Pairs) {
+        viewModel.deleteParameterItem(model)
+    }
+
+    private fun initialRecyclerViewAdapters() {
+        val adapterHeader = HeaderRecyclerViewAdapter(this)
+        includeFieldHeaders.layoutManager = LinearLayoutManager(activity)
+        includeFieldHeaders.adapter = adapterHeader
+        viewModel.headersListAdapter.observe(this, Observer {
+            adapterHeader.update(it)
+        })
+
+        val adapterParameter = ParameterRecyclerViewAdapter(this)
+        includeFieldParameters.layoutManager = LinearLayoutManager(activity)
+        includeFieldParameters.adapter = adapterParameter
+        viewModel.parametersListAdapter.observe(this, Observer {
+            adapterParameter.update(it)
+        })
     }
 }
