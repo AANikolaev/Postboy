@@ -8,4 +8,6 @@ interface Repository {
         url: String, headers: List<Pairs>,
         callback: (response: String, error: String) -> Unit
     )
+
+    //todo post etc
 }

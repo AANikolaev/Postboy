@@ -61,13 +61,4 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     override fun moveToNextFragment(i: Int) {
         navController.navigate(i)
     }
-
-    fun onClickDeleteHeader(v: View) {
-        viewModel.onDeleteHeadersView.postValue(v)
-    }
-
-    fun onClickDeleteParameters(v: View) {
-        viewModel.onDeleteParameterView.postValue(v)
-    }
-//TODO
 }
