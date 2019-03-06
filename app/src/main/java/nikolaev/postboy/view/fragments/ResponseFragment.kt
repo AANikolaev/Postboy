@@ -17,7 +17,7 @@ class ResponseFragment : BaseFragment<MainViewModel, FragmentResponseBinding>() 
     override fun getContentViewLayoutId(): Int = R.layout.fragment_response
 
     override fun onViewModelReady() {
-        viewModel.respon.observe(this, Observer {
+        viewModel.responseCharSequence.observe(this, Observer {
             listView.adapter = ArrayAdapter(
                 context!!, R.layout.list_response_textview,
                 it

@@ -39,7 +39,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     private lateinit var texts: List<CharSequence>
     val nextFragment = MutableLiveData<Int>()
-    val respon = MutableLiveData<List<CharSequence>>()
+    val responseCharSequence = MutableLiveData<List<CharSequence>>()
 
     fun addHeaderItem(item: Pairs) {
         headersArrayList.add(item)
@@ -88,7 +88,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     private fun getMethodRequest(url: String, headers: ArrayList<Pairs>) {
         repository.getApi(url, headers) { response, error ->
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
-            Log.d("+", "($response, $error)")
+//            Log.d("+", "($response, $error)")
             headersList.clear()
             parametersList.clear()
             if (response != "") {
@@ -109,7 +109,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
 //                nextFragment.postValue(R.id.responseFragment)
                 nextFragment.postValue(R.id.tabRootFragment)
-                respon.postValue(texts)
+                responseCharSequence.postValue(texts)
 
                 Log.d("+", texts.toString())
 

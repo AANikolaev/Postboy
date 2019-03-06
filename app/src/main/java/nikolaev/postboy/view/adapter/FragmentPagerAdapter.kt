@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import nikolaev.postboy.util.TAB_TITLES
 import nikolaev.postboy.view.fragments.ResponseFragment
+import nikolaev.postboy.view.fragments.ResponsePreviewFragment
 
 
 class SampleFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
@@ -20,7 +21,7 @@ class SampleFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm)
                 ResponseFragment()
             }
             1 -> {
-                ResponseFragment()
+                ResponsePreviewFragment()
             }
             2 -> {
                 ResponseFragment()
