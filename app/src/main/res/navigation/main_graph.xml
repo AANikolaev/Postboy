@@ -12,4 +12,9 @@
               android:name="nikolaev.postboy.view.fragments.ResponseFragment"
               android:label="ResponseFragment"
               tools:layout="@layout/fragment_response"/>
+
+    <fragment android:id="@+id/tabRootFragment"
+              android:name="nikolaev.postboy.view.fragments.TabRootFragment"
+              android:label="TabRootFragment"
+              tools:layout="@layout/fragment_tab_root"/>
 </navigation>

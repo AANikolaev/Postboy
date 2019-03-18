@@ -20,9 +20,12 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     val spinnerMethod = ObservableField<String>()
     val spinnerHttp = ObservableField<String>()
     val textUrl = ObservableField<String>()
+    val textBody = ObservableField<String>()
 
-    var headersList = ArrayList<Pairs>()
-    var parametersList = ArrayList<Pairs>()
+    private var headersList = ArrayList<Pairs>()
+    private var parametersList = ArrayList<Pairs>()
+
+    var linkPreview = String()
 
     private var headersArrayList = ArrayList<Pairs>()
     var headersListAdapter = MutableLiveData<ArrayList<Pairs>>().apply {
@@ -34,12 +37,15 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         postValue(parametersArrayList)
     }
 
+    val responseCharSequence = MutableLiveData<List<CharSequence>>()
+
+    val responseCharSequence1 = ArrayList<CharSequence>()
+
     val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
     val errorDialogEvent = MutableLiveData<Event<ErrorDialogModel>>()
 
-    private lateinit var texts: List<CharSequence>
     val nextFragment = MutableLiveData<Int>()
-    val respon = MutableLiveData<List<CharSequence>>()
+
 
     fun addHeaderItem(item: Pairs) {
         headersArrayList.add(item)
@@ -72,6 +78,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         Log.d("+", spinnerMethod.get())
         Log.d("+", spinnerHttp.get())
         Log.d("+", textUrl.get())
+        Log.d("+", " ${textBody.get()}")
 
         headersList.addAll(headersListAdapter.value!!)
         parametersList.addAll(parametersListAdapter.value!!)
@@ -79,6 +86,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         when (spinnerMethod.get()) {
             GET_METHOD -> {
                 getMethodRequest(combineUrl(spinnerHttp.get() + textUrl.get(), parametersList), headersList)
+                linkPreview = combineUrl(spinnerHttp.get() + textUrl.get(), parametersList)
             }
         }
 
@@ -88,13 +96,14 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     private fun getMethodRequest(url: String, headers: ArrayList<Pairs>) {
         repository.getApi(url, headers) { response, error ->
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
-            Log.d("+", "($response, $error)")
             headersList.clear()
             parametersList.clear()
+
             if (response != "") {
-                val a = LinkedList<String>()
-                a.add(response)
-                val text = TextUtils.join("\n", a)
+                val responseLinkedList = LinkedList<String>()
+                val texts: List<CharSequence>
+                responseLinkedList.add(response)
+                val text = TextUtils.join("\n", responseLinkedList)
                 texts = try {
                     val jsonObject = MyJSONObject(text)
                     jsonObject.getCharSequences(2)
@@ -103,15 +112,13 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                         val jsonArray = MyJSONArray(text)
                         jsonArray.getCharSequences(2)
                     } catch (e1: JSONException) {
-                        a
+                        responseLinkedList
                     }
                 }
+                responseCharSequence1.clear()
+                responseCharSequence1.addAll(texts)
 
-                nextFragment.postValue(R.id.responseFragment)
-                respon.postValue(texts)
-
-                Log.d("+", texts.toString())
-
+                nextFragment.postValue(R.id.tabRootFragment)
             } else {
                 errorDialogEvent.postValue(Event(ErrorDialogModel(errorMessage = error)))
             }

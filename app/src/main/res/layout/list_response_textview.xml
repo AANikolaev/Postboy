@@ -5,4 +5,5 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:textSize="13sp"
+        android:textIsSelectable="true"
         android:typeface="monospace"/>
