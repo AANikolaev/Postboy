@@ -20,9 +20,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     val spinnerMethod = ObservableField<String>()
     val spinnerHttp = ObservableField<String>()
     val textUrl = ObservableField<String>()
+    val textBody = ObservableField<String>()
 
-    var headersList = ArrayList<Pairs>()
-    var parametersList = ArrayList<Pairs>()
+    private var headersList = ArrayList<Pairs>()
+    private var parametersList = ArrayList<Pairs>()
 
     var linkPreview = String()
 
@@ -77,6 +78,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         Log.d("+", spinnerMethod.get())
         Log.d("+", spinnerHttp.get())
         Log.d("+", textUrl.get())
+        Log.d("+", " ${textBody.get()}")
 
         headersList.addAll(headersListAdapter.value!!)
         parametersList.addAll(parametersListAdapter.value!!)
