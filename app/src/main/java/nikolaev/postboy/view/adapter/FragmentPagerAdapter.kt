@@ -2,13 +2,13 @@ package nikolaev.postboy.view.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import nikolaev.postboy.util.TAB_TITLES
 import nikolaev.postboy.view.fragments.ResponseFragment
 import nikolaev.postboy.view.fragments.ResponsePreviewFragment
 
 
-class SampleFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class SampleFragmentPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     override fun getCount(): Int {
         return TAB_TITLES.size
@@ -18,15 +18,15 @@ class SampleFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm)
 
         return when (position) {
             0 -> {
-                ResponseFragment()
+                ResponseFragment.newInstance()
             }
             1 -> {
-                ResponsePreviewFragment()
+                ResponsePreviewFragment.newInstance()
             }
             2 -> {
-                ResponseFragment()
+                ResponseFragment.newInstance()
             }
-            else -> ResponseFragment()
+            else -> ResponseFragment.newInstance()
         }
 
     }
