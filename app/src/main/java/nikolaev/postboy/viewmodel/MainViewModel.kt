@@ -85,6 +85,11 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                         combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
                         headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!)
             }
+            PUT_METHOD -> {
+                putMethodRequest(
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!)
+            }
         }
 
 
@@ -105,6 +110,20 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     private fun postMethodRequest(url: String, headers: ArrayList<Pairs>, body: String, bodyType: String) {
         repository.postApi(url, headers, body, bodyType) { response, error ->
+            progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
+            clearLists()
+
+            if (response != "") {
+                responseToJsonObject(response)
+                nextFragment.postValue(R.id.tabRootFragment)
+            } else {
+                errorDialogEvent.postValue(Event(ErrorDialogModel(errorMessage = error)))
+            }
+        }
+    }
+
+    private fun putMethodRequest(url: String, headers: ArrayList<Pairs>, body: String, bodyType: String) {
+        repository.putApi(url, headers, body, bodyType) { response, error ->
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
             clearLists()
 

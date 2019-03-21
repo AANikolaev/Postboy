@@ -14,5 +14,10 @@ interface Repository {
             callback: (response: String, error: String) -> Unit
     )
 
+    fun putApi(
+            url: String, headers: List<Pairs>, body: String?, bodyType: String,
+            callback: (response: String, error: String) -> Unit
+    )
+
     //todo post etc
 }

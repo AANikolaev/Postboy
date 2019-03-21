@@ -48,4 +48,16 @@ class RepositoryImpl private constructor(
             callback(response, error)
         }
     }
+
+    override fun putApi(
+            url: String,
+            headers: List<Pairs>,
+            body: String?,
+            bodyType: String,
+            callback: (response: String, error: String) -> Unit
+    ) {
+        rest.putRequest(url, headers, body, bodyType) { response, error ->
+            callback(response, error)
+        }
+    }
 }
