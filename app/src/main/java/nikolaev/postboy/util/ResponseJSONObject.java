@@ -1,13 +1,14 @@
 package nikolaev.postboy.util;
 
-import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class MyJSONArray extends JSONArray {
-    public MyJSONArray(String json) throws JSONException {
+public class ResponseJSONObject extends JSONObject {
+    public ResponseJSONObject(String json) throws JSONException {
         super(new JSONTokener(json));
     }
 
@@ -18,13 +19,13 @@ public class MyJSONArray extends JSONArray {
     }
 
     private void writeTo(MyJSONStringer stringer) throws JSONException {
-        stringer.array();
-        for (int i = 0, l = length(); i < l; i++) {
-            Object object = opt(i);
-            stringer.value(object);
+        stringer.object();
+        Iterator<String> keys = keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            stringer.key(key).value(opt(key));
         }
-        stringer.endArray();
+        stringer.endObject();
         stringer.preGetCharSequences();
     }
 }
-

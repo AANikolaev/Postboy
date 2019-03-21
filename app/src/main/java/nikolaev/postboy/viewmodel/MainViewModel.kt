@@ -2,7 +2,6 @@ package nikolaev.postboy.viewmodel
 
 import android.app.Application
 import android.text.TextUtils
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import nikolaev.postboy.R
@@ -19,6 +18,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     val spinnerMethod = ObservableField<String>()
     val spinnerHttp = ObservableField<String>()
+    val spinnerBodyType = ObservableField<String>()
     val textUrl = ObservableField<String>()
     val textBody = ObservableField<String>()
 
@@ -37,9 +37,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         postValue(parametersArrayList)
     }
 
-    val responseCharSequence = MutableLiveData<List<CharSequence>>()
-
-    val responseCharSequence1 = ArrayList<CharSequence>()
+    val responseCharSequenceRequest = ArrayList<CharSequence>()
 
     val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
     val errorDialogEvent = MutableLiveData<Event<ErrorDialogModel>>()
@@ -69,16 +67,11 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickSendRequest() {
         progressDialogEvent.postValue(
-            ProgressDialogModel(
-                true,
-                getString(R.string.pre_loader_description_text_default)
-            )
+                ProgressDialogModel(
+                        true,
+                        getString(R.string.pre_loader_description_text_default)
+                )
         )
-
-        Log.d("+", spinnerMethod.get())
-        Log.d("+", spinnerHttp.get())
-        Log.d("+", textUrl.get())
-        Log.d("+", " ${textBody.get()}")
 
         headersList.addAll(headersListAdapter.value!!)
         parametersList.addAll(parametersListAdapter.value!!)
@@ -88,6 +81,11 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                 getMethodRequest(combineUrl(spinnerHttp.get() + textUrl.get(), parametersList), headersList)
                 linkPreview = combineUrl(spinnerHttp.get() + textUrl.get(), parametersList)
             }
+            POST_METHOD -> {
+                postMethodRequest(
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!)
+            }
         }
 
 
@@ -96,32 +94,53 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     private fun getMethodRequest(url: String, headers: ArrayList<Pairs>) {
         repository.getApi(url, headers) { response, error ->
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
-            headersList.clear()
-            parametersList.clear()
+            clearLists()
 
             if (response != "") {
-                val responseLinkedList = LinkedList<String>()
-                val texts: List<CharSequence>
-                responseLinkedList.add(response)
-                val text = TextUtils.join("\n", responseLinkedList)
-                texts = try {
-                    val jsonObject = MyJSONObject(text)
-                    jsonObject.getCharSequences(2)
-                } catch (e: JSONException) {
-                    try {
-                        val jsonArray = MyJSONArray(text)
-                        jsonArray.getCharSequences(2)
-                    } catch (e1: JSONException) {
-                        responseLinkedList
-                    }
-                }
-                responseCharSequence1.clear()
-                responseCharSequence1.addAll(texts)
-
+                responseToJsonObject(response)
                 nextFragment.postValue(R.id.tabRootFragment)
             } else {
                 errorDialogEvent.postValue(Event(ErrorDialogModel(errorMessage = error)))
             }
         }
+    }
+
+    private fun postMethodRequest(url: String, headers: ArrayList<Pairs>, body: String, bodyType: String) {
+        repository.postApi(url, headers, body, bodyType) { response, error ->
+            progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
+            clearLists()
+
+            if (response != "") {
+                responseToJsonObject(response)
+                nextFragment.postValue(R.id.tabRootFragment)
+            } else {
+                errorDialogEvent.postValue(Event(ErrorDialogModel(errorMessage = error)))
+            }
+        }
+    }
+
+    private fun responseToJsonObject(response: String) {
+        val responseLinkedList = LinkedList<String>()
+        val texts: List<CharSequence>
+        responseLinkedList.add(response)
+        val text = TextUtils.join("\n", responseLinkedList)
+        texts = try {
+            val jsonObject = ResponseJSONObject(text)
+            jsonObject.getCharSequences(2)
+        } catch (e: JSONException) {
+            try {
+                val jsonArray = ResponseJSONArray(text)
+                jsonArray.getCharSequences(2)
+            } catch (e1: JSONException) {
+                responseLinkedList
+            }
+        }
+        responseCharSequenceRequest.clear()
+        responseCharSequenceRequest.addAll(texts)
+    }
+
+    private fun clearLists() {
+        headersList.clear()
+        parametersList.clear()
     }
 }

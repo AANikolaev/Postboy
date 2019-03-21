@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.SpannedString;
 import android.text.style.ForegroundColorSpan;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,8 +20,8 @@ class MyJSONStringer {
     /**
      * The output data, containing at most one top-level array or object.
      */
-    final SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
-    final ArrayList<CharSequence> out = new ArrayList<>();
+    private final SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
+    private final ArrayList<CharSequence> out = new ArrayList<>();
     private final int COLOR_ATOM = Color.parseColor("#0F9D58");
     private final int COLOR_NAME = Color.parseColor("#DB4437");
     private final int COLOR_STRING = Color.parseColor("#4285F4");
@@ -28,7 +29,7 @@ class MyJSONStringer {
      * Unlike the original implementation, this stack isn't limited to 20
      * levels of nesting.
      */
-    private final List<Scope> stack = new ArrayList<Scope>();
+    private final List<Scope> stack = new ArrayList<>();
     /**
      * A string containing a full set of spaces for a single level of
      * indentation, or null for no pretty printing.
@@ -52,7 +53,7 @@ class MyJSONStringer {
      *
      * @return this stringer.
      */
-    public MyJSONStringer array() throws JSONException {
+    MyJSONStringer array() throws JSONException {
         return open(Scope.EMPTY_ARRAY, "[");
     }
 
@@ -61,7 +62,7 @@ class MyJSONStringer {
      *
      * @return this stringer.
      */
-    public MyJSONStringer endArray() throws JSONException {
+    MyJSONStringer endArray() throws JSONException {
         return close(Scope.EMPTY_ARRAY, Scope.NONEMPTY_ARRAY, "]");
     }
 
@@ -80,7 +81,7 @@ class MyJSONStringer {
      *
      * @return this stringer.
      */
-    public MyJSONStringer endObject() throws JSONException {
+    MyJSONStringer endObject() throws JSONException {
         return close(Scope.EMPTY_OBJECT, Scope.NONEMPTY_OBJECT, "}");
     }
 
@@ -88,7 +89,7 @@ class MyJSONStringer {
      * Enters a new scope by appending any necessary whitespace and the given
      * bracket.
      */
-    MyJSONStringer open(Scope empty, String openBracket) throws JSONException {
+    private MyJSONStringer open(Scope empty, String openBracket) throws JSONException {
         if (stack.isEmpty() && stringBuilder.length() > 0) {
             throw new JSONException("Nesting problem: multiple top-level roots");
         }
@@ -102,7 +103,7 @@ class MyJSONStringer {
      * Closes the current scope by appending any necessary whitespace and the
      * given bracket.
      */
-    MyJSONStringer close(Scope empty, Scope nonempty, String closeBracket) throws JSONException {
+    private MyJSONStringer close(Scope empty, Scope nonempty, String closeBracket) throws JSONException {
         Scope context = peek();
         if (context != nonempty && context != empty) {
             throw new JSONException("Nesting problem");
@@ -155,7 +156,7 @@ class MyJSONStringer {
      *              or {@link Double#isInfinite() infinities}.
      * @return this stringer.
      */
-    public MyJSONStringer value(Object value) throws JSONException {
+    MyJSONStringer value(Object value) throws JSONException {
         if (stack.isEmpty()) {
             throw new JSONException("Nesting problem");
         }
@@ -340,7 +341,7 @@ class MyJSONStringer {
      * @param name the name of the forthcoming value. May not be null.
      * @return this stringer.
      */
-    public MyJSONStringer key(String name) throws JSONException {
+    MyJSONStringer key(String name) throws JSONException {
         if (name == null) {
             throw new JSONException("Names must be non-null");
         }
@@ -389,12 +390,12 @@ class MyJSONStringer {
         }
     }
 
-    public void preGetCharSequences() {
+    void preGetCharSequences() {
         out.add(SpannedString.valueOf(stringBuilder));
         stringBuilder.clear();
     }
 
-    public ArrayList<CharSequence> getCharSequences() {
+    ArrayList<CharSequence> getCharSequences() {
         return out;
     }
 

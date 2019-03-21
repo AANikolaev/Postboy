@@ -17,8 +17,8 @@ class ResponseFragment : BaseFragment<MainViewModel, FragmentResponseBinding>() 
 
     override fun onViewModelReady() {
         listView.adapter = ArrayAdapter(
-            context!!, R.layout.list_response_textview,
-            viewModel.responseCharSequence1
+                context!!, R.layout.list_response_textview,
+                viewModel.responseCharSequenceRequest
         )
     }
 

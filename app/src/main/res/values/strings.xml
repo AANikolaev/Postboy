@@ -39,5 +39,9 @@
         <item>https://</item>
     </string-array>
 
+    <string-array name="body_type_array">
+        <item>text</item>
+        <item>json</item>
+    </string-array>
 
 </resources>

@@ -23,7 +23,7 @@ import okhttp3.HttpUrl
 
 
 class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), IClickHeadersPairModel,
-    IClickParametersPairModel {
+        IClickParametersPairModel {
 
     val TAG = this::class.java.simpleName
 
@@ -86,6 +86,16 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 viewModel.spinnerHttp.set(spinnerHttp.selectedItem.toString())
+            }
+        }
+
+        spinnerBodyType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Log.d(TAG, "onNothingSelected")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                viewModel.spinnerBodyType.set(spinnerBodyType.selectedItem.toString())
             }
         }
 
