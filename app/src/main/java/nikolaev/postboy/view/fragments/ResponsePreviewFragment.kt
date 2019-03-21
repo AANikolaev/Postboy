@@ -21,9 +21,10 @@ class ResponsePreviewFragment : BaseFragment<MainViewModel, FragmentResponsePrev
         webSettings.useWideViewPort = true
         webSettings.builtInZoomControls = true
         webSettings.displayZoomControls = false
-
         mWebView.webViewClient = WebViewClient()
-        mWebView.loadUrl(viewModel.linkPreview)
+
+        mWebView.loadDataWithBaseURL(null, viewModel.bodyPreview,
+                "text/html", "UTF-8", null)
     }
 
     override fun onResume() {
@@ -40,7 +41,7 @@ class ResponsePreviewFragment : BaseFragment<MainViewModel, FragmentResponsePrev
         if (mWebView != null) {
             mWebView.destroy()
         }
-        viewModel.linkPreview = ""
+        viewModel.bodyPreview = ""
         super.onDestroy()
     }
 

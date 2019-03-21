@@ -25,7 +25,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     private var headersList = ArrayList<Pairs>()
     private var parametersList = ArrayList<Pairs>()
 
-    var linkPreview = String()
+    var bodyPreview = String()
 
     private var headersArrayList = ArrayList<Pairs>()
     var headersListAdapter = MutableLiveData<ArrayList<Pairs>>().apply {
@@ -79,7 +79,6 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         when (spinnerMethod.get()) {
             GET_METHOD -> {
                 getMethodRequest(combineUrl(spinnerHttp.get() + textUrl.get(), parametersList), headersList)
-                linkPreview = combineUrl(spinnerHttp.get() + textUrl.get(), parametersList)
             }
             POST_METHOD -> {
                 postMethodRequest(
@@ -95,7 +94,6 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         repository.getApi(url, headers) { response, error ->
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
             clearLists()
-
             if (response != "") {
                 responseToJsonObject(response)
                 nextFragment.postValue(R.id.tabRootFragment)
@@ -124,6 +122,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         val texts: List<CharSequence>
         responseLinkedList.add(response)
         val text = TextUtils.join("\n", responseLinkedList)
+        bodyPreview = text
         texts = try {
             val jsonObject = ResponseJSONObject(text)
             jsonObject.getCharSequences(2)
