@@ -16,16 +16,17 @@ class Rest(context: Context) : IRest {
     private val networkManager = NetworkManager(context)
 
     override fun getRequest(
-            url: String,
-            headers: List<Pairs>,
-            callback: (response: String, error: String) -> Unit) {
+        url: String,
+        headers: List<Pairs>,
+        callback: (response: String, error: String) -> Unit
+    ) {
         if (networkManager.isNetworkAvailable()) {
             val request =
-                    Request.Builder()
-                            .url(url)
-                            .headers(phaseHeaders(headers))
-                            .get()
-                            .build()
+                Request.Builder()
+                    .url(url)
+                    .headers(phaseHeaders(headers))
+                    .get()
+                    .build()
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     callback("", e.message!!)
@@ -42,18 +43,19 @@ class Rest(context: Context) : IRest {
     }
 
     override fun postRequest(
-            url: String,
-            headers: List<Pairs>,
-            body: String?,
-            bodyType: String,
-            callback: (response: String, error: String) -> Unit) {
+        url: String,
+        headers: List<Pairs>,
+        body: String?,
+        bodyType: String,
+        callback: (response: String, error: String) -> Unit
+    ) {
         if (networkManager.isNetworkAvailable()) {
             val request =
-                    Request.Builder()
-                            .url(url)
-                            .headers(phaseHeaders(headers))
-                            .post(getTypeBody(body, bodyType))
-                            .build()
+                Request.Builder()
+                    .url(url)
+                    .headers(phaseHeaders(headers))
+                    .post(getTypeBody(body, bodyType))
+                    .build()
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     callback("", e.message!!)
@@ -70,19 +72,50 @@ class Rest(context: Context) : IRest {
     }
 
     override fun putRequest(
-            url: String,
-            headers: List<Pairs>,
-            body: String?,
-            bodyType: String,
-            callback: (response: String, error: String) -> Unit) {
+        url: String,
+        headers: List<Pairs>,
+        body: String?,
+        bodyType: String,
+        callback: (response: String, error: String) -> Unit
+    ) {
 
         if (networkManager.isNetworkAvailable()) {
             val request =
-                    Request.Builder()
-                            .url(url)
-                            .headers(phaseHeaders(headers))
-                            .put(getTypeBody(body, bodyType))
-                            .build()
+                Request.Builder()
+                    .url(url)
+                    .headers(phaseHeaders(headers))
+                    .put(getTypeBody(body, bodyType))
+                    .build()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    callback("", e.message!!)
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    callback(response.body()!!.string(), "")
+                }
+
+            })
+        } else {
+            callback("", NO_NETWORK_ERROR)
+        }
+    }
+
+    override fun deleteRequest(
+        url: String,
+        headers: List<Pairs>,
+        body: String?,
+        bodyType: String,
+        callback: (response: String, error: String) -> Unit
+    ) {
+
+        if (networkManager.isNetworkAvailable()) {
+            val request =
+                Request.Builder()
+                    .url(url)
+                    .headers(phaseHeaders(headers))
+                    .delete(getTypeBody(body, bodyType))
+                    .build()
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     callback("", e.message!!)
