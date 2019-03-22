@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import nikolaev.postboy.util.TAB_TITLES
 import nikolaev.postboy.view.fragments.ResponseFragment
+import nikolaev.postboy.view.fragments.ResponseInfoFragment
 import nikolaev.postboy.view.fragments.ResponsePreviewFragment
 
 
@@ -24,7 +25,7 @@ class SampleFragmentPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapte
                 ResponsePreviewFragment.newInstance()
             }
             2 -> {
-                ResponseFragment.newInstance()
+                ResponseInfoFragment.newInstance()
             }
             else -> ResponseFragment.newInstance()
         }

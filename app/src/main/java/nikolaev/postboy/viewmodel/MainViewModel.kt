@@ -9,6 +9,7 @@ import nikolaev.postboy.model.utils.combineUrl
 import nikolaev.postboy.util.*
 import nikolaev.postboy.view.base.BaseViewModel
 import nikolaev.postboy.view.models.Pairs
+import okhttp3.Response
 import org.json.JSONException
 import java.util.*
 
@@ -16,6 +17,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     val TAG = this::class.java.simpleName
 
+    /* main fragment */
     val spinnerMethod = ObservableField<String>()
     val spinnerHttp = ObservableField<String>()
     val spinnerBodyType = ObservableField<String>()
@@ -25,7 +27,19 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     private var headersList = ArrayList<Pairs>()
     private var parametersList = ArrayList<Pairs>()
 
+    /* response */
     var bodyPreview = String()
+    val responseCharSequenceRequest = ArrayList<CharSequence>()
+
+    /* info fragment */
+    var codeInfoFragment: String = String()
+    var codeColorText = resources.getColor(R.color.colorBackgroundTitle)
+    var headersInfoFragment: String = String()
+
+    val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
+    val errorDialogEvent = MutableLiveData<Event<ErrorDialogModel>>()
+
+    val nextFragment = MutableLiveData<Int>()
 
     private var headersArrayList = ArrayList<Pairs>()
     var headersListAdapter = MutableLiveData<ArrayList<Pairs>>().apply {
@@ -36,14 +50,6 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     var parametersListAdapter = MutableLiveData<ArrayList<Pairs>>().apply {
         postValue(parametersArrayList)
     }
-
-    val responseCharSequenceRequest = ArrayList<CharSequence>()
-
-    val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
-    val errorDialogEvent = MutableLiveData<Event<ErrorDialogModel>>()
-
-    val nextFragment = MutableLiveData<Int>()
-
 
     fun addHeaderItem(item: Pairs) {
         headersArrayList.add(item)
@@ -67,10 +73,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickSendRequest() {
         progressDialogEvent.postValue(
-            ProgressDialogModel(
-                true,
-                getString(R.string.pre_loader_description_text_default)
-            )
+                ProgressDialogModel(
+                        true,
+                        getString(R.string.pre_loader_description_text_default)
+                )
         )
 
         headersList.addAll(headersListAdapter.value!!)
@@ -82,20 +88,20 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             }
             POST_METHOD -> {
                 postMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             PUT_METHOD -> {
                 putMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             DELETE_METHOD -> {
                 deleteMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
         }
@@ -107,8 +113,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         repository.getApi(url, headers) { response, error ->
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
             clearLists()
-            if (response != "") {
-                responseToJsonObject(response)
+
+            if (error == "") {
+                responseToJsonObject(response.body()!!.string())
+                setInfoText(response)
                 nextFragment.postValue(R.id.tabRootFragment)
             } else {
                 errorDialogEvent.postValue(Event(ErrorDialogModel(errorMessage = error)))
@@ -183,4 +191,17 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         headersList.clear()
         parametersList.clear()
     }
+
+    private fun setInfoText(response: Response) {
+        codeInfoFragment = response.code().toString()
+        headersInfoFragment = response.headers().toString()
+    }
+
+//    private fun setColorCodeInfo(code: Int){
+//        if (code in 200..300){
+//            codeInfoFragment.
+//        }
+//    }
+
+    //todo
 }
