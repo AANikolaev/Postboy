@@ -1,10 +1,12 @@
 package nikolaev.postboy.view.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +25,7 @@ import okhttp3.HttpUrl
 
 
 class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), IClickHeadersPairModel,
-        IClickParametersPairModel {
+    IClickParametersPairModel {
 
     val TAG = this::class.java.simpleName
 
@@ -104,6 +106,11 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        hideKeyboard()
+    }
+
     override fun onItemHeadersClick(model: Pairs) {
         viewModel.deleteHeaderItem(model)
     }
@@ -126,5 +133,13 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
         viewModel.parametersListAdapter.observe(this, Observer {
             adapterParameter.update(it)
         })
+    }
+
+    private fun hideKeyboard() {
+        val view = activity!!.currentFocus
+        if (view != null) {
+            val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }

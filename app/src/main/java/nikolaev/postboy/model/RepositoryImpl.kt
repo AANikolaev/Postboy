@@ -44,7 +44,7 @@ class RepositoryImpl private constructor(
         bodyType: String,
         callback: (response: String, error: String) -> Unit
     ) {
-        rest.putRequest(url, headers, body, bodyType) { response, error ->
+        rest.postRequest(url, headers, body, bodyType) { response, error ->
             callback(response, error)
         }
     }
