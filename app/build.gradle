@@ -19,8 +19,8 @@ android {
         applicationId "nikolaev.postboy"
         minSdkVersion 22
         targetSdkVersion 28
-        versionCode 3
-        versionName "0.021"
+        versionCode 4
+        versionName "0.022"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
