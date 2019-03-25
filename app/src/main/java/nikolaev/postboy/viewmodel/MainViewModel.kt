@@ -34,6 +34,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     /* info fragment */
     var codeInfoFragment: String = String()
     var codeColorText = resources.getColor(R.color.colorBackgroundTitle)
+//    var codeColorText = resources.getColor(R.color.colorBackgroundTitle, null)
     var headersInfoFragment: String = String()
 
     val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
@@ -197,11 +198,11 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         headersInfoFragment = response.headers().toString()
     }
 
-//    private fun setColorCodeInfo(code: Int){
-//        if (code in 200..300){
-//            codeInfoFragment.
-//        }
-//    }
+    private fun setColorCodeInfo(code: Int){
+        if (code in 200..300){
+            return R.color.color
+        }
+    }
 
     //todo
 }
