@@ -86,20 +86,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_time" />
 
             <TextView
-                style="@style/AppTheme.TextAppearanceNormal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/fragment_info_start_margin"
-                android:layout_marginTop="@dimen/fragment_info_top_margin"
-                android:layout_marginEnd="@dimen/fragment_info_start_margin"
-                android:text="@{viewModel.headersInfoFragment}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view"
-                app:layout_constraintVertical_bias="1.0"
-                tools:text="same text" />
+                    style="@style/AppTheme.TextAppearanceNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/fragment_info_start_margin"
+                    android:layout_marginEnd="@dimen/fragment_info_start_margin"
+                    android:text="@{viewModel.headersInfoFragment}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="same text" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/view"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

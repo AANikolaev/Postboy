@@ -45,6 +45,8 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as MainActivity).supportActionBar?.show()
+
         imageButtonAddHeader.setOnClickListener {
             viewModel.addHeaderItem(Pairs("", ""))
         }

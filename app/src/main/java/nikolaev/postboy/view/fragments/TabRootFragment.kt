@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import nikolaev.postboy.R
+import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.adapter.SampleFragmentPagerAdapter
 
 class TabRootFragment : Fragment() {
@@ -25,6 +26,7 @@ class TabRootFragment : Fragment() {
         val slidingTabs = view.findViewById(R.id.sliding_tabs) as TabLayout
         slidingTabs.post { slidingTabs.setupWithViewPager(viewPager) }
 
+        (activity as MainActivity).supportActionBar?.hide()
 
         return view
     }
