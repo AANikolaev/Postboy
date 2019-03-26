@@ -16,7 +16,7 @@
             tools:ignore="GoogleAppIndexingWarning">
         <activity
                 android:name=".view.activities.MainActivity"
-                android:windowSoftInputMode="adjustResize"
+                android:windowSoftInputMode="stateVisible|adjustPan"
                 android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

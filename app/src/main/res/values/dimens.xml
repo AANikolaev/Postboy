@@ -17,5 +17,10 @@
     <dimen name="pre_loader_size">48dp</dimen>
     <dimen name="pre_loader_description_text_size">14sp</dimen>
 
+    <dimen name="fragment_info_view_margin">24dp</dimen>
+    <dimen name="fragment_info_start_margin">16dp</dimen>
+    <dimen name="fragment_info_end_margin">16dp</dimen>
+    <dimen name="fragment_info_top_margin">8dp</dimen>
+
 
 </resources>

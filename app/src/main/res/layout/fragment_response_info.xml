@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="nikolaev.postboy.viewmodel.MainViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".view.fragments.ResponseInfoFragment">
+
+            <TextView
+                android:id="@+id/tv_code"
+                style="@style/AppTheme.TextAppearanceNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_info_start_margin"
+                android:layout_marginTop="@dimen/fragment_info_start_margin"
+                android:text="@string/response_code"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvСode"
+                style="@style/AppTheme.TextAppearanceNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/fragment_info_start_margin"
+                android:text="@{viewModel.codeInfoFragment}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_code"
+                app:setColorText="@{viewModel.codeColorText}"
+                tools:text="200"
+                tools:textColor="@color/design_default_color_error" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/AppTheme.TextAppearanceNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_info_start_margin"
+                android:layout_marginTop="@dimen/fragment_info_top_margin"
+                android:text="@string/response_time"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_code" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                style="@style/AppTheme.TextAppearanceNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_info_top_margin"
+                android:layout_marginEnd="@dimen/fragment_info_start_margin"
+                android:text="@{viewModel.codeInfoTime + `ms`}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_code"
+                tools:text="11ms"
+                tools:textColor="@color/design_default_color_error" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/fragment_info_view_margin"
+                android:layout_marginTop="@dimen/fragment_info_start_margin"
+                android:layout_marginEnd="@dimen/fragment_info_view_margin"
+                android:background="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+            <TextView
+                style="@style/AppTheme.TextAppearanceNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fragment_info_start_margin"
+                android:layout_marginTop="@dimen/fragment_info_top_margin"
+                android:layout_marginEnd="@dimen/fragment_info_start_margin"
+                android:text="@{viewModel.headersInfoFragment}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="same text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

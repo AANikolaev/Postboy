@@ -19,8 +19,8 @@ android {
         applicationId "nikolaev.postboy"
         minSdkVersion 22
         targetSdkVersion 28
-        versionCode 4
-        versionName "0.022"
+        versionCode 5
+        versionName "0.023"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -33,6 +33,11 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled true
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
         }
     }
 }
