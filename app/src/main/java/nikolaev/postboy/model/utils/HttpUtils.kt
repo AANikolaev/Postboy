@@ -9,7 +9,8 @@ import android.text.TextUtils
 fun phaseHeaders(headers: List<Pairs>): Headers {
     val headerBuilder = Headers.Builder()
     for (keyAndValue in headers) {
-        headerBuilder.add(keyAndValue.first, keyAndValue.second)
+        if (keyAndValue.first != "" && keyAndValue.second != "")
+            headerBuilder.add(keyAndValue.first, keyAndValue.second)
     }
     return headerBuilder.build()
 }
