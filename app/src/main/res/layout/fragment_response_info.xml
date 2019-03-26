@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="viewModel"
-            type="nikolaev.postboy.viewmodel.MainViewModel" />
+                name="viewModel"
+                type="nikolaev.postboy.viewmodel.MainViewModel"/>
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.fragments.ResponseInfoFragment">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.fragments.ResponseInfoFragment">
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@{viewModel.headersInfoFragment}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{viewModel.headersInfoFragment}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/textView"
-            style="@style/AppTheme.TextAppearanceNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/code"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/tv_code"
+                style="@style/AppTheme.TextAppearanceNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/response_code"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/textView2"
-            style="@style/AppTheme.TextAppearanceNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="@{viewModel.codeInfoFragment}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:setColorText="@{viewModel.codeColorText}"
-            tools:text="200" />
+                android:id="@+id/tvСode"
+                style="@style/AppTheme.TextAppearanceNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{viewModel.codeInfoFragment}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_code"
+                app:setColorText="@{viewModel.codeColorText}"
+                tools:text="200"
+                tools:textColor="@color/design_default_color_error"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

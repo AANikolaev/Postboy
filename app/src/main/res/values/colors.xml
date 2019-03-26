@@ -7,5 +7,12 @@
     <color name="colorBackgroundTitle">#1d447c</color>
     <color name="colorClickAddButton">#eeeeee</color>
     
-    
+    <color name="colorGrey">#696969</color>
+
+    <color name="google_blue">#4285F4</color>
+    <color name="google_red">#DB4437</color>
+    <color name="google_yellow">#F4B400</color>
+    <color name="google_green">#0F9D58</color>
+
+
 </resources>

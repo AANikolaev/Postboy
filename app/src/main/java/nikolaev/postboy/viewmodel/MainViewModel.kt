@@ -34,7 +34,6 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     /* info fragment */
     var codeInfoFragment: String = String()
     var codeColorText = resources.getColor(R.color.colorBackgroundTitle)
-//    var codeColorText = resources.getColor(R.color.colorBackgroundTitle, null)
     var headersInfoFragment: String = String()
 
     val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
@@ -74,10 +73,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickSendRequest() {
         progressDialogEvent.postValue(
-                ProgressDialogModel(
-                        true,
-                        getString(R.string.pre_loader_description_text_default)
-                )
+            ProgressDialogModel(
+                true,
+                getString(R.string.pre_loader_description_text_default)
+            )
         )
 
         headersList.addAll(headersListAdapter.value!!)
@@ -89,20 +88,20 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             }
             POST_METHOD -> {
                 postMethodRequest(
-                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             PUT_METHOD -> {
                 putMethodRequest(
-                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             DELETE_METHOD -> {
                 deleteMethodRequest(
-                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
         }
@@ -195,14 +194,9 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     private fun setInfoText(response: Response) {
         codeInfoFragment = response.code().toString()
+        codeColorText = setColorCodeInfo(response.code(), resources)
         headersInfoFragment = response.headers().toString()
     }
 
-    private fun setColorCodeInfo(code: Int){
-        if (code in 200..300){
-            return R.color.color
-        }
-    }
 
-    //todo
 }
