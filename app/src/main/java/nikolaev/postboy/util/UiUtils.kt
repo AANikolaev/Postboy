@@ -6,6 +6,10 @@ import android.content.DialogInterface
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.Gravity
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -13,21 +17,22 @@ import androidx.databinding.DataBindingUtil
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.PreloaderBinding
 import nikolaev.postboy.view.base.BaseActivity
+import okhttp3.Headers
 
 
 fun showPreLoader(
-    activity: BaseActivity<*, *>,
-    descriptionText: String? = null, isNeedToClearQueueAfterClick: Boolean
+        activity: BaseActivity<*, *>,
+        descriptionText: String? = null, isNeedToClearQueueAfterClick: Boolean
 ): AlertDialog? {
 
     val binding = DataBindingUtil.inflate<PreloaderBinding>(
-        activity.layoutInflater,
-        R.layout.preloader,
-        null,
-        false
+            activity.layoutInflater,
+            R.layout.preloader,
+            null,
+            false
     )
     binding.description = descriptionText ?: activity
-        .getString(R.string.pre_loader_description_text_default)
+            .getString(R.string.pre_loader_description_text_default)
 
     val builder = AlertDialog.Builder(activity)
     builder.setView(binding.root)
@@ -47,20 +52,20 @@ fun showPreLoader(
 }
 
 fun showMessageDialogWithSingleAction(
-    activity: Activity,
-    message: String,
-    buttonTitle: String,
-    listener: DialogInterface.OnClickListener
+        activity: Activity,
+        message: String,
+        buttonTitle: String,
+        listener: DialogInterface.OnClickListener
 ) {
 
     val alert = AlertDialog.Builder(activity)
-        .setMessage(message)
-        .setCancelable(false)
-        .setNegativeButton(
-            buttonTitle,
-            listener
-        )
-        .create()
+            .setMessage(message)
+            .setCancelable(false)
+            .setNegativeButton(
+                    buttonTitle,
+                    listener
+            )
+            .create()
     alert.show()
 
     val messageView = alert.findViewById<TextView>(android.R.id.message)
@@ -76,4 +81,19 @@ fun setColorCodeInfo(code: Int, resources: Resources): Int {
         in 500..599 -> resources.getColor(R.color.google_blue)
         else -> resources.getColor(R.color.google_red)
     }
+}
+
+fun headersToCharSequence(headers: Headers, resources: Resources): CharSequence {
+    val spannableStringBuilder = SpannableStringBuilder()
+    for (i in 0 until headers.size()) {
+        val value = SpannableString(headers.value(i))
+        value.setSpan(
+                ForegroundColorSpan(resources.getColor(R.color.colorGrey)),
+                0, value.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableStringBuilder.append(headers.name(i)).append(": ").append(value).append("\n")
+
+    }
+    spannableStringBuilder.delete(spannableStringBuilder.length - 1, spannableStringBuilder.length)
+
+    return spannableStringBuilder
 }

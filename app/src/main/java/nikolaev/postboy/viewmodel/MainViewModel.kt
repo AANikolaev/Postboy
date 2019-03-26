@@ -13,6 +13,7 @@ import okhttp3.Response
 import org.json.JSONException
 import java.util.*
 
+
 class MainViewModel(application: Application) : BaseViewModel(application) {
 
     val TAG = this::class.java.simpleName
@@ -33,8 +34,9 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     /* info fragment */
     var codeInfoFragment: String = String()
+    var codeInfoTime = 0L
     var codeColorText = resources.getColor(R.color.colorBackgroundTitle)
-    var headersInfoFragment: String = String()
+    var headersInfoFragment: CharSequence = String()
 
     val progressDialogEvent = MutableLiveData<ProgressDialogModel>()
     val errorDialogEvent = MutableLiveData<Event<ErrorDialogModel>>()
@@ -73,10 +75,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickSendRequest() {
         progressDialogEvent.postValue(
-            ProgressDialogModel(
-                true,
-                getString(R.string.pre_loader_description_text_default)
-            )
+                ProgressDialogModel(
+                        true,
+                        getString(R.string.pre_loader_description_text_default)
+                )
         )
 
         headersList.addAll(headersListAdapter.value!!)
@@ -88,20 +90,20 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             }
             POST_METHOD -> {
                 postMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             PUT_METHOD -> {
                 putMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             DELETE_METHOD -> {
                 deleteMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
         }
@@ -110,7 +112,9 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun getMethodRequest(url: String, headers: ArrayList<Pairs>) {
+        val startTime = System.currentTimeMillis()
         repository.getApi(url, headers) { response, error ->
+            codeInfoTime = System.currentTimeMillis() - startTime
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
             clearLists()
 
@@ -125,7 +129,9 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun postMethodRequest(url: String, headers: ArrayList<Pairs>, body: String, bodyType: String) {
+        val startTime = System.currentTimeMillis()
         repository.postApi(url, headers, body, bodyType) { response, error ->
+            codeInfoTime = System.currentTimeMillis() - startTime
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
             clearLists()
 
@@ -139,8 +145,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun putMethodRequest(url: String, headers: ArrayList<Pairs>, body: String, bodyType: String) {
+        val startTime = System.currentTimeMillis()
         repository.putApi(url, headers, body, bodyType) { response, error ->
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
+            codeInfoTime = System.currentTimeMillis() - startTime
             clearLists()
 
             if (response != "") {
@@ -153,7 +161,9 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun deleteMethodRequest(url: String, headers: ArrayList<Pairs>, body: String, bodyType: String) {
+        val startTime = System.currentTimeMillis()
         repository.deleteApi(url, headers, body, bodyType) { response, error ->
+            codeInfoTime = System.currentTimeMillis() - startTime
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
             clearLists()
 
@@ -196,6 +206,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         codeInfoFragment = response.code().toString()
         codeColorText = setColorCodeInfo(response.code(), resources)
         headersInfoFragment = response.headers().toString()
+        headersInfoFragment = headersToCharSequence(response.headers(), resources)
     }
 
 

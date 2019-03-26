@@ -14,5 +14,6 @@
     <color name="google_yellow">#F4B400</color>
     <color name="google_green">#0F9D58</color>
 
+    <color name="colorTextSecondary">#B2FFFFFF</color>
 
 </resources>
