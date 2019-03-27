@@ -2,12 +2,12 @@ package nikolaev.postboy.view.activities
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import kotlinx.android.synthetic.main.activity_main.*
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.ActivityMainBinding
 import nikolaev.postboy.util.*
@@ -54,6 +54,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(toolbar)
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
     }
