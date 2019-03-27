@@ -27,6 +27,11 @@
     <string name="sing_up_basics_error_dialog_message_default">Sorry, some error occur</string>
     <string name="message_dialog_default_cancle_button_text">OK</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="history">History</string>
+
     <string-array name="methods_array">
         <item>GET</item>
         <item>POST</item>
