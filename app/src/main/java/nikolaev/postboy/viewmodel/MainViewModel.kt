@@ -75,10 +75,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickSendRequest() {
         progressDialogEvent.postValue(
-                ProgressDialogModel(
-                        true,
-                        getString(R.string.pre_loader_description_text_default)
-                )
+            ProgressDialogModel(
+                true,
+                getString(R.string.pre_loader_description_text_default)
+            )
         )
 
         headersList.addAll(headersListAdapter.value!!)
@@ -90,20 +90,20 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             }
             POST_METHOD -> {
                 postMethodRequest(
-                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             PUT_METHOD -> {
                 putMethodRequest(
-                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             DELETE_METHOD -> {
                 deleteMethodRequest(
-                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
         }
@@ -119,7 +119,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             clearLists()
 
             if (error == "") {
-                responseToJsonObject(response.body()!!.string())
+                responseToJsonObject(response?.body()!!.string())
                 setInfoText(response)
                 nextFragment.postValue(R.id.tabRootFragment)
             } else {
@@ -135,8 +135,9 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
             clearLists()
 
-            if (response != "") {
-                responseToJsonObject(response)
+            if (error == "") {
+                responseToJsonObject(response?.body()!!.string())
+                setInfoText(response)
                 nextFragment.postValue(R.id.tabRootFragment)
             } else {
                 errorDialogEvent.postValue(Event(ErrorDialogModel(errorMessage = error)))
@@ -151,8 +152,9 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             codeInfoTime = System.currentTimeMillis() - startTime
             clearLists()
 
-            if (response != "") {
-                responseToJsonObject(response)
+            if (error == "") {
+                responseToJsonObject(response?.body()!!.string())
+                setInfoText(response)
                 nextFragment.postValue(R.id.tabRootFragment)
             } else {
                 errorDialogEvent.postValue(Event(ErrorDialogModel(errorMessage = error)))
@@ -167,8 +169,9 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             progressDialogEvent.postValue(ProgressDialogModel(isProgressDialogNeeded = false))
             clearLists()
 
-            if (response != "") {
-                responseToJsonObject(response)
+            if (error == "") {
+                responseToJsonObject(response?.body()!!.string())
+                setInfoText(response)
                 nextFragment.postValue(R.id.tabRootFragment)
             } else {
                 errorDialogEvent.postValue(Event(ErrorDialogModel(errorMessage = error)))
