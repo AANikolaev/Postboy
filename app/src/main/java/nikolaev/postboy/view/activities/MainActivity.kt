@@ -86,6 +86,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.nav_rest -> {
+                moveToNextFragment(R.id.requestFragment)
+            }
             R.id.nav_history -> {
                 Toast.makeText(this, "in progress", Toast.LENGTH_LONG).show()
             }
