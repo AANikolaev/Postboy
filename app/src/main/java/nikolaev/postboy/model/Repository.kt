@@ -1,5 +1,7 @@
 package nikolaev.postboy.model
 
+import androidx.lifecycle.LiveData
+import nikolaev.postboy.model.db.entities.RequestEntity
 import nikolaev.postboy.view.models.Pairs
 import okhttp3.Response
 
@@ -24,6 +26,10 @@ interface Repository {
         url: String, headers: List<Pairs>, body: String?, bodyType: String,
         callback: (response: Response?, error: String) -> Unit
     )
+
+    fun getAllRequests(): LiveData<List<RequestEntity>>
+
+    fun insertRequest(requestEntity: RequestEntity)
 
     //todo post etc
 }

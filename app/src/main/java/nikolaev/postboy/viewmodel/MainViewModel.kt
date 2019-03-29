@@ -2,9 +2,11 @@ package nikolaev.postboy.viewmodel
 
 import android.app.Application
 import android.text.TextUtils
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import nikolaev.postboy.R
+import nikolaev.postboy.model.db.entities.RequestEntity
 import nikolaev.postboy.model.utils.combineUrl
 import nikolaev.postboy.util.*
 import nikolaev.postboy.view.base.BaseViewModel
@@ -53,9 +55,19 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         postValue(parametersArrayList)
     }
 
+    init {
+        repository.getAllRequests().observe(this, androidx.lifecycle.Observer {
+            Log.i("+", it.size.toString())
+        })
+    }
+
     fun addHeaderItem(item: Pairs) {
         headersArrayList.add(item)
         headersListAdapter.postValue(headersArrayList)
+
+        val requestEntity = RequestEntity()
+        requestEntity.url = "test"
+        repository.insertRequest(requestEntity)
     }
 
     fun deleteHeaderItem(item: Pairs) {

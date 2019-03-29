@@ -21,6 +21,7 @@
     <string name="response_code">Code</string>
     <string name="response_time">Time</string>
 
+    <string name="basic_error_text">Something went wrong</string>
     <string name="pre_loader_description_text_default">Loading…</string>
     <string name="no_network_error_text">No Internet connection</string>
     <string name="sing_up_basics_error_dialog_title_default">Error</string>

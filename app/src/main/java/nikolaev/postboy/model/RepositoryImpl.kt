@@ -1,12 +1,16 @@
 package nikolaev.postboy.model
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import nikolaev.postboy.model.api.Rest
+import nikolaev.postboy.model.db.Database
+import nikolaev.postboy.model.db.entities.RequestEntity
 import nikolaev.postboy.view.models.Pairs
 import okhttp3.Response
 
 class RepositoryImpl private constructor(
-    private val rest: Rest
+    private val rest: Rest,
+    private val database: Database
 ) : Repository {
 
     companion object {
@@ -19,7 +23,8 @@ class RepositoryImpl private constructor(
                 synchronized(RepositoryImpl::class.java) {
                     if (INSTANCE == null) {
                         INSTANCE = RepositoryImpl(
-                            Rest(context.applicationContext)
+                            Rest(context.applicationContext),
+                            Database(context.applicationContext)
                         )
                     }
                 }
@@ -84,5 +89,13 @@ class RepositoryImpl private constructor(
             else
                 callback(null, error)
         }
+    }
+
+    override fun getAllRequests(): LiveData<List<RequestEntity>> {
+        return database.getAllRequests()
+    }
+
+    override fun insertRequest(requestEntity: RequestEntity) {
+        database.insertRequest(requestEntity)
     }
 }
