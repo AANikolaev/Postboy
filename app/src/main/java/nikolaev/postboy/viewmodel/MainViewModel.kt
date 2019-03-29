@@ -55,19 +55,18 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         postValue(parametersArrayList)
     }
 
+    val historyRequest: MutableLiveData<ArrayList<RequestEntity>> = MutableLiveData()
+
     init {
         repository.getAllRequests().observe(this, androidx.lifecycle.Observer {
             Log.i("+", it.size.toString())
+            historyRequest.value = it as ArrayList<RequestEntity>
         })
     }
 
     fun addHeaderItem(item: Pairs) {
         headersArrayList.add(item)
         headersListAdapter.postValue(headersArrayList)
-
-        val requestEntity = RequestEntity()
-        requestEntity.url = "test"
-        repository.insertRequest(requestEntity)
     }
 
     fun deleteHeaderItem(item: Pairs) {
@@ -93,6 +92,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             )
         )
 
+        repository.insertRequest(RequestEntity(combineUrl(spinnerHttp.get() + textUrl.get(), parametersList)))
         headersList.addAll(headersListAdapter.value!!)
         parametersList.addAll(parametersListAdapter.value!!)
 
@@ -119,8 +119,6 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                 )
             }
         }
-
-
     }
 
     private fun getMethodRequest(url: String, headers: ArrayList<Pairs>) {

@@ -10,13 +10,10 @@ import androidx.room.PrimaryKey
  */
 
 @Entity(tableName = "request_entity")
-class RequestEntity {
+class RequestEntity(@ColumnInfo(name = "url") var url: String?) {
 
     @PrimaryKey
     @ColumnInfo(name = "id")
     var id: Int? = null
-
-    @ColumnInfo(name = "url")
-    var url: String? = null
 
 }
