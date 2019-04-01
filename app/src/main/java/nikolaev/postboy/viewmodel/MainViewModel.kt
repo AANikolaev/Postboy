@@ -2,15 +2,18 @@ package nikolaev.postboy.viewmodel
 
 import android.app.Application
 import android.text.TextUtils
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import nikolaev.postboy.R
+import nikolaev.postboy.model.db.entities.RequestEntity
 import nikolaev.postboy.model.utils.combineUrl
 import nikolaev.postboy.util.*
 import nikolaev.postboy.view.base.BaseViewModel
 import nikolaev.postboy.view.models.Pairs
 import okhttp3.Response
 import org.json.JSONException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -53,6 +56,15 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         postValue(parametersArrayList)
     }
 
+    val historyRequest: MutableLiveData<ArrayList<RequestEntity>> = MutableLiveData()
+
+    init {
+        repository.getAllRequests().observe(this, androidx.lifecycle.Observer {
+            Log.i("+", it.size.toString())
+            historyRequest.value = it as ArrayList<RequestEntity>
+        })
+    }
+
     fun addHeaderItem(item: Pairs) {
         headersArrayList.add(item)
         headersListAdapter.postValue(headersArrayList)
@@ -75,12 +87,13 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickSendRequest() {
         progressDialogEvent.postValue(
-            ProgressDialogModel(
-                true,
-                getString(R.string.pre_loader_description_text_default)
-            )
+                ProgressDialogModel(
+                        true,
+                        getString(R.string.pre_loader_description_text_default)
+                )
         )
 
+        insertDataToBD()
         headersList.addAll(headersListAdapter.value!!)
         parametersList.addAll(parametersListAdapter.value!!)
 
@@ -90,25 +103,23 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             }
             POST_METHOD -> {
                 postMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             PUT_METHOD -> {
                 putMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             DELETE_METHOD -> {
                 deleteMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
         }
-
-
     }
 
     private fun getMethodRequest(url: String, headers: ArrayList<Pairs>) {
@@ -212,5 +223,17 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         headersInfoFragment = headersToCharSequence(response.headers(), resources)
     }
 
+    private fun insertDataToBD() {
+        repository.insertRequest(
+                RequestEntity(
+                        spinnerMethod.get().toString(),
+                        spinnerHttp.get() + textUrl.get(),
+                        headersList,
+                        parametersList,
+                        textBody.get().orEmpty(),
+                        SimpleDateFormat("h:mm a MMM d, yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+                )
+        )
+    }
 
 }

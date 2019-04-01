@@ -30,7 +30,7 @@
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_main"
             app:menu="@menu/activity_main_drawer"
-            app:theme="@style/AppTheme.TextAppearanceNormal">
+            app:theme="@style/NavigationDrawerStyle">
 
         </com.google.android.material.navigation.NavigationView>
 

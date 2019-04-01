@@ -2,14 +2,19 @@ package nikolaev.postboy.view.base
 
 import android.app.Application
 import androidx.annotation.StringRes
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import nikolaev.postboy.model.Repository
 import nikolaev.postboy.model.RepositoryImpl
 
-open class BaseViewModel(application: Application) : AndroidViewModel(application) {
+open class BaseViewModel(application: Application) : AndroidViewModel(application), LifecycleOwner {
 
+    // todo: check warning
+    private var mLifecycleRegistry: LifecycleRegistry = LifecycleRegistry(this)
     protected val resources = application.resources
+
+    init {
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
+    }
 
     protected val repository: Repository =
         RepositoryImpl.getInstance(application.baseContext)
@@ -24,5 +29,16 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
         isLoading.postValue(false)
     }
 
+    override fun getLifecycle(): Lifecycle {
+        return mLifecycleRegistry
+    }
+
+    fun stopListening() {
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
+    }
+
+    fun startListening() {
+        mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
+    }
 
 }
