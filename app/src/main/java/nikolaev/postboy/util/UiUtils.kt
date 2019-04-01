@@ -78,7 +78,7 @@ fun setColorCodeInfo(code: Int, resources: Resources): Int {
         in 200..299 -> resources.getColor(R.color.google_green)
         in 300..399 -> resources.getColor(R.color.google_yellow)
         in 400..499 -> resources.getColor(R.color.google_red)
-        in 500..599 -> resources.getColor(R.color.google_blue)
+        in 500..599 -> resources.getColor(R.color.google_red)
         else -> resources.getColor(R.color.google_red)
     }
 }
@@ -96,4 +96,14 @@ fun headersToCharSequence(headers: Headers, resources: Resources): CharSequence 
     spannableStringBuilder.delete(spannableStringBuilder.length - 1, spannableStringBuilder.length)
 
     return spannableStringBuilder
+}
+
+fun setMethodColor(method: String): Int {
+    return when (method) {
+        "GET" -> 0xFF0F9D58.toInt()
+        "POST" -> 0xFF4285F4.toInt()
+        "PUT" -> 0xFFF4B400.toInt()
+        "DELETE" -> 0xFFDB4437.toInt()
+        else -> 0xFF0F9D58.toInt()
+    }
 }

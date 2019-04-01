@@ -25,7 +25,7 @@ import okhttp3.HttpUrl
 
 
 class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), IClickHeadersPairModel,
-    IClickParametersPairModel {
+        IClickParametersPairModel {
 
     val TAG = this::class.java.simpleName
 
@@ -58,10 +58,10 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
         editTextUrl.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 if (s.toString().startsWith("http://")) {
-                    spinnerHttp.setSelection(0)
+                    spinnerHttp.setSelection(1)
                     s.delete(0, 7)
                 } else if (s.toString().startsWith("https://")) {
-                    spinnerHttp.setSelection(1)
+                    spinnerHttp.setSelection(0)
                     s.delete(0, 8)
                 }
             }

@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import nikolaev.postboy.model.db.converter.PairConverter
 import nikolaev.postboy.model.db.dao.RequestDao
 import nikolaev.postboy.model.db.entities.RequestEntity
 
@@ -13,6 +15,7 @@ import nikolaev.postboy.model.db.entities.RequestEntity
  */
 
 @Database(entities = [(RequestEntity::class)], version = 1, exportSchema = false)
+@TypeConverters(PairConverter::class)
 abstract class DatabaseProvider : RoomDatabase() {
 
     abstract fun requestDao(): RequestDao

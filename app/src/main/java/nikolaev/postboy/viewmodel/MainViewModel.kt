@@ -13,6 +13,7 @@ import nikolaev.postboy.view.base.BaseViewModel
 import nikolaev.postboy.view.models.Pairs
 import okhttp3.Response
 import org.json.JSONException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -86,13 +87,13 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickSendRequest() {
         progressDialogEvent.postValue(
-            ProgressDialogModel(
-                true,
-                getString(R.string.pre_loader_description_text_default)
-            )
+                ProgressDialogModel(
+                        true,
+                        getString(R.string.pre_loader_description_text_default)
+                )
         )
 
-        repository.insertRequest(RequestEntity(combineUrl(spinnerHttp.get() + textUrl.get(), parametersList)))
+        insertDataToBD()
         headersList.addAll(headersListAdapter.value!!)
         parametersList.addAll(parametersListAdapter.value!!)
 
@@ -102,20 +103,20 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             }
             POST_METHOD -> {
                 postMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             PUT_METHOD -> {
                 putMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             DELETE_METHOD -> {
                 deleteMethodRequest(
-                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
         }
@@ -222,5 +223,17 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         headersInfoFragment = headersToCharSequence(response.headers(), resources)
     }
 
+    private fun insertDataToBD() {
+        repository.insertRequest(
+                RequestEntity(
+                        spinnerMethod.get().toString(),
+                        spinnerHttp.get() + textUrl.get(),
+                        headersList,
+                        parametersList,
+                        textBody.get().orEmpty(),
+                        SimpleDateFormat("h:mm a MMM d, yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+                )
+        )
+    }
 
 }

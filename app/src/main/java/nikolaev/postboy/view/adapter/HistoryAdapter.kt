@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_history.view.*
 import nikolaev.postboy.BR
 import nikolaev.postboy.R
 import nikolaev.postboy.model.db.entities.RequestEntity
+import nikolaev.postboy.util.setMethodColor
 import nikolaev.postboy.view.interfaces.OnClickHistoryItem
 
 /**
@@ -40,6 +42,7 @@ class HistoryAdapter(
 
 class HistoryViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(requestEntity: RequestEntity, clickHistoryItem: OnClickHistoryItem) {
+        binding.root.tv_method.setTextColor(setMethodColor(requestEntity.method))
         binding.root.setOnClickListener {
             clickHistoryItem.onItemHistoryClick(itemView, layoutPosition, requestEntity)
         }
