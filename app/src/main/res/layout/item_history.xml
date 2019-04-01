@@ -1,26 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
-                name="model"
-                type="nikolaev.postboy.model.db.entities.RequestEntity"/>
+            name="model"
+            type="nikolaev.postboy.model.db.entities.RequestEntity" />
 
     </data>
+
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:background="@color/google_yellow">
 
         <TextView
-                android:layout_width="match_parent"
+            android:id="@+id/tv_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/item_method_margin"
+            android:textSize="@dimen/item_method_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="DELETE"
+            tools:textColor="@color/google_red" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_info_layout_margin_top"
+            android:layout_marginEnd="@dimen/item_info_layout_margin_end"
+            android:layout_marginBottom="@dimen/item_info_layout_margin_bottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_link"
                 style="@style/AppTheme.TextAppearanceNormal"
-                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{model.url}"
-                tools:text="history item"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_method"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="http://googe.comgoogle.com/http://google.comgoogle.com/http://google.comgoogle.com/" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_info_time_margin_top"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_link"
+                tools:text="mar 23, 2019 3:12pm" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDividerHistory"
+            android:layout_marginStart="@dimen/item_info_divider_margin"
+            android:layout_marginEnd="@dimen/item_info_divider_margin"/>
 
     </LinearLayout>
 </layout>
