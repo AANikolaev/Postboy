@@ -1,9 +1,7 @@
 package nikolaev.postboy.view.fragments
 
 
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_history.*
@@ -23,17 +21,17 @@ class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), O
     override fun getContentViewLayoutId(): Int = R.layout.fragment_history
 
     override fun onViewModelReady() {
+        val adapter = HistoryAdapter(this)
+        recyclerViewHistory.layoutManager = LinearLayoutManager(activity)
+        recyclerViewHistory.adapter = adapter
+
         viewModel.historyRequest.observe(this, Observer {
-            recyclerViewHistory.layoutManager = LinearLayoutManager(activity)
-            val adapter = HistoryAdapter(it, this)
-            recyclerViewHistory.adapter = adapter
+            adapter.update(it)
         })
     }
 
     override fun onItemHistoryClick(view: View, position: Int, model: RequestEntity) {
-        Log.i("+", model.url)
-
-        Toast.makeText(context, model.url, Toast.LENGTH_LONG).show()
+        viewModel.onClickItemHistory(model)
     }
 
 

@@ -16,4 +16,6 @@ interface IDatabase {
     fun getAllRequests(): LiveData<List<RequestEntity>>
 
     fun insertRequest(requestEntity: RequestEntity)
+
+    fun deleteRequest(requestEntity: RequestEntity)
 }

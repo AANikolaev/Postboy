@@ -235,4 +235,8 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         )
     }
 
+    fun  onClickItemHistory(requestEntity: RequestEntity){
+        repository.deleteRequest(requestEntity)
+    }
+
 }

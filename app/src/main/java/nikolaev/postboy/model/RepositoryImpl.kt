@@ -98,4 +98,8 @@ class RepositoryImpl private constructor(
     override fun insertRequest(requestEntity: RequestEntity) {
         database.insertRequest(requestEntity)
     }
+
+    override fun deleteRequest(requestEntity: RequestEntity) {
+        database.deleteRequest(requestEntity)
+    }
 }

@@ -31,5 +31,7 @@ interface Repository {
 
     fun insertRequest(requestEntity: RequestEntity)
 
+    fun deleteRequest(requestEntity: RequestEntity)
+
     //todo post etc
 }

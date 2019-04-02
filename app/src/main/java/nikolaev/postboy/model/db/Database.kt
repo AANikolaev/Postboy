@@ -27,4 +27,10 @@ class Database(context: Context) : IDatabase {
             database.requestDao().insertRequestEntity(requestEntity)
         }
     }
+
+    override fun deleteRequest(requestEntity: RequestEntity) {
+        doAsync {
+            database.requestDao().delete(requestEntity)
+        }
+    }
 }
