@@ -87,9 +87,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_rest -> {
+                supportActionBar?.title = resources.getString(R.string.app_name)
                 moveToNextFragment(R.id.requestFragment)
             }
             R.id.nav_history -> {
+                supportActionBar?.title = resources.getString(R.string.nav_history)
                 moveToNextFragment(R.id.historyFragment)
             }
         }

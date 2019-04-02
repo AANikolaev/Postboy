@@ -60,7 +60,6 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     init {
         repository.getAllRequests().observe(this, androidx.lifecycle.Observer {
-            Log.i("+", it.size.toString())
             historyRequest.value = it as ArrayList<RequestEntity>
         })
     }
