@@ -91,6 +91,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                 moveToNextFragment(R.id.requestFragment)
             }
             R.id.nav_history -> {
+                supportActionBar?.show()
                 supportActionBar?.title = resources.getString(R.string.nav_history)
                 moveToNextFragment(R.id.historyFragment)
             }

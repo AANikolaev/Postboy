@@ -1,5 +1,6 @@
 package nikolaev.postboy.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,8 +11,8 @@ import kotlinx.android.synthetic.main.item_history.view.*
 import nikolaev.postboy.BR
 import nikolaev.postboy.R
 import nikolaev.postboy.model.db.entities.RequestEntity
+import nikolaev.postboy.util.diffUtil.DiffUtilRequestEntity
 import nikolaev.postboy.util.setMethodColor
-import nikolaev.postboy.view.diffUtil.DiffUtilRequestEntity
 import nikolaev.postboy.view.interfaces.OnClickHistoryItem
 
 /**
@@ -52,8 +53,11 @@ class HistoryAdapter(private var onItemClick: OnClickHistoryItem) : RecyclerView
 class HistoryViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(requestEntity: RequestEntity, clickHistoryItem: OnClickHistoryItem) {
         binding.root.tv_method.setTextColor(setMethodColor(requestEntity.method))
-        binding.root.setOnClickListener {
+        binding.root.btn_history_delete.setOnClickListener {
             clickHistoryItem.onItemHistoryClick(itemView, layoutPosition, requestEntity)
+        }
+        binding.root.setOnClickListener {
+            Log.i("+", "click ${requestEntity.url}")
         }
     }
 }

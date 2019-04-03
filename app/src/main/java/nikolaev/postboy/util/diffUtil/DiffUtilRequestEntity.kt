@@ -1,4 +1,4 @@
-package nikolaev.postboy.view.diffUtil
+package nikolaev.postboy.util.diffUtil
 
 import androidx.recyclerview.widget.DiffUtil
 import nikolaev.postboy.model.db.entities.RequestEntity
