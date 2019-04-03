@@ -25,8 +25,9 @@ class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), O
         recyclerViewHistory.layoutManager = LinearLayoutManager(activity)
         recyclerViewHistory.adapter = adapter
 
-        viewModel.historyRequest.observe(this, Observer {
-            adapter.update(it)
+       viewModel.historyRequest.observe(this, Observer { listHistory ->
+            val sortedList = listHistory.sortedWith(compareByDescending { it.id })
+            adapter.update(ArrayList(sortedList))
         })
     }
 
