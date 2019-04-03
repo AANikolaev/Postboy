@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="@dimen/fragment_info_view_margin"
-                android:layout_marginTop="@dimen/fragment_info_start_margin"
+                android:layout_marginTop="@dimen/fragment_info_view_margin_divider"
                 android:layout_marginEnd="@dimen/fragment_info_view_margin"
                 android:background="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -39,6 +39,7 @@
     <dimen name="item_info_method_weight">90dp</dimen>
     <dimen name="icon_delete_size">32dp</dimen>
     <dimen name="icon_delete_margin_end">16dp</dimen>
+    <dimen name="fragment_info_view_margin_divider">8dp</dimen>
 
 
 </resources>
