@@ -230,7 +230,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
                         headersList,
                         parametersList,
                         textBody.get().orEmpty(),
-                        SimpleDateFormat("h:mm a MMM d, yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
+                        SimpleDateFormat("MMM d, yyyy h:mm:ss a", Locale.getDefault()).format(Calendar.getInstance().time)
                 )
         )
     }
