@@ -40,6 +40,7 @@
     <dimen name="icon_delete_size">32dp</dimen>
     <dimen name="icon_delete_margin_end">16dp</dimen>
     <dimen name="fragment_info_view_margin_divider">8dp</dimen>
+    <dimen name="fragment_main_headers_margin_top">24dp</dimen>
 
 
 </resources>
