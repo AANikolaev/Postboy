@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_request.*
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FragmentRequestBinding
@@ -44,8 +45,6 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        (activity as MainActivity).supportActionBar?.show()
 
         imageButtonAddHeader.setOnClickListener {
             viewModel.addHeaderItem(Pairs("", ""))
@@ -106,6 +105,8 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
         buttonSend.setOnClickListener {
             viewModel.onClickSendRequest()
         }
+
+        (activity as MainActivity).nav_view.menu.getItem(0).isChecked = true
     }
 
     override fun onPause() {

@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -87,17 +88,22 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_rest -> {
-                supportActionBar?.title = resources.getString(R.string.app_name)
+                setActionBarTitle(resources.getString(R.string.app_name))
                 moveToNextFragment(R.id.requestFragment)
             }
             R.id.nav_history -> {
-                supportActionBar?.show()
-                supportActionBar?.title = resources.getString(R.string.nav_history)
-                moveToNextFragment(R.id.historyFragment)
+                setActionBarTitle(resources.getString(R.string.nav_history))
+                navController.navigate(R.id.historyFragment, null,
+                    NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build())
             }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun setActionBarTitle(title: String){
+        supportActionBar?.show()
+        supportActionBar?.title = title
     }
 }
