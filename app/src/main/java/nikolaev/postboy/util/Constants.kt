@@ -10,3 +10,6 @@ const val BODY_TYPE_JSON = "json"
 
 
 val TAB_TITLES = arrayOf("RAW", "Preview", "Info")
+
+const val REST_MENU_ITEM = 0
+const val HISTORY_MENU_ITEM = 1

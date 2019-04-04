@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_request.*
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FragmentRequestBinding
+import nikolaev.postboy.util.REST_MENU_ITEM
 import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.adapter.HeaderRecyclerViewAdapter
 import nikolaev.postboy.view.adapter.ParameterRecyclerViewAdapter
@@ -27,6 +28,8 @@ import okhttp3.HttpUrl
 
 class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), IClickHeadersPairModel,
         IClickParametersPairModel {
+
+    override fun getMenuId(): Int = REST_MENU_ITEM
 
     val TAG = this::class.java.simpleName
 

@@ -5,11 +5,14 @@ import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.fragment_response.*
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FragmentResponseBinding
+import nikolaev.postboy.util.REST_MENU_ITEM
 import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.base.BaseFragment
 import nikolaev.postboy.viewmodel.MainViewModel
 
 class ResponseFragment : BaseFragment<MainViewModel, FragmentResponseBinding>() {
+
+    override fun getMenuId(): Int = REST_MENU_ITEM
 
     override fun obtainViewModel(): MainViewModel = (activity as MainActivity).viewModel
 

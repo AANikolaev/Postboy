@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.fragment_history.*
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FragmentHistoryBinding
 import nikolaev.postboy.model.db.entities.RequestEntity
+import nikolaev.postboy.util.HISTORY_MENU_ITEM
 import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.adapter.HistoryAdapter
 import nikolaev.postboy.view.base.BaseFragment
@@ -15,6 +16,8 @@ import nikolaev.postboy.view.interfaces.OnClickHistoryItem
 import nikolaev.postboy.viewmodel.MainViewModel
 
 class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), OnClickHistoryItem {
+
+    override fun getMenuId(): Int  = HISTORY_MENU_ITEM
 
     override fun obtainViewModel(): MainViewModel = (activity as MainActivity).viewModel
 

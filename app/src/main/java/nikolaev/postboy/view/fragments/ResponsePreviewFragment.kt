@@ -4,12 +4,15 @@ import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.fragment_response_preview.*
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FragmentResponsePreviewBinding
+import nikolaev.postboy.util.REST_MENU_ITEM
 import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.base.BaseFragment
 import nikolaev.postboy.viewmodel.MainViewModel
 
 
 class ResponsePreviewFragment : BaseFragment<MainViewModel, FragmentResponsePreviewBinding>() {
+
+    override fun getMenuId(): Int = REST_MENU_ITEM
 
     override fun obtainViewModel(): MainViewModel = (activity as MainActivity).viewModel
 

@@ -8,7 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import nikolaev.postboy.BR
+import nikolaev.postboy.view.activities.MainActivity
 
 abstract class BaseFragment<V : ViewModel, B : ViewDataBinding> : Fragment() {
 
@@ -18,6 +20,8 @@ abstract class BaseFragment<V : ViewModel, B : ViewDataBinding> : Fragment() {
     abstract fun obtainViewModel(): V
 
     abstract fun getContentViewLayoutId(): Int
+
+    abstract fun getMenuId(): Int
 
     protected abstract fun onViewModelReady()
 
@@ -32,6 +36,7 @@ abstract class BaseFragment<V : ViewModel, B : ViewDataBinding> : Fragment() {
 
         initViewModel()
         binding.setVariable(BR.viewModel, this.viewModel)
+        (activity as MainActivity).nav_view.menu.getItem(getMenuId()).isChecked = true
     }
 
     private fun initViewModel() {
