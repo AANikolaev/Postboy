@@ -13,3 +13,4 @@ val TAB_TITLES = arrayOf("RAW", "Preview", "Info")
 
 const val REST_MENU_ITEM = 0
 const val HISTORY_MENU_ITEM = 1
+const val ABOUT_ITEM = 2
