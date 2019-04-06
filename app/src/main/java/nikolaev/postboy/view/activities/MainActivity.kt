@@ -101,6 +101,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                 navController.navigate(R.id.aboutFragment, null,
                         NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build())
             }
+            R.id.nav_share -> {
+                shareProject(this)
+            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
