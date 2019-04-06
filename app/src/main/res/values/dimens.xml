@@ -41,6 +41,11 @@
     <dimen name="icon_delete_margin_end">16dp</dimen>
     <dimen name="fragment_info_view_margin_divider">8dp</dimen>
     <dimen name="fragment_main_headers_margin_top">24dp</dimen>
+    <dimen name="about_fragment_icon_size">200dp</dimen>
+    <dimen name="about_fragment_icon_margin_top">50dp</dimen>
+    <dimen name="about_fragment_title_text_size">24sp</dimen>
+    <dimen name="about_fragment_version_text_size">18sp</dimen>
+    <dimen name="about_fragment_version_text_margin">24dp</dimen>
 
 
 </resources>

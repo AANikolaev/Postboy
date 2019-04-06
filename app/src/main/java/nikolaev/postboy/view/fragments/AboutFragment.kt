@@ -1,5 +1,9 @@
 package nikolaev.postboy.view.fragments
 
+import android.os.Bundle
+import android.view.View
+import kotlinx.android.synthetic.main.fragment_about.*
+import nikolaev.postboy.BuildConfig
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FragmentAboutBinding
 import nikolaev.postboy.util.ABOUT_ITEM
@@ -20,4 +24,8 @@ class AboutFragment : BaseFragment<MainViewModel, FragmentAboutBinding>() {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        tvVersion.text = String.format("Version - %s", BuildConfig.VERSION_NAME)
+    }
 }
