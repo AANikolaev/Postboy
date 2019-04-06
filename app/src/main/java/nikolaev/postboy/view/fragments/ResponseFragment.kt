@@ -14,6 +14,10 @@ class ResponseFragment : BaseFragment<MainViewModel, FragmentResponseBinding>() 
 
     override fun getMenuId(): Int = REST_MENU_ITEM
 
+    override fun isVisibleToolbar(): Boolean = false
+
+    override fun getToolbarTitle(): String = getString(R.string.app_name)
+
     override fun obtainViewModel(): MainViewModel = (activity as MainActivity).viewModel
 
     override fun getContentViewLayoutId(): Int = R.layout.fragment_response

@@ -20,6 +20,10 @@ class AboutFragment : BaseFragment<MainViewModel, FragmentAboutBinding>() {
 
     override fun getContentViewLayoutId(): Int = R.layout.fragment_about
 
+    override fun isVisibleToolbar(): Boolean = true
+
+    override fun getToolbarTitle(): String = getString(R.string.nav_about)
+
     override fun onViewModelReady() {
 
     }

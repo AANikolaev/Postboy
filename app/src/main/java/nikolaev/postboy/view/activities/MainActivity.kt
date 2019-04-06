@@ -88,16 +88,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_rest -> {
-                setActionBarTitle(resources.getString(R.string.app_name))
                 moveToNextFragment(R.id.requestFragment)
             }
             R.id.nav_history -> {
-                setActionBarTitle(resources.getString(R.string.nav_history))
                 navController.navigate(R.id.historyFragment, null,
                         NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build())
             }
             R.id.nav_about -> {
-                setActionBarTitle(resources.getString(R.string.nav_about))
                 navController.navigate(R.id.aboutFragment, null,
                         NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build())
             }
@@ -108,10 +105,5 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
-    }
-
-    private fun setActionBarTitle(title: String) {
-        supportActionBar?.show()
-        supportActionBar?.title = title
     }
 }

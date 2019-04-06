@@ -23,6 +23,10 @@ abstract class BaseFragment<V : ViewModel, B : ViewDataBinding> : Fragment() {
 
     abstract fun getMenuId(): Int
 
+    abstract fun isVisibleToolbar(): Boolean
+
+    abstract fun getToolbarTitle(): String
+
     protected abstract fun onViewModelReady()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,6 +41,12 @@ abstract class BaseFragment<V : ViewModel, B : ViewDataBinding> : Fragment() {
         initViewModel()
         binding.setVariable(BR.viewModel, this.viewModel)
         (activity as MainActivity).nav_view.menu.getItem(getMenuId()).isChecked = true
+        if (isVisibleToolbar()) {
+            (activity as MainActivity).supportActionBar?.show()
+            (activity as MainActivity).supportActionBar?.title = getToolbarTitle()
+        } else {
+            (activity as MainActivity).supportActionBar?.hide()
+        }
     }
 
     private fun initViewModel() {
