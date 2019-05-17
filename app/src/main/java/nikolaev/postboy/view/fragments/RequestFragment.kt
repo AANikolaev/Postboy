@@ -29,9 +29,13 @@ import okhttp3.HttpUrl
 class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), IClickHeadersPairModel,
         IClickParametersPairModel {
 
+    val TAG = this::class.java.simpleName
+
     override fun getMenuId(): Int = REST_MENU_ITEM
 
-    val TAG = this::class.java.simpleName
+    override fun isVisibleToolbar(): Boolean = true
+
+    override fun getToolbarTitle(): String = getString(R.string.app_name)
 
     override fun obtainViewModel(): MainViewModel = (activity as MainActivity).viewModel
 

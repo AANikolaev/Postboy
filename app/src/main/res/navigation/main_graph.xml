@@ -1,35 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/main_graph" app:startDestination="@id/requestFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/requestFragment">
 
-    <fragment android:id="@+id/requestFragment"
-              android:name="nikolaev.postboy.view.fragments.RequestFragment"
-              android:label="RequestFragment"
-              tools:layout="@layout/fragment_request"/>
+    <fragment
+        android:id="@+id/requestFragment"
+        android:name="nikolaev.postboy.view.fragments.RequestFragment"
+        android:label="RequestFragment"
+        tools:layout="@layout/fragment_request" />
 
-    <fragment android:id="@+id/responseFragment"
-              android:name="nikolaev.postboy.view.fragments.ResponseFragment"
-              android:label="ResponseFragment"
-              tools:layout="@layout/fragment_response"/>
+    <fragment
+        android:id="@+id/responseFragment"
+        android:name="nikolaev.postboy.view.fragments.ResponseFragment"
+        android:label="ResponseFragment"
+        tools:layout="@layout/fragment_response" />
 
-    <fragment android:id="@+id/tabRootFragment"
-              android:name="nikolaev.postboy.view.fragments.TabRootFragment"
-              android:label="TabRootFragment"
-              tools:layout="@layout/fragment_tab_root"/>
+    <fragment
+        android:id="@+id/tabRootFragment"
+        android:name="nikolaev.postboy.view.fragments.TabRootFragment"
+        android:label="TabRootFragment"
+        tools:layout="@layout/fragment_tab_root" />
 
-    <fragment android:id="@+id/responseInfoFragment"
-              android:name="nikolaev.postboy.view.fragments.ResponseInfoFragment"
-              android:label="ResponseInfoFragment"
-              tools:layout="@layout/fragment_response_info"/>
+    <fragment
+        android:id="@+id/responseInfoFragment"
+        android:name="nikolaev.postboy.view.fragments.ResponseInfoFragment"
+        android:label="ResponseInfoFragment"
+        tools:layout="@layout/fragment_response_info" />
 
-    <fragment android:id="@+id/responsePreviewFragment"
-              android:name="nikolaev.postboy.view.fragments.ResponsePreviewFragment"
-              android:label="ResponsePreviewFragment"
-              tools:layout="@layout/fragment_response_preview"/>
+    <fragment
+        android:id="@+id/responsePreviewFragment"
+        android:name="nikolaev.postboy.view.fragments.ResponsePreviewFragment"
+        android:label="ResponsePreviewFragment"
+        tools:layout="@layout/fragment_response_preview" />
 
-    <fragment android:id="@+id/historyFragment"
-              android:name="nikolaev.postboy.view.fragments.HistoryFragment"
-              android:label="HistoryFragment"
-              tools:layout="@layout/fragment_history"/>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="nikolaev.postboy.view.fragments.HistoryFragment"
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="nikolaev.postboy.view.fragments.AboutFragment"
+        android:label="AboutFragment"
+        tools:layout="@layout/fragment_about" />
 </navigation>

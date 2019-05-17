@@ -12,6 +12,19 @@
             android:id="@+id/nav_history"
             android:title="@string/nav_history" />
 
+        <group
+            android:id="@+id/nav_settings"
+            android:checkableBehavior="single">
+
+            <item
+                android:id="@+id/nav_about"
+                android:title="@string/nav_about" />
+
+            <item
+                android:id="@+id/nav_share"
+                android:title="@string/nav_share" />
+
+        </group>
     </group>
 
 </menu>
