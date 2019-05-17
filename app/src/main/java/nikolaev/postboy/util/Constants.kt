@@ -18,4 +18,4 @@ const val ABOUT_ITEM = 2
 const val SHARE_TYPE = "text/plain"
 
 //TODO GOOGLE_PLAY_LINK
-const val GOOGLE_PLAY_LINK = "https://www.google.com/"
+const val GOOGLE_PLAY_LINK = "https://play.google.com/store/apps/details?id=nikolaev.postboy"
