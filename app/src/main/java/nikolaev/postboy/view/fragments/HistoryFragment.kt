@@ -13,9 +13,11 @@ import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.adapter.HistoryAdapter
 import nikolaev.postboy.view.base.BaseFragment
 import nikolaev.postboy.view.interfaces.OnClickHistoryItem
+import nikolaev.postboy.view.interfaces.OnDeleteClickHistoryItem
 import nikolaev.postboy.viewmodel.MainViewModel
 
-class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), OnClickHistoryItem {
+class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), OnDeleteClickHistoryItem,
+    OnClickHistoryItem {
 
     override fun getMenuId(): Int = HISTORY_MENU_ITEM
 
@@ -28,7 +30,7 @@ class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), O
     override fun getToolbarTitle(): String = getString(R.string.nav_history)
 
     override fun onViewModelReady() {
-        val adapter = HistoryAdapter(this)
+        val adapter = HistoryAdapter(this, this)
         recyclerViewHistory.layoutManager = LinearLayoutManager(activity)
         recyclerViewHistory.adapter = adapter
 
@@ -38,9 +40,12 @@ class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), O
         })
     }
 
-    override fun onItemHistoryClick(view: View, position: Int, model: RequestEntity) {
-        viewModel.onClickItemHistory(model)
+    override fun onDeleteItemHistoryClick(view: View, position: Int, model: RequestEntity) {
+        viewModel.onDeleteItemHistory(model)
     }
 
+    override fun onClickItemHistory(model: RequestEntity) {
+        viewModel.onClickHistoryItem(model)
+    }
 
 }

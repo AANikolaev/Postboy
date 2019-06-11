@@ -53,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-                    android:text="@{model.url}"
+                    android:text="@{model.http + model.url}"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/item_info_link_text_size"
                     app:layout_constraintEnd_toEndOf="parent"

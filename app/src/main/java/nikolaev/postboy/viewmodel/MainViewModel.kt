@@ -2,7 +2,6 @@ package nikolaev.postboy.viewmodel
 
 import android.app.Application
 import android.text.TextUtils
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import nikolaev.postboy.R
@@ -45,6 +44,7 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     val errorDialogEvent = MutableLiveData<Event<ErrorDialogModel>>()
 
     val nextFragment = MutableLiveData<Int>()
+    val changeHistoryModel = MutableLiveData<RequestEntity>()
 
     private var headersArrayList = ArrayList<Pairs>()
     var headersListAdapter = MutableLiveData<ArrayList<Pairs>>().apply {
@@ -86,10 +86,10 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickSendRequest() {
         progressDialogEvent.postValue(
-                ProgressDialogModel(
-                        true,
-                        getString(R.string.pre_loader_description_text_default)
-                )
+            ProgressDialogModel(
+                true,
+                getString(R.string.pre_loader_description_text_default)
+            )
         )
 
         insertDataToBD()
@@ -102,20 +102,20 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
             }
             POST_METHOD -> {
                 postMethodRequest(
-                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             PUT_METHOD -> {
                 putMethodRequest(
-                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
             DELETE_METHOD -> {
                 deleteMethodRequest(
-                        combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
-                        headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
+                    combineUrl(spinnerHttp.get() + textUrl.get(), parametersList),
+                    headersList, textBody.get().orEmpty(), spinnerBodyType.get()!!
                 )
             }
         }
@@ -224,19 +224,38 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     private fun insertDataToBD() {
         repository.insertRequest(
-                RequestEntity(
-                        spinnerMethod.get().toString(),
-                        spinnerHttp.get() + textUrl.get(),
-                        headersList,
-                        parametersList,
-                        textBody.get().orEmpty(),
-                        SimpleDateFormat("MMM d, yyyy h:mm:ss a", Locale.getDefault()).format(Calendar.getInstance().time)
-                )
+            RequestEntity(
+                spinnerMethod.get().toString(),
+                spinnerHttp.get().toString(),
+                textUrl.get().toString(),
+                headersList,
+                parametersList,
+                spinnerBodyType.get().toString(),
+                textBody.get().orEmpty(),
+                SimpleDateFormat("MMM d, yyyy h:mm:ss a", Locale.ENGLISH).format(Calendar.getInstance().time)
+            )
         )
     }
 
-    fun  onClickItemHistory(requestEntity: RequestEntity){
+    fun onDeleteItemHistory(requestEntity: RequestEntity) {
         repository.deleteRequest(requestEntity)
     }
 
+    fun onClickHistoryItem(requestEntity: RequestEntity) {
+        nextFragment.postValue(R.id.requestFragment)
+        changeHistoryModel.postValue(requestEntity)
+
+        textUrl.set(requestEntity.url)
+        textBody.set(requestEntity.body)
+
+        headersArrayList.clear()
+        requestEntity.headers?.forEach {
+            headersArrayList.add(it)
+        }
+
+        parametersArrayList.clear()
+        requestEntity.parameters?.forEach {
+            parametersArrayList.add(it)
+        }
+    }
 }
