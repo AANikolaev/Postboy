@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "918007435696",
+    "firebase_url": "https://postboy-c4bc3.firebaseio.com",
+    "project_id": "postboy-c4bc3",
+    "storage_bucket": "postboy-c4bc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918007435696:android:518023cdc067c546",
+        "android_client_info": {
+          "package_name": "nikolaev.postboy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918007435696-thqjii3eflp8bjbeucfjj1lub3d92jsq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nikolaev.postboy",
+            "certificate_hash": "d298169e42276c5ead5097855dc56aece41910d2"
+          }
+        },
+        {
+          "client_id": "918007435696-gmia199hlbmnkrvuklel8eql0s4ctl10.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArHSGVoslH9PpDBXPDCelIa-V5u6ckM3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918007435696-gmia199hlbmnkrvuklel8eql0s4ctl10.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

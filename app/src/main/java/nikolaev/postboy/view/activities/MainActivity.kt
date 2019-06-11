@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
+import com.crashlytics.android.Crashlytics
 import com.google.android.material.navigation.NavigationView
+import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import nikolaev.postboy.R
@@ -21,14 +23,15 @@ import nikolaev.postboy.view.base.BaseActivity
 import nikolaev.postboy.view.interfaces.IRouter
 import nikolaev.postboy.viewmodel.MainViewModel
 
+
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter<Int>,
-        NavigationView.OnNavigationItemSelectedListener {
+    NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var navController: NavController
     private var preloader: AlertDialog? = null
 
     override fun obtainViewModel(): MainViewModel =
-            ViewModelProviders.of(this).get(MainViewModel::class.java)
+        ViewModelProviders.of(this).get(MainViewModel::class.java)
 
     override fun getContentViewLayoutId(): Int = R.layout.activity_main
 
@@ -45,12 +48,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
         viewModel.errorDialogEvent.observe(this, Observer<Event<ErrorDialogModel>> {
             it?.getContentIfNotHandled()?.let { errorDialogModel ->
                 showMessageDialogWithSingleAction(this,
-                        errorDialogModel.errorMessage
-                                ?: getString(R.string.sing_up_basics_error_dialog_message_default),
-                        getString(R.string.message_dialog_default_cancel_button_text),
-                        DialogInterface.OnClickListener { dialog, _ ->
-                            dialog.cancel()
-                        })
+                    errorDialogModel.errorMessage
+                        ?: getString(R.string.sing_up_basics_error_dialog_message_default),
+                    getString(R.string.message_dialog_default_cancel_button_text),
+                    DialogInterface.OnClickListener { dialog, _ ->
+                        dialog.cancel()
+                    })
             }
         })
 
@@ -61,11 +64,14 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Fabric.with(this, Crashlytics())
+
         setSupportActionBar(toolbar)
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
@@ -91,12 +97,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                 moveToNextFragment(R.id.requestFragment)
             }
             R.id.nav_history -> {
-                navController.navigate(R.id.historyFragment, null,
-                        NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build())
+                navController.navigate(
+                    R.id.historyFragment, null,
+                    NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build()
+                )
             }
             R.id.nav_about -> {
-                navController.navigate(R.id.aboutFragment, null,
-                        NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build())
+                navController.navigate(
+                    R.id.aboutFragment, null,
+                    NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build()
+                )
             }
             R.id.nav_share -> {
                 shareProject(this)
