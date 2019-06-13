@@ -14,7 +14,7 @@ import nikolaev.postboy.model.db.entities.RequestEntity
  *  alexandr.nikolaev.dev@gmail.com
  */
 
-@Database(entities = [(RequestEntity::class)], version = 1, exportSchema = false)
+@Database(entities = [(RequestEntity::class)], version = 2, exportSchema = false)
 @TypeConverters(PairConverter::class)
 abstract class DatabaseProvider : RoomDatabase() {
 

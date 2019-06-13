@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_request.*
 import nikolaev.postboy.R
 import nikolaev.postboy.databinding.FragmentRequestBinding
+import nikolaev.postboy.model.db.entities.RequestEntity
 import nikolaev.postboy.util.REST_MENU_ITEM
 import nikolaev.postboy.view.activities.MainActivity
 import nikolaev.postboy.view.adapter.HeaderRecyclerViewAdapter
@@ -27,7 +28,7 @@ import okhttp3.HttpUrl
 
 
 class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), IClickHeadersPairModel,
-        IClickParametersPairModel {
+    IClickParametersPairModel {
 
     val TAG = this::class.java.simpleName
 
@@ -43,6 +44,10 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
 
     override fun onViewModelReady() {
         initialRecyclerViewAdapters()
+
+        viewModel.changeHistoryModel.observe(this, Observer {
+            setModelRequest(it)
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -151,5 +156,13 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
             val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    private fun setModelRequest(entity: RequestEntity) {
+
+        spinnerMethod.setSelection(resources.getStringArray(R.array.methods_array).indexOf(entity.method))
+        spinnerHttp.setSelection(resources.getStringArray(R.array.http_array).indexOf(entity.http))
+        spinnerBodyType.setSelection(resources.getStringArray(R.array.body_type_array).indexOf(entity.bodyType))
+
     }
 }

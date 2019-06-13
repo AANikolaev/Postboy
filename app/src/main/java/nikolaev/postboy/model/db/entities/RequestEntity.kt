@@ -12,12 +12,14 @@ import nikolaev.postboy.view.models.Pairs
 
 @Entity(tableName = "request_entity")
 class RequestEntity(
-        @ColumnInfo(name = "method") var method: String,
-        @ColumnInfo(name = "url") var url: String,
-        @ColumnInfo(name = "headers") var headers: List<Pairs>?,
-        @ColumnInfo(name = "parameters") var parameters: List<Pairs>?,
-        @ColumnInfo(name = "body") var body: String?,
-        @ColumnInfo(name = "time") var time: String
+    @ColumnInfo(name = "method") var method: String,
+    @ColumnInfo(name = "http") var http: String,
+    @ColumnInfo(name = "url") var url: String,
+    @ColumnInfo(name = "headers") var headers: List<Pairs>?,
+    @ColumnInfo(name = "parameters") var parameters: List<Pairs>?,
+    @ColumnInfo(name = "bodyType") var bodyType: String?,
+    @ColumnInfo(name = "body") var body: String?,
+    @ColumnInfo(name = "time") var time: String
 ) {
 
     @PrimaryKey
