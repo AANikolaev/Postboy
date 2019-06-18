@@ -22,6 +22,8 @@ import nikolaev.postboy.util.*
 import nikolaev.postboy.view.base.BaseActivity
 import nikolaev.postboy.view.interfaces.IRouter
 import nikolaev.postboy.viewmodel.MainViewModel
+import android.content.Intent
+import android.net.Uri
 
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter<Int>,
@@ -101,6 +103,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                     R.id.historyFragment, null,
                     NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build()
                 )
+            }
+            R.id.nav_privacy_policy -> {
+                val uriUrl = Uri.parse(PRIVACY_POLICE_LINK)
+                val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
+                startActivity(launchBrowser)
             }
             R.id.nav_about -> {
                 navController.navigate(
