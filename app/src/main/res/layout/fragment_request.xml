@@ -1,219 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="viewModel"
-            type="nikolaev.postboy.viewmodel.MainViewModel" />
+                name="viewModel"
+                type="nikolaev.postboy.viewmodel.MainViewModel" />
 
     </data>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize">
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:paddingBottom="@dimen/scrollview_bottom">
+            android:layout_marginTop="?attr/actionBarSize"
+            android:background="@color/colorBackground">
+
+        <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:paddingBottom="@dimen/scrollview_bottom">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textViewRequestMethod"
-                    style="@style/AppTheme.TextAppearanceNormal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/fragment_main_margin_start"
-                    android:layout_marginTop="@dimen/fragment_main_margin_top"
-                    android:text="@string/request_method"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                        android:id="@+id/textViewRequestMethod"
+                        style="@style/AppTheme.TextAppearanceNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_main_margin_start"
+                        android:layout_marginTop="@dimen/fragment_main_margin_top"
+                        android:text="@string/request_method"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <Spinner
-                    android:id="@+id/spinnerMethod"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fragment_main_margin_top"
-                    android:layout_marginEnd="@dimen/fragment_main_margin_end"
-                    android:background="@null"
-                    android:entries="@array/methods_array"
-                    android:gravity="end"
-                    android:theme="@style/AppTheme.TextAppearanceBlueSpinner"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                        android:id="@+id/spinnerMethod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_main_margin_top"
+                        android:layout_marginEnd="@dimen/fragment_main_margin_end"
+                        android:background="@null"
+                        android:entries="@array/methods_array"
+                        android:gravity="end"
+                        android:theme="@style/AppTheme.TextAppearanceBlueSpinner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <Spinner
-                    android:id="@+id/spinnerHttp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/fragment_main_little_margin"
-                    android:layout_marginTop="@dimen/fragment_main_margin_top"
-                    android:background="@null"
-                    android:entries="@array/http_array"
-                    android:theme="@style/AppTheme.SpinnerHttp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewRequestMethod" />
+                        android:id="@+id/spinnerHttp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_main_little_margin"
+                        android:layout_marginTop="@dimen/fragment_main_margin_top"
+                        android:background="@null"
+                        android:entries="@array/http_array"
+                        android:theme="@style/AppTheme.SpinnerHttp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewRequestMethod" />
 
                 <EditText
-                    android:id="@+id/editTextUrl"
-                    style="@style/AppTheme.TextAppearanceNormal"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/fragment_main_little_margin"
-                    android:autofillHints=""
-                    android:hint="@string/enter_request_url"
-                    android:imeOptions="actionDone|flagNoExtractUi"
-                    android:inputType="textUri"
-                    android:text="@={viewModel.textUrl}"
-                    app:layout_constraintBottom_toBottomOf="@+id/spinnerHttp"
-                    app:layout_constraintLeft_toRightOf="@+id/spinnerHttp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/spinnerHttp" />
+                        android:id="@+id/editTextUrl"
+                        style="@style/AppTheme.TextAppearanceNormal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/fragment_main_little_margin"
+                        android:autofillHints=""
+                        android:hint="@string/enter_request_url"
+                        android:imeOptions="actionDone|flagNoExtractUi"
+                        android:inputType="textUri"
+                        android:text="@={viewModel.textUrl}"
+                        app:layout_constraintBottom_toBottomOf="@+id/spinnerHttp"
+                        app:layout_constraintLeft_toRightOf="@+id/spinnerHttp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/spinnerHttp" />
 
                 <TextView
-                    android:id="@+id/textViewTitleHeader"
-                    style="@style/AppTheme.TextAppearanceNormal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/fragment_main_margin_start"
-                    android:layout_marginTop="@dimen/fragment_main_headers_margin_top"
-                    android:text="@string/main_view_headers"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinnerHttp" />
+                        android:id="@+id/textViewTitleHeader"
+                        style="@style/AppTheme.TextAppearanceNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_main_margin_start"
+                        android:layout_marginTop="@dimen/fragment_main_headers_margin_top"
+                        android:text="@string/main_view_headers"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/spinnerHttp" />
 
                 <ImageButton
-                    android:id="@+id/imageButtonAddHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fragment_main_little_margin"
-                    android:layout_marginEnd="@dimen/fragment_main_mid_margin"
-                    android:background="@drawable/bg_selectable_item"
-                    android:contentDescription="@string/main_view_add"
-                    android:padding="@dimen/fragment_main_image_padding"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewTitleHeader"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textViewTitleHeader"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/ic_add_circle_outline_black_24dp" />
+                        android:id="@+id/imageButtonAddHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_main_little_margin"
+                        android:layout_marginEnd="@dimen/fragment_main_mid_margin"
+                        android:background="@drawable/bg_selectable_item"
+                        android:contentDescription="@string/main_view_add"
+                        android:padding="@dimen/fragment_main_image_padding"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewTitleHeader"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textViewTitleHeader"
+                        app:layout_constraintVertical_bias="0.5"
+                        app:srcCompat="@drawable/ic_add_circle_outline_black_24dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/includeFieldHeaders"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/include_layout_margin_start"
-                    android:layout_marginEnd="@dimen/include_layout_margin_end"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageButtonAddHeader"
-                    tools:layout_height="20dp" />
+                        android:id="@+id/includeFieldHeaders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/include_layout_margin_start"
+                        android:layout_marginEnd="@dimen/include_layout_margin_end"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageButtonAddHeader"
+                        tools:layout_height="20dp" />
 
                 <TextView
-                    android:id="@+id/textViewTitleParameters"
-                    style="@style/AppTheme.TextAppearanceNormal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/fragment_main_margin_start"
-                    android:layout_marginTop="@dimen/fragment_main_margin_top"
-                    android:text="@string/main_view_parameters"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/includeFieldHeaders" />
+                        android:id="@+id/textViewTitleParameters"
+                        style="@style/AppTheme.TextAppearanceNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_main_margin_start"
+                        android:layout_marginTop="@dimen/fragment_main_margin_top"
+                        android:text="@string/main_view_parameters"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/includeFieldHeaders" />
 
                 <ImageButton
-                    android:id="@+id/imageButtonAddParameters"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fragment_main_little_margin"
-                    android:layout_marginEnd="@dimen/fragment_main_mid_margin"
-                    android:background="@drawable/bg_selectable_item"
-                    android:contentDescription="@string/main_view_add"
-                    android:padding="@dimen/fragment_main_image_padding"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewTitleParameters"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textViewTitleParameters"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/ic_add_circle_outline_black_24dp" />
+                        android:id="@+id/imageButtonAddParameters"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fragment_main_little_margin"
+                        android:layout_marginEnd="@dimen/fragment_main_mid_margin"
+                        android:background="@drawable/bg_selectable_item"
+                        android:contentDescription="@string/main_view_add"
+                        android:padding="@dimen/fragment_main_image_padding"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewTitleParameters"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textViewTitleParameters"
+                        app:layout_constraintVertical_bias="0.5"
+                        app:srcCompat="@drawable/ic_add_circle_outline_black_24dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/includeFieldParameters"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/include_layout_margin_start"
-                    android:layout_marginEnd="@dimen/include_layout_margin_end"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageButtonAddParameters"
-                    tools:layout_height="20dp" />
+                        android:id="@+id/includeFieldParameters"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/include_layout_margin_start"
+                        android:layout_marginEnd="@dimen/include_layout_margin_end"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageButtonAddParameters"
+                        tools:layout_height="20dp" />
 
                 <TextView
-                    android:id="@+id/textViewTitleBody"
-                    style="@style/AppTheme.TextAppearanceNormal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/fragment_main_margin_start"
-                    android:layout_marginTop="@dimen/fragment_main_margin_top"
-                    android:text="@string/title_body"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/includeFieldParameters" />
+                        android:id="@+id/textViewTitleBody"
+                        style="@style/AppTheme.TextAppearanceNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_main_margin_start"
+                        android:layout_marginTop="@dimen/fragment_main_margin_top"
+                        android:text="@string/title_body"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/includeFieldParameters" />
 
                 <EditText
-                    android:id="@+id/editTextBody"
-                    style="@style/AppTheme.TextAppearanceNormal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/fragment_main_margin_start"
-                    android:layout_marginTop="@dimen/fragment_main_margin_top"
-                    android:layout_marginEnd="@dimen/fragment_main_margin_start"
-                    android:hint="@string/enter_body"
-                    android:imeOptions="actionDone"
-                    android:text="@={viewModel.textBody}"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewTitleBody" />
+                        android:id="@+id/editTextBody"
+                        style="@style/AppTheme.TextAppearanceNormal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fragment_main_margin_start"
+                        android:layout_marginTop="@dimen/fragment_main_margin_top"
+                        android:layout_marginEnd="@dimen/fragment_main_margin_start"
+                        android:hint="@string/enter_body"
+                        android:imeOptions="actionDone"
+                        android:text="@={viewModel.textBody}"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTitleBody" />
 
                 <Spinner
-                    android:id="@+id/spinnerBodyType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:entries="@array/body_type_array"
-                    android:gravity="end"
-                    android:theme="@style/AppTheme.TextAppearanceSmallSpinner"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textViewTitleBody"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/textViewTitleBody" />
+                        android:id="@+id/spinnerBodyType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:entries="@array/body_type_array"
+                        android:gravity="end"
+                        android:theme="@style/AppTheme.TextAppearanceSmallSpinner"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textViewTitleBody"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTitleBody" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonSend"
-            style="@style/AppTheme.TextAppearanceNormal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/nestedScrollView"
-            android:layout_marginStart="@dimen/margin_button_send"
-            android:layout_marginEnd="@dimen/margin_button_send"
-            android:layout_marginBottom="@dimen/margin_button_send"
-            android:background="@drawable/bg_button"
-            android:enabled="false"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:text="@string/send"
-            android:textAllCaps="true"
-            android:textColor="@android:color/black" />
+                android:id="@+id/buttonSend"
+                style="@style/AppTheme.TextAppearanceNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/nestedScrollView"
+                android:layout_marginStart="@dimen/margin_button_send"
+                android:layout_marginEnd="@dimen/margin_button_send"
+                android:layout_marginBottom="@dimen/margin_button_send"
+                android:background="@drawable/bg_button"
+                android:enabled="false"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/send"
+                android:textAllCaps="true"
+                android:textColor="@color/colorText" />
 
     </RelativeLayout>
 </layout>

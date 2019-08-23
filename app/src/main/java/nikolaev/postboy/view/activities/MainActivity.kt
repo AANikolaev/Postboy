@@ -1,10 +1,18 @@
 package nikolaev.postboy.view.activities
 
 import android.content.DialogInterface
+import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Configuration.UI_MODE_NIGHT_MASK
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -22,8 +30,6 @@ import nikolaev.postboy.util.*
 import nikolaev.postboy.view.base.BaseActivity
 import nikolaev.postboy.view.interfaces.IRouter
 import nikolaev.postboy.viewmodel.MainViewModel
-import android.content.Intent
-import android.net.Uri
 
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter<Int>,
@@ -64,6 +70,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
         })
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -73,12 +80,27 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this,
+            drawer_layout,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        if (getCurrentNightMode() == Configuration.UI_MODE_NIGHT_YES) {
+            window.decorView.systemUiVisibility = 0
+        } else {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorBackground)
+    }
+
+    private fun getCurrentNightMode(): Int {
+        return resources.configuration.uiMode and UI_MODE_NIGHT_MASK
     }
 
     override fun onBackPressed() {

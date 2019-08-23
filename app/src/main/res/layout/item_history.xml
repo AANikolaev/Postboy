@@ -1,102 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="android.view.View" />
 
         <variable
-            name="model"
-            type="nikolaev.postboy.model.db.entities.RequestEntity" />
+                name="model"
+                type="nikolaev.postboy.model.db.entities.RequestEntity" />
 
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:background="@color/google_yellow">
+            android:background="@color/colorBackground"
+            android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:background="@color/google_yellow">
 
             <TextView
-                android:id="@+id/tv_method"
-                android:layout_width="@dimen/item_info_method_weight"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@{model.method}"
-                android:textSize="@dimen/item_method_text_size"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="DELETE"
-                tools:textColor="@color/google_red" />
+                    android:id="@+id/tv_method"
+                    android:layout_width="@dimen/item_info_method_weight"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@{model.method}"
+                    android:textSize="@dimen/item_method_text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="DELETE"
+                    tools:textColor="@color/google_red" />
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/item_info_layout_margin_top"
-                android:layout_marginBottom="@dimen/item_info_layout_margin_bottom"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_history_delete"
-                app:layout_constraintStart_toEndOf="@+id/tv_method"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_link"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="@{model.http + model.url}"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/item_info_link_text_size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_method"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="http://googe.comgoogle.com/http://google.comgoogle.com/http://google.comgoogle.com/" />
-
-                <TextView
-                    android:id="@+id/tv_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/item_info_time_margin_top"
-                    android:text="@{model.time}"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/item_info_time_text_size"
+                    android:layout_marginTop="@dimen/item_info_layout_margin_top"
+                    android:layout_marginBottom="@dimen/item_info_layout_margin_bottom"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_link"
-                    tools:text="mar 23, 2019 3:12pm" />
+                    app:layout_constraintEnd_toStartOf="@+id/btn_history_delete"
+                    app:layout_constraintStart_toEndOf="@+id/tv_method"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                        android:id="@+id/tv_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:text="@{model.http + model.url}"
+                        android:textColor="@color/colorText"
+                        android:textSize="@dimen/item_info_link_text_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_method"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="http://googe.comgoogle.com/http://google.comgoogle.com/http://google.comgoogle.com/" />
+
+                <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/item_info_time_margin_top"
+                        android:text="@{model.time}"
+                        android:textColor="@color/colorText"
+                        android:textSize="@dimen/item_info_time_text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_link"
+                        tools:text="mar 23, 2019 3:12pm" />
 
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/btn_history_delete"
-                android:layout_width="@dimen/icon_delete_size"
-                android:layout_height="@dimen/icon_delete_size"
-                android:layout_marginEnd="@dimen/icon_delete_margin_end"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_delete_black_24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    android:id="@+id/btn_history_delete"
+                    android:layout_width="@dimen/icon_delete_size"
+                    android:layout_height="@dimen/icon_delete_size"
+                    android:layout_marginEnd="@dimen/icon_delete_margin_end"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_delete_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="@dimen/item_info_divider_margin"
-            android:layout_marginEnd="@dimen/item_info_divider_margin"
-            android:background="@color/colorDividerHistory" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/item_info_divider_margin"
+                android:layout_marginEnd="@dimen/item_info_divider_margin"
+                android:background="@color/colorDividerHistory" />
 
     </LinearLayout>
 </layout>

@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
                 name="model"
-                type="nikolaev.postboy.view.models.Pairs"/>
+                type="nikolaev.postboy.view.models.Pairs" />
 
         <variable
                 name="listener"
-                type="nikolaev.postboy.view.interfaces.IClickParametersPairModel"/>
+                type="nikolaev.postboy.view.interfaces.IClickParametersPairModel" />
 
     </data>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatEditText
-                android:text="@={model.first}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -28,28 +31,29 @@
                 android:hint="@string/main_view_key"
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:inputType="textNoSuggestions"
-                app:backgroundTint="@color/colorPrimary"/>
+                android:text="@={model.first}"
+                app:backgroundTint="@color/colorTextSpinner" />
 
         <androidx.appcompat.widget.AppCompatEditText
-                android:text="@={model.second}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="@string/main_view_value"
                 android:imeOptions="actionDone|flagNoExtractUi"
                 android:inputType="textNoSuggestions"
-                app:backgroundTint="@color/colorPrimary"/>
+                android:text="@={model.second}"
+                app:backgroundTint="@color/colorTextSpinner" />
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/imageButtonRemove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_selectable_item"
                 android:contentDescription="@string/main_view_remove"
-                android:padding="8dp"
                 android:onClick="@{() -> listener.onItemParametersClick(model)}"
-                app:srcCompat="@drawable/ic_remove_circle_outline_black_24dp"/>
+                android:padding="8dp"
+                app:srcCompat="@drawable/ic_remove_circle_outline_black_24dp" />
     </LinearLayout>
 </layout>

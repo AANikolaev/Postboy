@@ -4,9 +4,14 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#303F9F</color>
 
-    <color name="colorBackgroundTitle">#1d447c</color>
+    <color name="colorText">@android:color/black</color>
+    <color name="colorBackground">@android:color/white</color>
+    <color name="colorTextSpinner">#3F51B5</color>
+    <color name="colorTrash">@android:color/black</color>
+
+    <color name="colorBackgroundTitle">@color/colorTextSpinner</color>
     <color name="colorClickAddButton">#eeeeee</color>
-    
+
     <color name="colorGrey">#696969</color>
 
     <color name="google_blue">#4285F4</color>

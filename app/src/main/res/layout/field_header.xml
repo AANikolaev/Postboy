@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
                 name="model"
-                type="nikolaev.postboy.view.models.Pairs"/>
+                type="nikolaev.postboy.view.models.Pairs" />
 
         <variable
                 name="listener"
-                type="nikolaev.postboy.view.interfaces.IClickHeadersPairModel"/>
+                type="nikolaev.postboy.view.interfaces.IClickHeadersPairModel" />
 
     </data>
+
     <LinearLayout
             android:id="@+id/fieldHeaderParent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
         <EditText
-                android:text="@={model.first}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -29,28 +32,29 @@
                 android:hint="@string/main_view_key"
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:inputType="textNoSuggestions"
-                app:backgroundTint="@color/colorPrimary"/>
+                android:text="@={model.first}"
+                app:backgroundTint="@color/colorTextSpinner" />
 
         <EditText
-                android:text="@={model.second}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="@string/main_view_value"
                 android:imeOptions="actionDone|flagNoExtractUi"
                 android:inputType="textNoSuggestions"
-                app:backgroundTint="@color/colorPrimary"/>
+                android:text="@={model.second}"
+                app:backgroundTint="@color/colorTextSpinner" />
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/imageButtonRemove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/include_layout_margin_button"
                 android:layout_marginTop="@dimen/include_layout_margin_button"
+                android:layout_marginBottom="@dimen/include_layout_margin_button"
                 android:background="@drawable/bg_selectable_item"
                 android:contentDescription="@string/main_view_remove"
-                android:padding="@dimen/include_layout_margin_button"
                 android:onClick="@{() -> listener.onItemHeadersClick(model)}"
-                app:srcCompat="@drawable/ic_remove_circle_outline_black_24dp"/>
+                android:padding="@dimen/include_layout_margin_button"
+                app:srcCompat="@drawable/ic_remove_circle_outline_black_24dp" />
     </LinearLayout>
 </layout>
