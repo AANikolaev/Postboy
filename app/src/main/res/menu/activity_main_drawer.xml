@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:showIn="navigation_view">
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
 
         <item
                 android:id="@+id/nav_rest"
-                android:title="@string/nav_rest"/>
+                android:title="@string/nav_rest" />
         <item
                 android:id="@+id/nav_history"
-                android:title="@string/nav_history"/>
+                android:title="@string/nav_history" />
 
-        <group
-                android:id="@+id/nav_settings"
-                android:checkableBehavior="single">
+    </group>
 
-            <item
-                    android:id="@+id/nav_privacy_policy"
-                    android:title="@string/nav_privacy_policy"/>
+    <group
+            android:id="@+id/nav_settings"
+            android:checkableBehavior="single">
 
-            <item
-                    android:id="@+id/nav_about"
-                    android:title="@string/nav_about"/>
+        <item
+                android:id="@+id/nav_about"
+                android:title="@string/nav_about" />
 
-            <item
-                    android:id="@+id/nav_share"
-                    android:title="@string/nav_share"/>
+        <item
+                android:id="@+id/nav_privacy_policy"
+                android:title="@string/nav_privacy_policy" />
 
-        </group>
+        <item
+                android:id="@+id/nav_share"
+                android:title="@string/nav_share" />
+
     </group>
 
 </menu>

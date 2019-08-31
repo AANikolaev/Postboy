@@ -126,16 +126,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                     NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build()
                 )
             }
-            R.id.nav_privacy_policy -> {
-                val uriUrl = Uri.parse(PRIVACY_POLICE_LINK)
-                val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
-                startActivity(launchBrowser)
-            }
             R.id.nav_about -> {
                 navController.navigate(
                     R.id.aboutFragment, null,
                     NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build()
                 )
+            }
+            R.id.nav_privacy_policy -> {
+                val uriUrl = Uri.parse(PRIVACY_POLICE_LINK)
+                val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
+                startActivity(launchBrowser)
             }
             R.id.nav_share -> {
                 shareProject(this)
