@@ -27,6 +27,7 @@
     <string name="sing_up_basics_error_dialog_title_default">Error</string>
     <string name="sing_up_basics_error_dialog_message_default">Sorry, some error occur</string>
     <string name="message_dialog_default_cancel_button_text">OK</string>
+    <string name="requests_will_be">Your requests will be displayed here.</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

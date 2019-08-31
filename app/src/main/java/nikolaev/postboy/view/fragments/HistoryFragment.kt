@@ -2,6 +2,7 @@ package nikolaev.postboy.view.fragments
 
 
 import android.view.View
+import android.view.animation.AlphaAnimation
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_history.*
@@ -16,7 +17,8 @@ import nikolaev.postboy.view.interfaces.OnClickHistoryItem
 import nikolaev.postboy.view.interfaces.OnDeleteClickHistoryItem
 import nikolaev.postboy.viewmodel.MainViewModel
 
-class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), OnDeleteClickHistoryItem,
+class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(),
+    OnDeleteClickHistoryItem,
     OnClickHistoryItem {
 
     override fun getMenuId(): Int = HISTORY_MENU_ITEM
@@ -35,6 +37,25 @@ class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), O
         recyclerViewHistory.adapter = adapter
 
         viewModel.historyRequest.observe(this, Observer { listHistory ->
+
+            if (listHistory.isNotEmpty()) {
+                recyclerViewHistory.visibility = View.VISIBLE
+                noHistory.visibility = View.GONE
+            } else {
+                recyclerViewHistory.visibility = View.GONE
+                noHistory.run {
+                    visibility = View.VISIBLE
+                    AlphaAnimation(
+                        ANIMATION_ALPHA_START,
+                        ANIMATION_ALPHA_END
+                    ).run {
+                        duration =
+                            ANIMATION_ALPHA_DURATION
+                        fillAfter = true
+                        startAnimation(this)
+                    }
+                }
+            }
             val sortedList = listHistory.sortedWith(compareByDescending { it.id })
             adapter.update(ArrayList(sortedList))
         })
@@ -49,3 +70,8 @@ class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(), O
     }
 
 }
+
+
+const val ANIMATION_ALPHA_START = 0.0f
+const val ANIMATION_ALPHA_END = 1.0f
+const val ANIMATION_ALPHA_DURATION = 800L

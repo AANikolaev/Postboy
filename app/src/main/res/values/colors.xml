@@ -8,6 +8,7 @@
     <color name="colorBackground">@android:color/white</color>
     <color name="colorTextSpinner">#3F51B5</color>
     <color name="colorTrash">@android:color/black</color>
+    <color name="colorHistoryImage">@android:color/darker_gray</color>
 
     <color name="colorBackgroundTitle">@color/colorTextSpinner</color>
     <color name="colorClickAddButton">#eeeeee</color>
