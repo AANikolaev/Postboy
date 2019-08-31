@@ -17,7 +17,6 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.crashlytics.android.Crashlytics
 import com.google.android.material.navigation.NavigationView
@@ -118,18 +117,22 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_rest -> {
-                moveToNextFragment(R.id.requestFragment)
+                navController.navigate(
+                    R.id.requestFragment, null,
+                    getNavAnimation()
+                )
+
             }
             R.id.nav_history -> {
                 navController.navigate(
                     R.id.historyFragment, null,
-                    NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build()
+                    getNavAnimation()
                 )
             }
             R.id.nav_about -> {
                 navController.navigate(
                     R.id.aboutFragment, null,
-                    NavOptions.Builder().setPopUpTo(R.id.requestFragment, false).build()
+                    getNavAnimation()
                 )
             }
             R.id.nav_privacy_policy -> {
