@@ -28,7 +28,7 @@
                 android:value="false" />
 
         <activity
-                android:name="anikolaev.postboy.view.activities.MainActivity"
+                android:name=".view.activities.MainActivity"
                 android:windowSoftInputMode="stateVisible|adjustPan"
                 android:screenOrientation="portrait"
                 android:configChanges="orientation|screenSize">

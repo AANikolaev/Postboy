@@ -29,6 +29,7 @@ import anikolaev.postboy.util.*
 import anikolaev.postboy.view.base.BaseActivity
 import anikolaev.postboy.view.interfaces.IRouter
 import anikolaev.postboy.viewmodel.MainViewModel
+import com.google.firebase.analytics.FirebaseAnalytics
 
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter<Int>,
@@ -74,6 +75,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
         super.onCreate(savedInstanceState)
 
         Fabric.with(this, Crashlytics())
+        FirebaseAnalytics.getInstance(this)
 
         setSupportActionBar(toolbar)
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
