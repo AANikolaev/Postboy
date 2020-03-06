@@ -1,7 +1,7 @@
-package nikolaev.postboy.util.diffUtil
+package anikolaev.postboy.util.diffUtil
 
 import androidx.recyclerview.widget.DiffUtil
-import nikolaev.postboy.model.db.entities.RequestEntity
+import anikolaev.postboy.model.db.entities.RequestEntity
 
 /**
  *  Created by Alexander Nikolaev on 4/2/19.

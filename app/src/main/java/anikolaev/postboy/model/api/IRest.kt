@@ -1,7 +1,7 @@
-package nikolaev.postboy.model.api
+package anikolaev.postboy.model.api
 
 
-import nikolaev.postboy.view.models.Pairs
+import anikolaev.postboy.view.models.Pairs
 import okhttp3.Response
 
 interface IRest {

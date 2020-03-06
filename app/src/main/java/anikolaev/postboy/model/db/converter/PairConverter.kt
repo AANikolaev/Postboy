@@ -1,8 +1,8 @@
-package nikolaev.postboy.model.db.converter
+package anikolaev.postboy.model.db.converter
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import nikolaev.postboy.view.models.Pairs
+import anikolaev.postboy.view.models.Pairs
 
 /**
  *  Created by Alexander Nikolaev on 4/1/19.

@@ -1,9 +1,9 @@
-package nikolaev.postboy.model.db.entities
+package anikolaev.postboy.model.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import nikolaev.postboy.view.models.Pairs
+import anikolaev.postboy.view.models.Pairs
 
 /**
  *  Created by Alexander Nikolaev on 3/28/19.

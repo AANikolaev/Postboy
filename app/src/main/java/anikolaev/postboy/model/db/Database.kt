@@ -1,9 +1,9 @@
-package nikolaev.postboy.model.db
+package anikolaev.postboy.model.db
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import nikolaev.postboy.R
-import nikolaev.postboy.model.db.entities.RequestEntity
+import anikolaev.postboy.R
+import anikolaev.postboy.model.db.entities.RequestEntity
 import org.jetbrains.anko.doAsync
 
 /**

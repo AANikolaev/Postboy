@@ -1,11 +1,11 @@
-package nikolaev.postboy.model.api
+package anikolaev.postboy.model.api
 
 import android.content.Context
-import nikolaev.postboy.R
-import nikolaev.postboy.model.getTypeBody
-import nikolaev.postboy.model.utils.phaseHeaders
-import nikolaev.postboy.util.NetworkManager
-import nikolaev.postboy.view.models.Pairs
+import anikolaev.postboy.R
+import anikolaev.postboy.model.getTypeBody
+import anikolaev.postboy.model.utils.phaseHeaders
+import anikolaev.postboy.util.NetworkManager
+import anikolaev.postboy.view.models.Pairs
 import okhttp3.*
 import java.io.IOException
 

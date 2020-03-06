@@ -1,8 +1,8 @@
-package nikolaev.postboy.model.db.dao
+package anikolaev.postboy.model.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import nikolaev.postboy.model.db.entities.RequestEntity
+import anikolaev.postboy.model.db.entities.RequestEntity
 
 /**
  *  Created by Alexander Nikolaev on 3/28/19.

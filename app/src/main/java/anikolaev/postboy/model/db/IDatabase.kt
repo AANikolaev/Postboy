@@ -1,7 +1,7 @@
-package nikolaev.postboy.model.db
+package anikolaev.postboy.model.db
 
 import androidx.lifecycle.LiveData
-import nikolaev.postboy.model.db.entities.RequestEntity
+import anikolaev.postboy.model.db.entities.RequestEntity
 
 /**
  *  Created by Alexander Nikolaev on 3/28/19.

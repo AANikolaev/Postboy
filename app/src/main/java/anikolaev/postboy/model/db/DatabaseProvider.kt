@@ -1,13 +1,13 @@
-package nikolaev.postboy.model.db
+package anikolaev.postboy.model.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import nikolaev.postboy.model.db.converter.PairConverter
-import nikolaev.postboy.model.db.dao.RequestDao
-import nikolaev.postboy.model.db.entities.RequestEntity
+import anikolaev.postboy.model.db.converter.PairConverter
+import anikolaev.postboy.model.db.dao.RequestDao
+import anikolaev.postboy.model.db.entities.RequestEntity
 
 /**
  *  Created by Alexander Nikolaev on 3/28/19.
