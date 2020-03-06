@@ -1,6 +1,8 @@
 package nikolaev.postboy.view.fragments
 
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_about.*
 import nikolaev.postboy.BuildConfig
@@ -31,5 +33,14 @@ class AboutFragment : BaseFragment<MainViewModel, FragmentAboutBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvVersion.text = String.format("Version - %s", BuildConfig.VERSION_NAME)
+
+        tvCompanyName.apply {
+            text = Html.fromHtml("<a href=\"https://kinect.pro/\">KinectPro</a>")
+            movementMethod = LinkMovementMethod.getInstance()
+        }
+        tvAuthor.apply {
+            text = Html.fromHtml("<a href=\"https://www.linkedin.com/in/alexander-nikolaev-12504a144/\">Alexander Nikolaev</a>")
+            movementMethod = LinkMovementMethod.getInstance()
+        }
     }
 }
