@@ -7,7 +7,7 @@
 
         <variable
                 name="viewModel"
-                type="nikolaev.postboy.viewmodel.MainViewModel" />
+                type="anikolaev.postboy.viewmodel.MainViewModel" />
 
 
     </data>

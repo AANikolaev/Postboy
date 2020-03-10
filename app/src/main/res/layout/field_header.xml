@@ -8,11 +8,11 @@
 
         <variable
                 name="model"
-                type="nikolaev.postboy.view.models.Pairs" />
+                type="anikolaev.postboy.view.models.Pairs" />
 
         <variable
                 name="listener"
-                type="nikolaev.postboy.view.interfaces.IClickHeadersPairModel" />
+                type="anikolaev.postboy.view.interfaces.IClickHeadersPairModel" />
 
     </data>
 
