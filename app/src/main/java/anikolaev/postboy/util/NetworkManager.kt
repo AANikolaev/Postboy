@@ -9,7 +9,8 @@ class NetworkManager(context: Context) {
     private val connectivityService = context
         .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
+    // todo
     fun isNetworkAvailable(): Boolean = connectivityService.activeNetworkInfo != null &&
-            (connectivityService.activeNetworkInfo.isAvailable ||
-                    connectivityService.activeNetworkInfo.isConnectedOrConnecting)
+            (connectivityService.activeNetworkInfo!!.isAvailable ||
+                    connectivityService.activeNetworkInfo!!.isConnectedOrConnecting)
 }
