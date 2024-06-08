@@ -7,43 +7,43 @@
 
     <fragment
         android:id="@+id/requestFragment"
-        android:name="anikolaev.postboy.view.fragments.RequestFragment"
+        android:name="anicode.postboy.view.fragments.RequestFragment"
         android:label="RequestFragment"
         tools:layout="@layout/fragment_request" />
 
     <fragment
         android:id="@+id/responseFragment"
-        android:name="anikolaev.postboy.view.fragments.ResponseFragment"
+        android:name="anicode.postboy.view.fragments.ResponseFragment"
         android:label="ResponseFragment"
         tools:layout="@layout/fragment_response" />
 
     <fragment
         android:id="@+id/tabRootFragment"
-        android:name="anikolaev.postboy.view.fragments.TabRootFragment"
+        android:name="anicode.postboy.view.fragments.TabRootFragment"
         android:label="TabRootFragment"
         tools:layout="@layout/fragment_tab_root" />
 
     <fragment
         android:id="@+id/responseInfoFragment"
-        android:name="anikolaev.postboy.view.fragments.ResponseInfoFragment"
+        android:name="anicode.postboy.view.fragments.ResponseInfoFragment"
         android:label="ResponseInfoFragment"
         tools:layout="@layout/fragment_response_info" />
 
     <fragment
         android:id="@+id/responsePreviewFragment"
-        android:name="anikolaev.postboy.view.fragments.ResponsePreviewFragment"
+        android:name="anicode.postboy.view.fragments.ResponsePreviewFragment"
         android:label="ResponsePreviewFragment"
         tools:layout="@layout/fragment_response_preview" />
 
     <fragment
         android:id="@+id/historyFragment"
-        android:name="anikolaev.postboy.view.fragments.HistoryFragment"
+        android:name="anicode.postboy.view.fragments.HistoryFragment"
         android:label="HistoryFragment"
         tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="anikolaev.postboy.view.fragments.AboutFragment"
+        android:name="anicode.postboy.view.fragments.AboutFragment"
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about" />
 </navigation>

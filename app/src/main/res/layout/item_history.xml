@@ -9,7 +9,7 @@
 
         <variable
                 name="model"
-                type="anikolaev.postboy.model.db.entities.RequestEntity" />
+                type="anicode.postboy.model.db.entities.RequestEntity" />
 
     </data>
 

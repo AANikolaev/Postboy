@@ -8,11 +8,11 @@
 
         <variable
                 name="model"
-                type="anikolaev.postboy.view.models.Pairs" />
+                type="anicode.postboy.view.models.Pairs" />
 
         <variable
                 name="listener"
-                type="anikolaev.postboy.view.interfaces.IClickParametersPairModel" />
+                type="anicode.postboy.view.interfaces.IClickParametersPairModel" />
 
     </data>
 

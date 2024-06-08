@@ -9,7 +9,7 @@ android {
 
     compileSdkVersion 33
     defaultConfig {
-        applicationId "anikolaev.postboy"
+        applicationId "anicode.postboy"
         minSdkVersion 22
         targetSdkVersion 33
         versionCode 1
