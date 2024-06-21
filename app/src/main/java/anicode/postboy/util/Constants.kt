@@ -15,8 +15,4 @@ const val REST_MENU_ITEM = 0
 const val HISTORY_MENU_ITEM = 1
 const val ABOUT_ITEM = 2
 
-const val SHARE_TYPE = "text/plain"
-
-const val GOOGLE_PLAY_LINK = "https://play.google.com/store/apps/details?id=anicode.postboy"
-
 const val PRIVACY_POLICE_LINK = "https://sites.google.com/view/postboy-privacy-policy"

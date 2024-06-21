@@ -19,16 +19,12 @@
             android:checkableBehavior="single">
 
         <item
-                android:id="@+id/nav_about"
-                android:title="@string/nav_about" />
-
-        <item
                 android:id="@+id/nav_privacy_policy"
                 android:title="@string/nav_privacy_policy" />
 
         <item
-                android:id="@+id/nav_share"
-                android:title="@string/nav_share" />
+                android:id="@+id/nav_about"
+                android:title="@string/nav_about" />
 
     </group>
 

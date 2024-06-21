@@ -1,5 +1,6 @@
 package anicode.postboy.view.activities
 
+import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Configuration
@@ -9,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -135,14 +137,19 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                 )
             }
             R.id.nav_privacy_policy -> {
-                val uriUrl = Uri.parse(PRIVACY_POLICE_LINK)
-                val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
-                startActivity(launchBrowser)
+                try {
+                    val uriUrl = Uri.parse(PRIVACY_POLICE_LINK)
+                    val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
+                    startActivity(launchBrowser)
+                } catch (e: ActivityNotFoundException) {
+                    Toast.makeText(
+                        this,
+                        R.string.browser_not_found,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
                 // fixme  android.content.ActivityNotFoundException: No Activity found to handle Intent
-            }
-            R.id.nav_share -> {
-                shareProject(this)
             }
         }
 
