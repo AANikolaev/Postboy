@@ -52,28 +52,5 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView"
                 tools:text="Version - 666" />
 
-        <TextView
-                android:id="@+id/tvAuthor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/about_fragment_version_text_margin"
-                android:textColor="@color/colorText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvVersion"
-                tools:text="Alexander Nikolaev" />
-
-        <TextView
-                android:id="@+id/tvCompanyName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/about_fragment_version_text_margin_top"
-                android:textColor="@color/colorText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAuthor"
-                tools:text="KinectPro" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

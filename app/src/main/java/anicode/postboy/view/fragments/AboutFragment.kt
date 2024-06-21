@@ -33,14 +33,5 @@ class AboutFragment : BaseFragment<MainViewModel, FragmentAboutBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvVersion.text = String.format("Version - %s", BuildConfig.VERSION_NAME)
-
-        tvCompanyName.apply {
-            text = Html.fromHtml("<a href=\"https://kinect.pro/\">KinectPro</a>")
-            movementMethod = LinkMovementMethod.getInstance()
-        }
-        tvAuthor.apply {
-            text = Html.fromHtml("<a href=\"https://www.linkedin.com/in/alexander-nikolaev-12504a144/\">Alexander Nikolaev</a>")
-            movementMethod = LinkMovementMethod.getInstance()
-        }
     }
 }
