@@ -15,4 +15,4 @@ const val REST_MENU_ITEM = 0
 const val HISTORY_MENU_ITEM = 1
 const val ABOUT_ITEM = 2
 
-const val PRIVACY_POLICE_LINK = "https://sites.google.com/view/postboy-privacy-policy"
+const val PRIVACY_POLICE_LINK = "https://sites.google.com/view/postboy-tester-privacy-policy/"
