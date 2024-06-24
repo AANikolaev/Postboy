@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="anicode.postboy">
+          xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -14,18 +14,6 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
-
-        <meta-data
-                android:name="google_analytics_adid_collection_enabled"
-                android:value="false" />
-
-        <meta-data
-                android:name="firebase_analytics_collection_deactivated"
-                android:value="true" />
-
-        <meta-data
-                android:name="google_analytics_ssaid_collection_enabled"
-                android:value="false" />
 
         <activity
                 android:name="anicode.postboy.view.activities.MainActivity"
@@ -41,8 +29,8 @@
         </activity>
 
         <meta-data
-                android:name="io.fabric.ApiKey"
-                android:value="2763896e0c3f8c0af8f397bc642c6ed4279ff464" />
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="ca-app-pub-1376629971940910~1387287918" />
     </application>
 
 </manifest>
