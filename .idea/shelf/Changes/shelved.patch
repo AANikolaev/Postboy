@@ -1,0 +1,95 @@
+Index: app/src/main/java/anicode/postboy/view/activities/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package anicode.postboy.view.activities\n\nimport android.content.ActivityNotFoundException\nimport android.content.DialogInterface\nimport android.content.Intent\nimport android.content.res.Configuration\nimport android.content.res.Configuration.UI_MODE_NIGHT_MASK\nimport android.net.Uri\nimport android.os.Build\nimport android.os.Bundle\nimport android.view.MenuItem\nimport android.view.View\nimport android.widget.Toast\nimport androidx.annotation.RequiresApi\nimport androidx.appcompat.app.ActionBarDrawerToggle\nimport androidx.appcompat.app.AlertDialog\nimport androidx.core.content.ContextCompat\nimport androidx.core.view.GravityCompat\nimport androidx.lifecycle.Observer\nimport androidx.lifecycle.ViewModelProviders\nimport androidx.navigation.NavController\nimport androidx.navigation.Navigation\nimport com.google.android.material.navigation.NavigationView\nimport kotlinx.android.synthetic.main.activity_main.*\nimport kotlinx.android.synthetic.main.app_bar_main.*\nimport anicode.postboy.R\nimport anicode.postboy.databinding.ActivityMainBinding\nimport anicode.postboy.util.*\nimport anicode.postboy.view.base.BaseActivity\nimport anicode.postboy.view.interfaces.IRouter\nimport anicode.postboy.viewmodel.MainViewModel\nimport com.google.firebase.analytics.FirebaseAnalytics\n\n\nclass MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter<Int>,\n    NavigationView.OnNavigationItemSelectedListener {\n\n    private lateinit var navController: NavController\n    private var preloader: AlertDialog? = null\n\n    override fun obtainViewModel(): MainViewModel =\n        ViewModelProviders.of(this).get(MainViewModel::class.java)\n\n    override fun getContentViewLayoutId(): Int = R.layout.activity_main\n\n    override fun onViewModelReady() {\n        viewModel.progressDialogEvent.observe(this, Observer<ProgressDialogModel> {\n            preloader = if (it?.isProgressDialogNeeded == true && preloader == null) {\n                showPreLoader(this, it.text, true)\n            } else {\n                preloader?.dismiss()\n                null\n            }\n        })\n\n        viewModel.errorDialogEvent.observe(this, Observer<Event<ErrorDialogModel>> {\n            it?.getContentIfNotHandled()?.let { errorDialogModel ->\n                showMessageDialogWithSingleAction(this,\n                    errorDialogModel.errorMessage\n                        ?: getString(R.string.sing_up_basics_error_dialog_message_default),\n                    getString(R.string.message_dialog_default_cancel_button_text),\n                    DialogInterface.OnClickListener { dialog, _ ->\n                        dialog.cancel()\n                    })\n            }\n        })\n\n        viewModel.nextFragment.observe(this, Observer {\n            moveToNextFragment(it)\n        })\n    }\n\n    @RequiresApi(Build.VERSION_CODES.M)\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n\n        FirebaseAnalytics.getInstance(this)\n\n        setSupportActionBar(toolbar)\n        navController = Navigation.findNavController(this, R.id.nav_host_fragment)\n\n        val toggle = ActionBarDrawerToggle(\n            this,\n            drawer_layout,\n            toolbar,\n            R.string.navigation_drawer_open,\n            R.string.navigation_drawer_close\n        )\n        drawer_layout.addDrawerListener(toggle)\n        toggle.syncState()\n\n        nav_view.setNavigationItemSelectedListener(this)\n\n        if (getCurrentNightMode() == Configuration.UI_MODE_NIGHT_YES) {\n            window.decorView.systemUiVisibility = 0\n        } else {\n            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR\n        }\n        window.statusBarColor = ContextCompat.getColor(this, R.color.colorBackground)\n    }\n\n    private fun getCurrentNightMode(): Int {\n        return resources.configuration.uiMode and UI_MODE_NIGHT_MASK\n    }\n\n    override fun onBackPressed() {\n        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {\n            drawer_layout.closeDrawer(GravityCompat.START)\n        } else {\n            super.onBackPressed()\n        }\n    }\n\n    override fun moveToNextFragment(i: Int) {\n        navController.navigate(i)\n    }\n\n    override fun onNavigationItemSelected(item: MenuItem): Boolean {\n        when (item.itemId) {\n            R.id.nav_rest -> {\n                navController.navigate(\n                    R.id.requestFragment, null,\n                    getNavAnimation()\n                )\n\n            }\n            R.id.nav_history -> {\n                navController.navigate(\n                    R.id.historyFragment, null,\n                    getNavAnimation()\n                )\n            }\n            R.id.nav_about -> {\n                navController.navigate(\n                    R.id.aboutFragment, null,\n                    getNavAnimation()\n                )\n            }\n            R.id.nav_privacy_policy -> {\n                try {\n                    val uriUrl = Uri.parse(PRIVACY_POLICE_LINK)\n                    val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)\n                    startActivity(launchBrowser)\n                } catch (e: ActivityNotFoundException) {\n                    Toast.makeText(\n                        this,\n                        R.string.browser_not_found,\n                        Toast.LENGTH_SHORT\n                    ).show()\n                }\n\n                // fixme  android.content.ActivityNotFoundException: No Activity found to handle Intent\n            }\n        }\n\n        drawer_layout.closeDrawer(GravityCompat.START)\n        return true\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/anicode/postboy/view/activities/MainActivity.kt b/app/src/main/java/anicode/postboy/view/activities/MainActivity.kt
+--- a/app/src/main/java/anicode/postboy/view/activities/MainActivity.kt	(revision b933e94c280050e47ff73631725b85486c6c6e42)
++++ b/app/src/main/java/anicode/postboy/view/activities/MainActivity.kt	(date 1720267931865)
+@@ -20,16 +20,23 @@
+ import androidx.lifecycle.ViewModelProviders
+ import androidx.navigation.NavController
+ import androidx.navigation.Navigation
+-import com.google.android.material.navigation.NavigationView
+-import kotlinx.android.synthetic.main.activity_main.*
+-import kotlinx.android.synthetic.main.app_bar_main.*
+ import anicode.postboy.R
+ import anicode.postboy.databinding.ActivityMainBinding
+-import anicode.postboy.util.*
++import anicode.postboy.util.ErrorDialogModel
++import anicode.postboy.util.Event
++import anicode.postboy.util.PRIVACY_POLICE_LINK
++import anicode.postboy.util.ProgressDialogModel
++import anicode.postboy.util.getNavAnimation
++import anicode.postboy.util.showMessageDialogWithSingleAction
++import anicode.postboy.util.showPreLoader
+ import anicode.postboy.view.base.BaseActivity
+ import anicode.postboy.view.interfaces.IRouter
+ import anicode.postboy.viewmodel.MainViewModel
++import com.google.android.material.navigation.NavigationView
+ import com.google.firebase.analytics.FirebaseAnalytics
++import kotlinx.android.synthetic.main.activity_main.drawer_layout
++import kotlinx.android.synthetic.main.activity_main.nav_view
++import kotlinx.android.synthetic.main.app_bar_main.toolbar
+ 
+ 
+ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter<Int>,
+@@ -122,20 +129,19 @@
+                     R.id.requestFragment, null,
+                     getNavAnimation()
+                 )
+-
++                closeDrawer()
++                return true
+             }
++
+             R.id.nav_history -> {
+                 navController.navigate(
+                     R.id.historyFragment, null,
+                     getNavAnimation()
+                 )
+-            }
+-            R.id.nav_about -> {
+-                navController.navigate(
+-                    R.id.aboutFragment, null,
+-                    getNavAnimation()
+-                )
++                closeDrawer()
++                return true
+             }
++
+             R.id.nav_privacy_policy -> {
+                 try {
+                     val uriUrl = Uri.parse(PRIVACY_POLICE_LINK)
+@@ -148,12 +154,25 @@
+                         Toast.LENGTH_SHORT
+                     ).show()
+                 }
++                closeDrawer()
++                return true
++            }
++
++
++            R.id.nav_about -> {
++                navController.navigate(
++                    R.id.aboutFragment, null,
++                    getNavAnimation()
++                )
++                closeDrawer()
++                return true
++            }
+ 
+-                // fixme  android.content.ActivityNotFoundException: No Activity found to handle Intent
+-            }
+-        }
++            else -> return false
++        }
++    }
+ 
++    private fun closeDrawer() {
+         drawer_layout.closeDrawer(GravityCompat.START)
+-        return true
+     }
+ }

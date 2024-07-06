@@ -20,16 +20,23 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 import anicode.postboy.R
 import anicode.postboy.databinding.ActivityMainBinding
-import anicode.postboy.util.*
+import anicode.postboy.util.ErrorDialogModel
+import anicode.postboy.util.Event
+import anicode.postboy.util.PRIVACY_POLICE_LINK
+import anicode.postboy.util.ProgressDialogModel
+import anicode.postboy.util.getNavAnimation
+import anicode.postboy.util.showMessageDialogWithSingleAction
+import anicode.postboy.util.showPreLoader
 import anicode.postboy.view.base.BaseActivity
 import anicode.postboy.view.interfaces.IRouter
 import anicode.postboy.viewmodel.MainViewModel
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
+import kotlinx.android.synthetic.main.activity_main.drawer_layout
+import kotlinx.android.synthetic.main.activity_main.nav_view
+import kotlinx.android.synthetic.main.app_bar_main.toolbar
 
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter<Int>,
@@ -122,20 +129,19 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                     R.id.requestFragment, null,
                     getNavAnimation()
                 )
-
+                closeDrawer()
+                return true
             }
+
             R.id.nav_history -> {
                 navController.navigate(
                     R.id.historyFragment, null,
                     getNavAnimation()
                 )
+                closeDrawer()
+                return true
             }
-            R.id.nav_about -> {
-                navController.navigate(
-                    R.id.aboutFragment, null,
-                    getNavAnimation()
-                )
-            }
+
             R.id.nav_privacy_policy -> {
                 try {
                     val uriUrl = Uri.parse(PRIVACY_POLICE_LINK)
@@ -148,12 +154,25 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
-                // fixme  android.content.ActivityNotFoundException: No Activity found to handle Intent
+                closeDrawer()
+                return true
             }
-        }
 
+
+            R.id.nav_about -> {
+                navController.navigate(
+                    R.id.aboutFragment, null,
+                    getNavAnimation()
+                )
+                closeDrawer()
+                return true
+            }
+
+            else -> return false
+        }
+    }
+
+    private fun closeDrawer() {
         drawer_layout.closeDrawer(GravityCompat.START)
-        return true
     }
 }
