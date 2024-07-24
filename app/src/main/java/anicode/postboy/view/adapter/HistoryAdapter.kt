@@ -2,13 +2,10 @@ package anicode.postboy.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_history.view.*
 import anicode.postboy.BR
-import anicode.postboy.R
+import anicode.postboy.databinding.ItemHistoryBinding
 import anicode.postboy.model.db.entities.RequestEntity
 import anicode.postboy.util.diffUtil.DiffUtilRequestEntity
 import anicode.postboy.util.setMethodColor
@@ -29,10 +26,8 @@ class HistoryAdapter(
     var innerListRequestEntity = ArrayList<RequestEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(
-            LayoutInflater.from(parent.context),
-            R.layout.item_history, parent, false
-        )
+        val binding = ItemHistoryBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
         return HistoryViewHolder(binding)
     }
 
@@ -54,14 +49,14 @@ class HistoryAdapter(
 
 }
 
-class HistoryViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+class HistoryViewHolder(val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(
         requestEntity: RequestEntity,
         deleteHistoryItemClick: OnDeleteClickHistoryItem,
         onClickHistoryItem: OnClickHistoryItem
     ) {
-        binding.root.tv_method.setTextColor(setMethodColor(requestEntity.method))
-        binding.root.btn_history_delete.setOnClickListener {
+        binding.tvMethod.setTextColor(setMethodColor(requestEntity.method))
+        binding.btnHistoryDelete.setOnClickListener {
             deleteHistoryItemClick.onDeleteItemHistoryClick(itemView, layoutPosition, requestEntity)
         }
         binding.root.setOnClickListener {

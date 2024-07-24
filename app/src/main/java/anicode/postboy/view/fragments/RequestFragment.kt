@@ -10,8 +10,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_request.*
 import anicode.postboy.R
 import anicode.postboy.databinding.FragmentRequestBinding
 import anicode.postboy.model.db.entities.RequestEntity
@@ -27,7 +25,8 @@ import anicode.postboy.viewmodel.MainViewModel
 import okhttp3.HttpUrl
 
 
-class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), IClickHeadersPairModel,
+class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(),
+    IClickHeadersPairModel,
     IClickParametersPairModel {
 
     val TAG = this::class.java.simpleName
@@ -58,21 +57,21 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        imageButtonAddHeader.setOnClickListener {
+        binding.imageButtonAddHeader.setOnClickListener {
             viewModel.addHeaderItem(Pairs("", ""))
         }
 
-        imageButtonAddParameters.setOnClickListener {
+        binding.imageButtonAddParameters.setOnClickListener {
             viewModel.addParameterItem(Pairs("", ""))
         }
 
-        editTextUrl.addTextChangedListener(object : TextWatcher {
+        binding.editTextUrl.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 if (s.toString().startsWith("http://")) {
-                    spinnerHttp.setSelection(1)
+                    binding.spinnerHttp.setSelection(1)
                     s.delete(0, 7)
                 } else if (s.toString().startsWith("https://")) {
-                    spinnerHttp.setSelection(0)
+                    binding.spinnerHttp.setSelection(0)
                     s.delete(0, 8)
                 }
             }
@@ -80,45 +79,59 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                buttonSend.isEnabled = s.isNotEmpty() && HttpUrl.parse("http://$s") != null
+                binding.buttonSend.isEnabled = s.isNotEmpty() && HttpUrl.parse("http://$s") != null
             }
         })
 
-        spinnerMethod.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spinnerMethod.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 Log.d(TAG, "onNothingSelected")
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                viewModel.spinnerMethod.set(spinnerMethod.selectedItem.toString())
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.spinnerMethod.set(binding.spinnerMethod.selectedItem.toString())
             }
         }
 
-        spinnerHttp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spinnerHttp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 Log.d(TAG, "onNothingSelected")
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                viewModel.spinnerHttp.set(spinnerHttp.selectedItem.toString())
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.spinnerHttp.set(binding.spinnerHttp.selectedItem.toString())
             }
         }
 
-        spinnerBodyType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                Log.d(TAG, "onNothingSelected")
+        binding.spinnerBodyType.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    Log.d(TAG, "onNothingSelected")
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.spinnerBodyType.set(binding.spinnerBodyType.selectedItem.toString())
+                }
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                viewModel.spinnerBodyType.set(spinnerBodyType.selectedItem.toString())
-            }
-        }
-
-        buttonSend.setOnClickListener {
+        binding.buttonSend.setOnClickListener {
             viewModel.onClickSendRequest()
         }
-
-        (activity as MainActivity).nav_view.menu.getItem(0).isChecked = true
     }
 
     override fun onPause() {
@@ -136,15 +149,15 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
 
     private fun initialRecyclerViewAdapters() {
         val adapterHeader = HeaderRecyclerViewAdapter(this)
-        includeFieldHeaders.layoutManager = LinearLayoutManager(activity)
-        includeFieldHeaders.adapter = adapterHeader
+        binding.includeFieldHeaders.layoutManager = LinearLayoutManager(activity)
+        binding.includeFieldHeaders.adapter = adapterHeader
         viewModel.headersListAdapter.observe(this, Observer {
             adapterHeader.update(it)
         })
 
         val adapterParameter = ParameterRecyclerViewAdapter(this)
-        includeFieldParameters.layoutManager = LinearLayoutManager(activity)
-        includeFieldParameters.adapter = adapterParameter
+        binding.includeFieldParameters.layoutManager = LinearLayoutManager(activity)
+        binding.includeFieldParameters.adapter = adapterParameter
         viewModel.parametersListAdapter.observe(this, Observer {
             adapterParameter.update(it)
         })
@@ -160,9 +173,15 @@ class RequestFragment : BaseFragment<MainViewModel, FragmentRequestBinding>(), I
 
     private fun setModelRequest(entity: RequestEntity) {
 
-        spinnerMethod.setSelection(resources.getStringArray(R.array.methods_array).indexOf(entity.method))
-        spinnerHttp.setSelection(resources.getStringArray(R.array.http_array).indexOf(entity.http))
-        spinnerBodyType.setSelection(resources.getStringArray(R.array.body_type_array).indexOf(entity.bodyType))
+        binding.spinnerMethod.setSelection(
+            resources.getStringArray(R.array.methods_array).indexOf(entity.method)
+        )
+        binding.spinnerHttp.setSelection(
+            resources.getStringArray(R.array.http_array).indexOf(entity.http)
+        )
+        binding.spinnerBodyType.setSelection(
+            resources.getStringArray(R.array.body_type_array).indexOf(entity.bodyType)
+        )
 
     }
 }

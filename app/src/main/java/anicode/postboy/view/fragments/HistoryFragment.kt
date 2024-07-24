@@ -5,7 +5,6 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_history.*
 import anicode.postboy.R
 import anicode.postboy.databinding.FragmentHistoryBinding
 import anicode.postboy.model.db.entities.RequestEntity
@@ -33,17 +32,17 @@ class HistoryFragment : BaseFragment<MainViewModel, FragmentHistoryBinding>(),
 
     override fun onViewModelReady() {
         val adapter = HistoryAdapter(this, this)
-        recyclerViewHistory.layoutManager = LinearLayoutManager(activity)
-        recyclerViewHistory.adapter = adapter
+        binding.recyclerViewHistory.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerViewHistory.adapter = adapter
 
         viewModel.historyRequest.observe(this, Observer { listHistory ->
 
             if (listHistory.isNotEmpty()) {
-                recyclerViewHistory.visibility = View.VISIBLE
-                noHistory.visibility = View.GONE
+                binding.recyclerViewHistory.visibility = View.VISIBLE
+                binding.noHistory.visibility = View.GONE
             } else {
-                recyclerViewHistory.visibility = View.GONE
-                noHistory.run {
+                binding.recyclerViewHistory.visibility = View.GONE
+                binding.noHistory.run {
                     visibility = View.VISIBLE
                     AlphaAnimation(
                         ANIMATION_ALPHA_START,

@@ -12,7 +12,7 @@ import anicode.postboy.util.showPreLoader
 abstract class BaseActivity<V : BaseViewModel, B : ViewDataBinding> : AppCompatActivity() {
 
     lateinit var viewModel: V
-    private lateinit var binding: B
+    protected lateinit var binding: B
 
     private var preLoader: AlertDialog? = null
 
@@ -36,7 +36,8 @@ abstract class BaseActivity<V : BaseViewModel, B : ViewDataBinding> : AppCompatA
     }
 
     private fun initBinding() {
-        binding = DataBindingUtil.inflate(layoutInflater, getContentViewLayoutId(), null, false) as B
+        binding =
+            DataBindingUtil.inflate(layoutInflater, getContentViewLayoutId(), null, false) as B
         binding.setVariable(BR.viewModel, this.viewModel)
     }
 

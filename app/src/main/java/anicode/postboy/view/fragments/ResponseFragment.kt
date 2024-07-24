@@ -2,7 +2,6 @@ package anicode.postboy.view.fragments
 
 
 import android.widget.ArrayAdapter
-import kotlinx.android.synthetic.main.fragment_response.*
 import anicode.postboy.R
 import anicode.postboy.databinding.FragmentResponseBinding
 import anicode.postboy.util.REST_MENU_ITEM
@@ -23,9 +22,9 @@ class ResponseFragment : BaseFragment<MainViewModel, FragmentResponseBinding>() 
     override fun getContentViewLayoutId(): Int = R.layout.fragment_response
 
     override fun onViewModelReady() {
-        listView.adapter = ArrayAdapter(
-                context!!, R.layout.list_response_textview,
-                viewModel.responseCharSequenceRequest
+        binding.listView.adapter = ArrayAdapter(
+            requireContext(), R.layout.list_response_textview,
+            viewModel.responseCharSequenceRequest
         )
     }
 

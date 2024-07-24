@@ -1,7 +1,6 @@
 package anicode.postboy.view.fragments
 
 import android.webkit.WebViewClient
-import kotlinx.android.synthetic.main.fragment_response_preview.*
 import anicode.postboy.R
 import anicode.postboy.databinding.FragmentResponsePreviewBinding
 import anicode.postboy.util.REST_MENU_ITEM
@@ -23,30 +22,32 @@ class ResponsePreviewFragment : BaseFragment<MainViewModel, FragmentResponsePrev
     override fun getContentViewLayoutId(): Int = R.layout.fragment_response_preview
 
     override fun onViewModelReady() {
-        val webSettings = mWebView.settings
+        val webSettings = binding.mWebView.settings
         webSettings.loadWithOverviewMode = true
         webSettings.useWideViewPort = true
         webSettings.builtInZoomControls = true
         webSettings.displayZoomControls = false
-        mWebView.webViewClient = WebViewClient()
+        binding.mWebView.webViewClient = WebViewClient()
 
-        mWebView.loadDataWithBaseURL(null, viewModel.bodyPreview,
-                "text/html", "UTF-8", null)
+        binding.mWebView.loadDataWithBaseURL(
+            null, viewModel.bodyPreview,
+            "text/html", "UTF-8", null
+        )
     }
 
     override fun onResume() {
-        mWebView.onResume()
+        binding.mWebView.onResume()
         super.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mWebView.onPause()
+        binding.mWebView.onPause()
     }
 
     override fun onDestroy() {
-        if (mWebView != null) {
-            mWebView.destroy()
+        if (binding.mWebView != null) {
+            binding.mWebView.destroy()
         }
         viewModel.bodyPreview = ""
         super.onDestroy()

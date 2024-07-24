@@ -8,14 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import anicode.postboy.BR
 import anicode.postboy.view.activities.MainActivity
 
 abstract class BaseFragment<V : ViewModel, B : ViewDataBinding> : Fragment() {
 
     lateinit var viewModel: V
-    private lateinit var binding: B
+    protected lateinit var binding: B
 
     abstract fun obtainViewModel(): V
 
@@ -29,7 +28,11 @@ abstract class BaseFragment<V : ViewModel, B : ViewDataBinding> : Fragment() {
 
     protected abstract fun onViewModelReady()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         binding = DataBindingUtil.inflate(inflater, getContentViewLayoutId(), container, false) as B
         return binding.root
@@ -40,7 +43,6 @@ abstract class BaseFragment<V : ViewModel, B : ViewDataBinding> : Fragment() {
 
         initViewModel()
         binding.setVariable(BR.viewModel, this.viewModel)
-        (activity as MainActivity).nav_view.menu.getItem(getMenuId()).isChecked = true
         if (isVisibleToolbar()) {
             (activity as MainActivity).supportActionBar?.show()
             (activity as MainActivity).supportActionBar?.title = getToolbarTitle()

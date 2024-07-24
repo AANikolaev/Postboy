@@ -1,10 +1,7 @@
 package anicode.postboy.view.fragments
 
 import android.os.Bundle
-import android.text.Html
-import android.text.method.LinkMovementMethod
 import android.view.View
-import kotlinx.android.synthetic.main.fragment_about.*
 import anicode.postboy.BuildConfig
 import anicode.postboy.R
 import anicode.postboy.databinding.FragmentAboutBinding
@@ -32,6 +29,6 @@ class AboutFragment : BaseFragment<MainViewModel, FragmentAboutBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvVersion.text = String.format("Version - %s", BuildConfig.VERSION_NAME)
+        binding.tvVersion.text = String.format("Version - %s", BuildConfig.VERSION_NAME)
     }
 }

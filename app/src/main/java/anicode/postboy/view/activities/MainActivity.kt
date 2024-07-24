@@ -34,9 +34,6 @@ import anicode.postboy.view.interfaces.IRouter
 import anicode.postboy.viewmodel.MainViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
-import kotlinx.android.synthetic.main.activity_main.drawer_layout
-import kotlinx.android.synthetic.main.activity_main.nav_view
-import kotlinx.android.synthetic.main.app_bar_main.toolbar
 
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter<Int>,
@@ -83,20 +80,20 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
 
         FirebaseAnalytics.getInstance(this)
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.appBarMain.toolbar)
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
         val toggle = ActionBarDrawerToggle(
             this,
-            drawer_layout,
-            toolbar,
+            binding.drawerLayout,
+            binding.appBarMain.toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-        drawer_layout.addDrawerListener(toggle)
+        binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        binding.navView.setNavigationItemSelectedListener(this)
 
         if (getCurrentNightMode() == Configuration.UI_MODE_NIGHT_YES) {
             window.decorView.systemUiVisibility = 0
@@ -111,8 +108,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -173,6 +170,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), IRouter
     }
 
     private fun closeDrawer() {
-        drawer_layout.closeDrawer(GravityCompat.START)
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
     }
 }
