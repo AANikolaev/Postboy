@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ポストボーイ</string>
+
+    <string name="request_fragment" translatable="false">リクエストフラグメント</string>
+    <string name="response_fragment" translatable="false">レスポンスフラグメント</string>
+
+    <string name="send" translatable="false">送信</string>
+    <string name="request_method" translatable="false">リクエストメソッド</string>
+    <string name="enter_request_url" translatable="false">リクエストURLを入力</string>
+    <string name="main_view_headers" translatable="false">ヘッダー</string>
+    <string name="main_view_add" translatable="false">追加</string>
+    <string name="main_view_parameters" translatable="false">パラメーター</string>
+    <string name="main_view_key" translatable="false">キー</string>
+    <string name="main_view_value" translatable="false">値</string>
+    <string name="main_view_remove" translatable="false">削除</string>
+    <string name="menu_history">履歴</string>
+    <string name="menu_settings">設定</string>
+    <string name="title_body" translatable="false">ボディ</string>
+    <string name="enter_body" translatable="false">ボディを入力</string>
+    <string name="response_code" translatable="false">コード</string>
+    <string name="response_time" translatable="false">時間</string>
+
+    <string name="basic_error_text">何か問題が発生しました</string>
+    <string name="pre_loader_description_text_default">読み込み中…</string>
+    <string name="no_network_error_text">インターネット接続がありません</string>
+    <string name="sing_up_basics_error_dialog_title_default">エラー</string>
+    <string name="sing_up_basics_error_dialog_message_default">申し訳ありません、エラーが発生しました</string>
+    <string name="message_dialog_default_cancel_button_text" translatable="false">OK</string>
+    <string name="requests_will_be">ここにリクエストが表示されます。</string>
+
+    <string name="navigation_drawer_open" translatable="false">ナビゲーションドロワーを開く</string>
+    <string name="navigation_drawer_close" translatable="false">ナビゲーションドロワーを閉じる</string>
+    <string name="nav_header_desc" translatable="false">ナビゲーションヘッダー</string>
+    <string name="nav_rest" translatable="false">REST</string>
+    <string name="nav_history">履歴</string>
+    <string name="nav_about">アバウト</string>
+    <string name="nav_privacy_policy">プライバシーポリシー</string>
+    <string name="browser_not_found">デバイスにデフォルトのブラウザが見つかりません。</string>
+
+    <string-array name="methods_array" translatable="false">
+        <item>GET</item>
+        <item>POST</item>
+        <!--<item>HEAD</item>-->
+        <item>PUT</item>
+        <item>DELETE</item>
+        <!--<item>PATCH</item>-->
+    </string-array>
+
+    <string-array name="http_array" translatable="false">
+        <item>https://</item>
+        <item>http://</item>
+    </string-array>
+
+    <string-array name="body_type_array" translatable="false">
+        <item>テキスト</item>
+        <item>JSON</item>
+    </string-array>
+</resources>

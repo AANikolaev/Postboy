@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Postboy</string>
+
+    <string name="request_fragment" translatable="false">Τμήμα αιτήματος</string>
+    <string name="response_fragment" translatable="false">Τμήμα απάντησης</string>
+
+    <string name="send" translatable="false">Αποστολή</string>
+    <string name="request_method" translatable="false">Μέθοδος αιτήματος</string>
+    <string name="enter_request_url" translatable="false">Εισάγετε το URL αιτήματος</string>
+    <string name="main_view_headers" translatable="false">Κεφαλίδες</string>
+    <string name="main_view_add" translatable="false">Προσθήκη</string>
+    <string name="main_view_parameters" translatable="false">Παράμετροι</string>
+    <string name="main_view_key" translatable="false">Κλειδί</string>
+    <string name="main_view_value" translatable="false">Αξία</string>
+    <string name="main_view_remove" translatable="false">Αφαίρεση</string>
+    <string name="menu_history">Ιστορικό</string>
+    <string name="menu_settings">Ρυθμίσεις</string>
+    <string name="title_body" translatable="false">Σώμα</string>
+    <string name="enter_body" translatable="false">Εισάγετε το σώμα</string>
+    <string name="response_code" translatable="false">Κωδικός</string>
+    <string name="response_time" translatable="false">Χρόνος</string>
+
+    <string name="basic_error_text">Κάτι πήγε στραβά</string>
+    <string name="pre_loader_description_text_default">Φόρτωση…</string>
+    <string name="no_network_error_text">Χωρίς σύνδεση στο Διαδίκτυο</string>
+    <string name="sing_up_basics_error_dialog_title_default">Σφάλμα</string>
+    <string name="sing_up_basics_error_dialog_message_default">Λυπάμαι, προέκυψε σφάλμα</string>
+    <string name="message_dialog_default_cancel_button_text" translatable="false">ΕΝΤΑΞΕΙ</string>
+    <string name="requests_will_be">Τα αιτήματά σας θα εμφανίζονται εδώ.</string>
+
+    <string name="navigation_drawer_open" translatable="false">Άνοιγμα του πίνακα πλοήγησης</string>
+    <string name="navigation_drawer_close" translatable="false">Κλείσιμο του πίνακα πλοήγησης</string>
+    <string name="nav_header_desc" translatable="false">Επικεφαλίδα πλοήγησης</string>
+    <string name="nav_rest" translatable="false">REST</string>
+    <string name="nav_history">Ιστορικό</string>
+    <string name="nav_about">Σχετικά με</string>
+    <string name="nav_privacy_policy">Πολιτική απορρήτου</string>
+    <string name="browser_not_found">Δεν βρέθηκε προεπιλεγμένος περιηγητής στη συσκευή σας.</string>
+
+    <string-array name="methods_array" translatable="false">
+        <item>GET</item>
+        <item>POST</item>
+        <!--<item>HEAD</item>-->
+        <item>PUT</item>
+        <item>DELETE</item>
+        <!--<item>PATCH</item>-->
+    </string-array>
+
+    <string-array name="http_array" translatable="false">
+        <item>https://</item>
+        <item>http://</item>
+    </string-array>
+
+    <string-array name="body_type_array" translatable="false">
+        <item>κείμενο</item>
+        <item>json</item>
+    </string-array>
+</resources>

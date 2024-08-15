@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Postboy</string>
+
+    <string name="request_fragment" translatable="false">Fragment de requête</string>
+    <string name="response_fragment" translatable="false">Fragment de réponse</string>
+
+    <string name="send" translatable="false">Envoyer</string>
+    <string name="request_method" translatable="false">Méthode de requête</string>
+    <string name="enter_request_url" translatable="false">Entrez l\'URL de la requête</string>
+    <string name="main_view_headers" translatable="false">En-têtes</string>
+    <string name="main_view_add" translatable="false">Ajouter</string>
+    <string name="main_view_parameters" translatable="false">Paramètres</string>
+    <string name="main_view_key" translatable="false">Clé</string>
+    <string name="main_view_value" translatable="false">Valeur</string>
+    <string name="main_view_remove" translatable="false">Supprimer</string>
+    <string name="menu_history">Historique</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="title_body" translatable="false">Corps</string>
+    <string name="enter_body" translatable="false">Entrez le corps</string>
+    <string name="response_code" translatable="false">Code</string>
+    <string name="response_time" translatable="false">Temps</string>
+
+    <string name="basic_error_text">Une erreur est survenue</string>
+    <string name="pre_loader_description_text_default">Chargement…</string>
+    <string name="no_network_error_text">Pas de connexion Internet</string>
+    <string name="sing_up_basics_error_dialog_title_default">Erreur</string>
+    <string name="sing_up_basics_error_dialog_message_default">Désolé, une erreur est survenue</string>
+    <string name="message_dialog_default_cancel_button_text" translatable="false">OK</string>
+    <string name="requests_will_be">Vos requêtes seront affichées ici.</string>
+
+    <string name="navigation_drawer_open" translatable="false">Ouvrir le tiroir de navigation</string>
+    <string name="navigation_drawer_close" translatable="false">Fermer le tiroir de navigation</string>
+    <string name="nav_header_desc" translatable="false">En-tête de navigation</string>
+    <string name="nav_rest" translatable="false">REST</string>
+    <string name="nav_history">Historique</string>
+    <string name="nav_about">À propos</string>
+    <string name="nav_privacy_policy">Politique de confidentialité</string>
+    <string name="browser_not_found">Aucun navigateur par défaut trouvé sur votre appareil.</string>
+
+    <string-array name="methods_array" translatable="false">
+        <item>GET</item>
+        <item>POST</item>
+        <!--<item>HEAD</item>-->
+        <item>PUT</item>
+        <item>DELETE</item>
+        <!--<item>PATCH</item>-->
+    </string-array>
+
+    <string-array name="http_array" translatable="false">
+        <item>https://</item>
+        <item>http://</item>
+    </string-array>
+
+    <string-array name="body_type_array" translatable="false">
+        <item>texte</item>
+        <item>json</item>
+    </string-array>
+</resources>
