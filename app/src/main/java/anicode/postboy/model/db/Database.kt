@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import anicode.postboy.R
 import anicode.postboy.model.db.entities.RequestEntity
-import org.jetbrains.anko.doAsync
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  *  Created by Alexander Nikolaev on 3/28/19.
@@ -23,13 +25,13 @@ class Database(context: Context) : IDatabase {
     }
 
     override fun insertRequest(requestEntity: RequestEntity) {
-        doAsync {
+        CoroutineScope(Dispatchers.IO).launch {
             database.requestDao().insertRequestEntity(requestEntity)
         }
     }
 
     override fun deleteRequest(requestEntity: RequestEntity) {
-        doAsync {
+        CoroutineScope(Dispatchers.IO).launch {
             database.requestDao().delete(requestEntity)
         }
     }
