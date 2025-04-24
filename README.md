@@ -15,8 +15,6 @@ Postboy is a lightweight API testing tool for Android devices. It allows develop
 
 ## 📱 Screenshots
 
-## 📱 Screenshots
-
 <img src="https://github.com/user-attachments/assets/0e30b435-7c23-4e36-b289-8d30e9d2d3f7" width="300" alt="Screen 4">
 <img src="https://github.com/user-attachments/assets/77b9d525-0d7c-463d-9a32-2ca59a991bea" width="300" alt="Screen 3">
 <img src="https://github.com/user-attachments/assets/d5ebd5e1-6fe5-4d33-8878-d83da3aa1908" width="300" alt="Screen 2">
